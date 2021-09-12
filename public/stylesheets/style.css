@@ -1,39 +1,74 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+/* Colors */
+:root {
+  --color-skyblue: #84e7e8;
+  --color-cream: #faf2ea;
+  --color-purple: #5e2939;
 }
-
-a {
-  color: #00B7FF;
-}
-
 .color-skyblue{
   color: #84e7e8;
 }
-
 .color-cream{
   color: #faf2ea;
 }
-
 .color-purple{
   color: #5e2939;
 }
+
+
 /* Layout */
+
+/* Navbar */
 #navbar-image{
   width: 3vmax;
 }
 
+.navbar-cream{
+  background-color: var(--color-cream);
+}
+
+.nav-link{
+  color: black;
+  font-size: larger;
+}
+
+.nav-link:hover{
+  color: var(--color-purple);
+  font-weight: bold;
+}
+
+
+/* Body */
+body {
+  padding: 40px;
+}
+
+
 /* Home */
+@font-face {
+  font-family: "Brittany Signature";
+  src: "/public/fonts/BrittanySignature.ttf";
+}
+
 #main-title{
-  font-size: 18vmax;
+  font-size: 12vmax;
+  font-family: "Brittany Signature";
+  padding-top: 4vmax;
+  padding-bottom: 8vmax;
 }
 
 #main-image{
-  width: 25vmax;
+  width: 34vmax;
+  padding: 4vmax;
 }
+
 
 /* Products */
 .products-image{
   width: 20vmax;
   padding: 2vmax;
+}
+
+.products-name-cost{
+  color: var(--color-purple);
+  font-weight: bold;
 }

@@ -1,13 +1,15 @@
 extends layout
 
 block content
-  h4 #{pageHeader.welcome}
   .container-fluid
     .row
-      .col 
-        h1#main-title.color-purple #{pageHeader.title}
-      .col
-      .col
-        img#main-image(src = '/images/petalos.png')
+      .col-12.col-md-6
+        h4 #{pageHeader.welcome}
+        .d-flex.justify-content-center
+          h1#main-title.color-purple #{pageHeader.title}
+        .d-flex.justify-content-end
+          h5 #{pageHeader.strapline}
+      .col-12.col-md-6
+        .d-flex.justify-content-center
+          img#main-image(src = '/images/petalos.png')
 
-  h5 #{pageHeader.strapline}

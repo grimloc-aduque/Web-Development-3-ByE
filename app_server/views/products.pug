@@ -5,7 +5,7 @@ block content
 
   //- Products section
   div.d-flex.justify-content-center
-    h1 #{title}
+    h1.color-purple #{title}
   div.d-flex.justify-content-center
     p Welcome to #{title}
 
@@ -18,7 +18,7 @@ block content
             img.products-image(src = product.image_url)
         .row
           .d-flex.justify-content-center 
-            p.color-purple #{product.name} - #{product.price}
+            p.products-name-cost #{product.name} - #{product.price}
           .d-flex.justify-content-center 
             p= product.description
       
