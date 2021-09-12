@@ -1,0 +1,39 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.color-skyblue{
+  color: #84e7e8;
+}
+
+.color-cream{
+  color: #faf2ea;
+}
+
+.color-purple{
+  color: #5e2939;
+}
+/* Layout */
+#navbar-image{
+  width: 3vmax;
+}
+
+/* Home */
+#main-title{
+  font-size: 18vmax;
+}
+
+#main-image{
+  width: 25vmax;
+}
+
+/* Products */
+.products-image{
+  width: 20vmax;
+  padding: 2vmax;
+}

@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h4 #{pageHeader.welcome}
+  .container-fluid
+    .row
+      .col 
+        h1#main-title.color-purple #{pageHeader.title}
+      .col
+      .col
+        img#main-image(src = '/images/petalos.png')
+
+  h5 #{pageHeader.strapline}

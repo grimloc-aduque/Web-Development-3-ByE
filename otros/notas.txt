@@ -1,0 +1,20 @@
+Home
+https://getbootstrap.com/docs/5.1/examples/cover/#
+
+Navbar
+https://getbootstrap.com/docs/5.1/examples/navbar-fixed/
+
+Products
+https://getbootstrap.com/docs/5.1/examples/album/
+
+CRUD
+Sidebar
+https://getbootstrap.com/docs/5.1/examples/sidebars/
+Drop down
+https://getbootstrap.com/docs/5.1/examples/dropdowns/
+Dash board
+https://getbootstrap.com/docs/5.1/examples/dashboard/#
+
+
+
+Figma hacer documento compartido
