@@ -1,5 +1,32 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  div.d-flex.justify-content-center
+    h1.color-purple #{title}
+
+
+
+  .d-flex.flex-column.align-items-stretch.flex-shrink-0.bg-white(style='width: 380px;')
+  a.d-flex.align-items-center.flex-shrink-0.p-3.link-dark.text-decoration-none.border-bottom(href='/')
+    svg.bi.me-2(width='30' height='24')
+      use(xlink:href='#bootstrap')
+    
+  .list-group.list-group-flush.border-bottom.scrollarea.lead
+    a.list-group-item.list-group-item-action.py-3.lh-tight(href='/crear' aria-current='true')
+      .d-flex.w-100.align-items-center.justify-content-between
+        strong.mb-1 #{create}
+        
+      
+    a.list-group-item.list-group-item-action.py-3.lh-tight(href='/products')
+      .d-flex.w-100.align-items-center.justify-content-between
+        strong.mb-1 #{read}
+        
+    a.list-group-item.list-group-item-action.py-3.lh-tight(href='#')
+      .d-flex.w-100.align-items-center.justify-content-between
+        strong.mb-1 #{update}
+        
+    a.list-group-item.list-group-item-action.py-3.lh-tight(href='#' aria-current='true')
+      .d-flex.w-100.align-items-center.justify-content-between
+        strong.mb-1 #{delet}
+        
+    

@@ -7,7 +7,7 @@ block content
   div.d-flex.justify-content-center
     h1.color-purple #{title}
   div.d-flex.justify-content-center
-    p Welcome to #{title}
+    p.lead #{productsSection.description}
 
   //- Products
   .row 
@@ -20,7 +20,7 @@ block content
           .d-flex.justify-content-center 
             p.products-name-cost #{product.name} - #{product.price}
           .d-flex.justify-content-center 
-            p= product.description
+            p.lead= product.description
       
 
         
