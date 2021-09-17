@@ -3,24 +3,27 @@ extends layout
 
 block content
 
-  //- Products section
-  div.d-flex.justify-content-center
-    h1.color-purple #{title}
-  div.d-flex.justify-content-center
-    p.lead #{productsSection.description}
 
-  //- Products
-  .row 
-    each product in products
-      .col-6.col-md-4
-        .row
-          .d-flex.justify-content-center 
-            img.products-image(src = product.image_url)
-        .row
-          .d-flex.justify-content-center 
-            p.products-name-cost #{product.name} - #{product.price}
-          .d-flex.justify-content-center 
-            p.lead= product.description
-      
+  //- Products Sections
+  each section in sections
+    div.products-section
+      div.d-flex.justify-content-center
+        h1.color-purple #{section.title}
+      div.d-flex.justify-content-center
+        p.lead #{section.description}
+
+      //- Products
+      .row 
+        each product in section.products
+          .col-6.col-md-4
+            .row
+              .d-flex.justify-content-center 
+                img.products-image(src = product.image_url)
+            .row
+              .d-flex.justify-content-center 
+                p.products-name-cost #{product.name} - #{product.price}
+              .d-flex.justify-content-center 
+                p.lead= product.description
+        
 
         

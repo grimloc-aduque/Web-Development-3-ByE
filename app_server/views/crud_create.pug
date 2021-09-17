@@ -1,0 +1,34 @@
+extends layout
+
+block content
+  
+  div.d-flex.justify-content-center
+    h1.color-purple #{title}
+  form.lead
+  
+    .form-outline.mb-4
+      label.form-label(for='form4Example1') #{name}
+      input#form4Example1.form-control(type='text')
+      
+  
+    .form-outline.mb-4
+      label.form-label(for='form4Example2') #{price}
+      input#form4Example2.form-control(type='email')
+      
+  
+    .form-outline.mb-4
+      label.form-label(for='form4Example3') #{description} 
+      textarea#form4Example3.form-control(rows='4')
+
+    .form-outline.mb-4 
+      label.form-label(for='inputState') Categoria
+      select#inputState.form-select
+        option(selected='') Selecciona una categoria
+        option ...
+
+    .form-outline.mb-4 
+      label.form-label(for='formFile') #{subir_archivo}
+      input#formFile.form-control(type='file')
+    
+  
+    button.btn.btn-primary.btn-block.mb-4(type='submit') Agregar
