@@ -45,6 +45,17 @@
 /* Body */
 body {
   padding: 40px;
+  padding-top: 60px;
+}
+
+/* Content */
+.content{
+  margin-top: 55px;
+}
+
+/* Footer */
+.footer{
+  margin-top: 90px;
 }
 
 
@@ -72,11 +83,18 @@ body {
   padding-bottom: 8vmax;
 }
 .products-image{
-  width: 22vmax;
-  padding: 2vmax;
+  width: 38vh;
+  padding: 3vh;
 }
 
 .products-name-cost{
   color: var(--color-purple);
   font-weight: bold;
+}
+
+
+/* About */
+.featurette-divider{
+  margin-top: 70px;
+  margin-bottom: 35px;
 }

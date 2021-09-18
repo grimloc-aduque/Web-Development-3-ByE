@@ -3,37 +3,39 @@ extends layout
 block content
   div.d-flex.justify-content-center
     h1.color-purple #{title}
-  
+
   hr.featurette-divider
   .row.featurette
       .col-md-7.order-md-2
-        h2.featurette-heading  #{description}
+        h2.color-purple.featurette-heading  #{description}
         p.lead #{texto}
       .col-md-5.order-md-1
-          img.bd-placeholder-img.bd-placeholder-img-lg.featurette-image.img-fluid.mx-auto.m-auto.d-block(width='50%' height='50%' src = image_product)
+          img.bd-placeholder-img.bd-placeholder-img-lg.featurette-image.img-fluid.mx-auto.m-auto.d-block(width='50%' height='50%' src = about_img)
+  
   hr.featurette-divider
   div.d-flex.justify-content-center.featurette
     h1.color-purple #{title2}
   div.d-flex.justify-content-center
     p.lead  #{description2}
-  div.d-flex.justify-content-center
-    img.w-25.p-1.col-12.col-md-3(src = image_product)
-  div.d-flex.justify-content-center
-    ul
+  
+  
+  .row.d-flex.justify-content-evenly
+    .col-md-7 
       each product in productos
-        .d-flex.justify-content-start.col-12
-          li.lead #{product.nombre_producto}        
-          
-          
+        li.lead  #{product.nombre_producto} 
+    .col-md-5
+      img.bd-placeholder-img.bd-placeholder-img-lg.featurette-image.img-fluid.mx-auto.m-auto.d-block(width='40%' height='40%' src = image_product)
+      
+            
   hr.featurette-divider
   div.d-flex.justify-content-center
-    h1.color-purple #{title3} 
+    h1.color-purple.p-b-5 #{title3} 
     
           
   .row
     each red in redes
-      .col-lg-4
-          img.d-block.m-auto(width='140' height='140' src = red.imagen)
+      .col-lg-4.p-4
+          img.d-block.m-auto(width='65' height='65' src = red.imagen)
           h2.lead.d-flex.justify-content-center #{red.nombre}
           a.d-flex.justify-content-center.btn.btn-secondary(href= red.link) Ver &raquo;
   

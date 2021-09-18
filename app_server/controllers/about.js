@@ -3,7 +3,7 @@ const about = (req, res) => {
     res.render('about', { 
         title: 'Sobre nosotros' ,
         description: 'Conoce mas sobre ByE',
-        about_img: '',
+        about_img: 'https://scontent.fuio1-2.fna.fbcdn.net/v/t1.6435-9/120504052_2209107295900331_1553419044402864033_n.jpg?_nc_cat=101&ccb=1-5&_nc_sid=84a396&_nc_eui2=AeHuRHrMQqv5dO3wjGMNQlj6zk0o6oQbegbOTSjqhBt6BkdTGMgYZCEYX-qg7xyyaiiSA2nvbsSMwa2glUP4yP0z&_nc_ohc=Cj93wZ1HIBcAX_HAm64&_nc_ht=scontent.fuio1-2.fna&oh=395597a7b38141d1bea9638c2e889406&oe=616AD157',
         texto: 'ByE Bonitos y Esponjositos es una tienda online ecuatoriana, fundada por dos hermanas que disfrutan del arte, la comida y la salud. La tienda fue fundada en el año 2020 con el objetivo de aprovechar el conocimiento del tejido de estos peluches ',
        
         title2: 'Nuestros Productos',
@@ -33,7 +33,7 @@ const about = (req, res) => {
         },{
             imagen: (src = '/images/wpp.png'),
             nombre: 'WhatsApp',
-            link:'',
+            link:'https://api.whatsapp.com/send?phone=+593 98 743 3794',
         }
     
     

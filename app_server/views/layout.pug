@@ -9,15 +9,15 @@ html
     script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js")
     script(src="https://kit.fontawesome.com/8ece53c6d0.js" crossorigin="anonymous")
   body
-    nav.navbar.fixed-top.navbar-expand-md.navbar-cream
+    nav.navbar.fixed-top.navbar-expand-lg.navbar-light.navbar-cream
       div.container
         a.navbar-brand(href='/')
           img#navbar-image(width='50%' height='50%' src='/images/bye_logo.png')
 
-        button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarMain', aria-controls='navbarMain', aria-expanded='false', aria-label='Toggle navigation')
+        button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarCollapse' aria-controls='navbarCollapse' aria-expanded='false' aria-label='Toggle navigation')
           span.navbar-toggler-icon
           
-        div#navbarMain.collapse.navbar-collapse
+        div#navbarCollapse.collapse.navbar-collapse
           div.navbar-nav.lead
             a.nav-item.nav-link(href='/') Inicio
             a.nav-item.nav-link(href='/products') Productos
@@ -25,14 +25,10 @@ html
             a.nav-item.nav-link(href='/crud') Gestionar Productos
 
 
-    br
-    br
-    div.container
+    div.container.content
       block content
 
-      br
-      br
-      hr
+      hr.footer
       footer 
         div.row
           div.col-12
