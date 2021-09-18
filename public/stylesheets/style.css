@@ -26,17 +26,15 @@
   background-color: var(--color-cream);
 }
 
-.nav-item{
-  margin-right: 2vmax;
-}
 
-.nav-link{
-  color: black;
+a.nav-item.nav-link{
+  color: black !important;
+  margin-right: 2vmax;
   font-weight: normal;
   font-size: larger;
 }
 
-.nav-link:hover{
+a.nav-item.nav-link:hover{
   color: var(--color-purple);
   font-weight: bold;
 }
