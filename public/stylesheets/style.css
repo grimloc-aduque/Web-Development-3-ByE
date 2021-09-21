@@ -17,6 +17,7 @@
 
 /* Layout */
 
+
 /* Navbar */
 #navbar-image{
   width: 3vmax;
@@ -25,7 +26,6 @@
 .navbar-cream{
   background-color: var(--color-cream);
 }
-
 
 a.nav-item.nav-link{
   color: black !important;
@@ -39,32 +39,29 @@ a.nav-item.nav-link:hover{
   font-weight: bold;
 }
 
-
 /* Body */
 body {
   padding: 40px;
   padding-top: 60px;
+  padding-bottom: 30px;
 }
 
 /* Content */
-.content{
-  margin-top: 55px;
+div.content{
+  margin-top: 50px;
+  min-height: 75vh;
 }
 
-/* Footer */
-.footer{
-  margin-top: 90px;
-}
 
 
 /* Home */
 @font-face {
   font-family: "Brittany Signature";
-  src: "/public/fonts/BrittanySignature.ttf";
+  src: url("/fonts/BrittanySignature.ttf");
 }
 
 #main-title{
-  font-size: 12vmax;
+  font-size: 14vmax;
   font-family: "Brittany Signature";
   padding-top: 4vmax;
   padding-bottom: 8vmax;
@@ -79,6 +76,9 @@ body {
 /* Products */
 .products-section{
   padding-bottom: 8vmax;
+}
+.products-product{
+  padding: 20px;
 }
 .products-image{
   width: 38vh;
@@ -95,4 +95,30 @@ body {
 .featurette-divider{
   margin-top: 70px;
   margin-bottom: 35px;
+}
+
+/* Login */
+.form-group{
+  margin: 1.4vw;
+}
+
+.login-formItem, .login-button{
+  margin-top:0.3vw;
+}
+
+button.login-button, a.login-button{
+  background: var(--color-purple);
+  color: white;
+}
+
+form{
+  padding: 0.2vmax;
+}
+
+div.fondo-logo{
+  height: 75vh;
+  background-image: url("/images/bye_text.png");
+  background-repeat: no-repeat;
+  background-size: 360px;
+  background-position: left bottom;
 }

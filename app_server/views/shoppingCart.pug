@@ -1,0 +1,46 @@
+extends layout
+
+block content
+  
+  div.d-flex.justify-content-center
+    h1.color-purple #{title}
+    
+  #zero-pad.container.bg-white.rounded-top.mt-5
+    .row.d-flex.justify-content-center
+    
+      .col-lg-10.col-12.pt-3
+        each product in products
+          .d-flex.flex-row.justify-content-between.align-items-center.pt-lg-4.pt-2.pb-3.border-bottom.mobile
+          
+            .d-flex.flex-row.align-items-center
+              div
+                img#image(src = product.image_url width='150' height='150' alt='' p-e-2)
+              .d-flex.flex-column.pl-md-3.pl-1
+                div
+                  h6.lead  #{product.name}
+                div
+                  p.lead  #{product.description}
+                  
+                
+            .pl-md-0.pl-2
+            
+              td
+              select.form-control
+                option 1
+                option 2
+
+            .pl-md-0.pl-1
+              b.lead  #{product.price}
+            .close &times;
+        
+  #zero-pad.container.bg-light.rounded-bottom.py-4
+    .row.d-flex.justify-content-center
+      .col-lg-10.col-12
+        .d-flex.justify-content-between.align-items-center
+          div
+              a.lead.button.btn.btn-sm.bg-light.border.border-dark(href='/products') #{botonBack}
+          #footer-font.px-md-0.px-1
+            b.pl-md-4 #{textoTotal}
+              span.pl-md-4 $#{total}
+          div
+            button.lead.btn.btn-sm.bg-dark.text-white.px-lg-5.px-3 #{botonContinuar}

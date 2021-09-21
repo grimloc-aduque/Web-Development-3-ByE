@@ -15,7 +15,7 @@ block content
       //- Products
       .row 
         each product in section.products
-          .col-12.col-lg-4
+          .col-12.col-lg-4.products-product
             .row
               .d-flex.justify-content-center 
                 img.products-image(src = product.image_url)
@@ -24,6 +24,10 @@ block content
                 p.products-name-cost #{product.name} - #{product.price}
               .d-flex.justify-content-center 
                 p.lead= product.description
+                
+            .d-flex.justify-content-around
+              button.btn.btn-outline-dark.btn-sm(type='button') Agregar al carrito
+                
         
 
         

@@ -1,0 +1,28 @@
+extends layout
+
+block content
+
+  div.fondo-logo
+    //- Titulo
+    div.d-flex.justify-content-center
+      h1.color-purple #{title}
+
+    div.d-flex.justify-content-center
+      form
+        //- Fields
+        div.form-group
+          label.login-formItem Nombre
+          input.form-control.login-formItem(type="text" placeholder="Juan Perez", required, size=36)
+        div.form-group
+          label.login-formItem Teléfono
+          input.form-control.login-formItem(type="text", placeholder="0999999999", required)
+        div.form-group
+          label.login-formItem Correo Electronico
+          input.form-control.login-formItem(type="email" placeholder="example@domain.com", required)
+        div.form-group
+          label.login-formItem Contraseña
+          input.form-control.login-formItem(type="password", required)
+
+        //- Buttons
+        div.form-group.d-flex.flex-column
+          button.btn.btn-block.btn-outline-dark.login-button(type="submit") Regístrate
