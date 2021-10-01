@@ -42,14 +42,14 @@ a.nav-item.nav-link:hover{
 /* Body */
 body {
   padding: 40px;
-  padding-top: 60px;
+  padding-top: 50px;
   padding-bottom: 30px;
 }
 
 /* Content */
 div.content{
   margin-top: 50px;
-  min-height: 75vh;
+  min-height: 74vh;
 }
 
 
@@ -116,7 +116,7 @@ form{
 }
 
 div.fondo-logo{
-  height: 75vh;
+  height: 72vh;
   background-image: url("/images/bye_text.png");
   background-repeat: no-repeat;
   background-size: 360px;

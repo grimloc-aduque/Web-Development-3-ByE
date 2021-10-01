@@ -1,0 +1,48 @@
+extends ../layout
+
+block content
+  
+  div.d-flex.justify-content-center
+    h1.color-purple #{title}
+
+  
+  .container.h-100
+    .row.d-flex.justify-content-center.align-items-center.h-100
+      .col-lg-12.col-xl-11
+          .card-body.p-md-5
+            .row.justify-content-center
+              .col-md-10.col-lg-6.col-xl-5.order-2.order-lg-1
+                form.mx-1.mx-md-4
+                  .d-flex.flex-row.align-items-center.mb-4
+                    
+                    .form-outline.flex-fill.mb-0
+                      input#form3Example1c.form-control(type='text')
+                      label.form-label(for='form3Example1c') #{nombre}
+                  .d-flex.flex-row.align-items-center.mb-4
+                    
+                    .form-outline.flex-fill.mb-0
+                      input#form3Example3c.form-control(type='email')
+                      label.form-label(for='form3Example3c') #{descripcion}
+                  .d-flex.flex-row.align-items-center.mb-4
+                    
+                    .form-outline.flex-fill.mb-0
+                      input#form3Example4c.form-control(type='text')
+                      label.form-label(for='form3Example4c') #{precio}
+                  .d-flex.flex-row.align-items-center.mb-4
+                    
+                    .form-outline.flex-fill.mb-0
+                      select.form-control
+                        each categoria in Categorias
+                          option #{categoria.opcion}
+                      label.form-label(for='form3Example4cd') Categoria
+                        
+                      
+                      
+                  
+                  .d-flex.justify-content-center.mx-4.mb-3.mb-lg-4
+                    a.lead.btn.btn-sm.bg-dark.text-white.px-lg-5.px-3(href='/manageProducts') #{actualizar}
+              .col-md-10.col-lg-6.col-xl-7.d-flex.align-items-center.order-1.order-lg-2
+                .hovereffect
+                  img.w-100.img-responsive(src= imagen width='150')
+                  .overlay.d-flex.justify-content-center.align-items-center
+                    a.info.text-black(href='#') #{editar}

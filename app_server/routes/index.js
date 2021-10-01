@@ -21,11 +21,6 @@ const ctrlCreateProduct = require('../controllers/back_office/createProduct')
 const ctrlEditProduct = require('../controllers/back_office/editProduct')
 
 
-const ctrlCrud = require('../controllers/crud');
-const ctrlCreate = require('../controllers/crud_create.js');
-const ctrlUpdate = require('../controllers/crud_update.js');
-
-
 // Direccionammiento de rutas
 
 // Mostrar contenido
@@ -42,12 +37,7 @@ router.get('/login', ctrlLogin.login);
 router.get('/signin', ctrlSignin.signin);
 
 // Back Office
-router.get('/crud', ctrlCrud.crud);
-router.get('/crud/create', ctrlCreate.create);
-router.get('/crud/update', ctrlUpdate.update);
 
-// Back Office
-/*
 router.get('/manageSections', ctrlManageSections.manageSections);
 router.get('/manageSections/createSection', ctrlCreateSection.createSection);
 router.get('/manageSections/editSection', ctrlEditSection.editSection);
@@ -55,6 +45,6 @@ router.get('/manageSections/editSection', ctrlEditSection.editSection);
 router.get('/manageProducts', ctrlManageProducts.manageProducts);
 router.get('/manageProducts/createProduct', ctrlCreateProduct.createProduct);
 router.get('/manageProducts/editProduct', ctrlEditProduct.editProduct);
-*/
+
 
 module.exports = router;

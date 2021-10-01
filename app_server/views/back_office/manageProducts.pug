@@ -1,0 +1,31 @@
+extends ../layout
+
+block content
+  div.d-flex.justify-content-center
+    h1.color-purple #{title}
+  br
+
+  .list-group.list-group-flush.scrollarea.lead
+    each section in sections
+      .d-flex.justify-content-center.mx-4.mb-3.mb-lg-4
+        a.lead.btn.btn-sm.bg-dark.text-white.px-lg-5.px-3(href = section.route) #{section.title}
+  
+  hr.featurette-divider.m-2
+  each product in products
+    .row.featurette.p-t-3
+      .col-md-3.order-md-1.pb-2
+        img#image(src = product.image_url width='50%'  alt='' p-e-2).mx-auto.m-auto.d-block
+      .col-md-3.order-md-2.d-flex.align-items-center.py-1
+        h5.lead  #{product.name}
+          p.lead #{product.description}
+
+      .col-md-1.order-md-2.d-flex.justify-content-evenly.align-items-center.py-1
+       
+
+      .col-md-5.order-md-2.d-flex.justify-content-evenly.align-items-center.py-1
+        a.lead.button.btn.btn-sm.bg-black.text-white(href='/manageProducts/editProduct') Editar 
+        a.lead.button.btn.btn-sm.bg-danger.text-white(href='/products') Eliminar 
+         
+
+      
+    hr.featurette-divider.m-1
