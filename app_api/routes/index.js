@@ -3,30 +3,45 @@ const router = express.Router();
 
 const ctrlSections = require('../controllers/sections');
 const ctrlProducts = require('../controllers/products');
+const ctrlUsers =require('../controllers/users');
 
 
 // Sections
 router
     .route('/sections')
-    .get(ctrlSections.sectionsListAll)
-    .post(ctrlSections.sectionsCreate);
+    .get(ctrlSections.sectionList)
+    .post(ctrlSections.sectionCreate);
 
 router
     .route('/sections/:sectionid')
-    .get(ctrlSections.sectionsReadOne)
-    .put(ctrlSections.sectionsUpdateOne)
-    .delete(ctrlSections.sectionsDeleteOne);
+    .get(ctrlSections.sectionRead)
+    .put(ctrlSections.sectionUpdate)
+    .delete(ctrlSections.sectionDelete);
 
 
 // Products
 router
     .route('/sections/:sectionid/products')
-    .post(ctrlProducts.productsCreate);
+    .get(ctrlProducts.productList)
+    .post(ctrlProducts.productCreate);
 
 router
     .route('/sections/:sectionid/products/:productid')
-    .get(ctrlProducts.productsReadOne)
-    .put(ctrlProducts.productsUpdateOne)
-    .delete(ctrlProducts.productsDeleteOne);
+    .get(ctrlProducts.productRead)
+    .put(ctrlProducts.productUpdate)
+    .delete(ctrlProducts.productDelete);
+
+
+// Users 
+router 
+    .route('/users')
+    .post(ctrlUsers.userCreate)
+    .get(ctrlUsers.userList);
+router
+    .route('/users/:userid')
+    .get(ctrlUsers.userRead)
+    .put(ctrlUsers.userUpdate)
+    .delete(ctrlUsers.userDelete);
+    
 
 module.exports = router;

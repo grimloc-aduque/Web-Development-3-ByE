@@ -5,42 +5,47 @@ block content
   div.d-flex.justify-content-center
     h1.color-purple #{title}
     
-  #zero-pad.container.bg-white.rounded-top.mt-5
-    .row.d-flex.justify-content-center
-    
-      .col-lg-10.col-12.pt-3
-        each product in products
-          .d-flex.flex-row.justify-content-between.align-items-center.pt-lg-4.pt-2.pb-3.border-bottom.mobile
-          
-            .d-flex.flex-row.align-items-center
-              div
-                img#image(src = product.image_url width='150' height='150' alt='' p-e-2)
-              .d-flex.flex-column.pl-md-3.pl-1
-                div
-                  h6.lead  #{product.name}
-                div
-                  p.lead  #{product.description}
-                  
-                
-            .pl-md-0.pl-2
-            
-              td
-              select.form-control
-                option 1
-                option 2
+  hr.featurette-divider
+  each product in products
+    .row.featurette.p-t-5
+      .col-md-2.order-md-1.pb-2
+        img#image(src = product.image_url width='150' height='150' alt='' p-e-2).mx-auto.m-auto.d-block
+      .col-md-3.order-md-2.d-flex.align-items-center.py-1
+        h5.lead  #{product.name}
+          p.lead #{product.description}
 
-            .pl-md-0.pl-1
-              b.lead  #{product.price}
-            .close &times;
+      .col-md-2.order-md-2.d-flex.justify-content-evenly.align-items-center.py-1
+        select.form-control
+          option 1
+          option 2
+
+      .col-md-3.order-md-2.d-flex.justify-content-right.align-items-center.py-1
+        b.lead  #{product.price}
+
+      .col-md-2.order-md-2.d-flex.justify-content-right.align-items-center.py-1
+         a.lead.button.btn.btn-sm.bg-danger.text-white(href='/products') Eliminar 
+
+      
+    hr.featurette-divider
+  
         
-  #zero-pad.container.bg-light.rounded-bottom.py-4
-    .row.d-flex.justify-content-center
-      .col-lg-10.col-12
-        .d-flex.justify-content-between.align-items-center
-          div
-              a.lead.button.btn.btn-sm.bg-light.border.border-dark(href='/products') #{botonBack}
-          #footer-font.px-md-0.px-1
-            b.pl-md-4 #{textoTotal}
+  
+  .container.marketing.bg-light.rounded-bottom.py-4
+    .row
+    
+      .col-lg-4.d-flex.justify-content-evenly.align-items-center.py-2
+        p
+          a.lead.button.btn.btn-sm.bg-light.border.border-dark(href='/products') #{botonBack}
+
+      .col-lg-4.d-flex.justify-content-evenly.align-items-center.pb-2
+          
+        b.pl-md-4 #{textoTotal}
               span.pl-md-4 $#{total}
-          div
-            button.lead.btn.btn-sm.bg-dark.text-white.px-lg-5.px-3 #{botonContinuar}
+
+      .col-lg-4.d-flex.justify-content-evenly.align-items-center.py-2
+        p
+          a.lead.btn.btn-sm.bg-dark.text-white.px-lg-5.px-3(href='/checkout') #{botonContinuar}
+  
+
+  
+  

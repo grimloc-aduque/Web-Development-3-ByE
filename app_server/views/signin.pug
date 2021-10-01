@@ -1,28 +1,50 @@
 extends layout
 
 block content
-
-  div.fondo-logo
-    //- Titulo
-    div.d-flex.justify-content-center
-      h1.color-purple #{title}
-
-    div.d-flex.justify-content-center
-      form
-        //- Fields
-        div.form-group
-          label.login-formItem Nombre
-          input.form-control.login-formItem(type="text" placeholder="Juan Perez", required, size=36)
-        div.form-group
-          label.login-formItem Teléfono
-          input.form-control.login-formItem(type="text", placeholder="0999999999", required)
-        div.form-group
-          label.login-formItem Correo Electronico
-          input.form-control.login-formItem(type="email" placeholder="example@domain.com", required)
-        div.form-group
-          label.login-formItem Contraseña
-          input.form-control.login-formItem(type="password", required)
-
-        //- Buttons
-        div.form-group.d-flex.flex-column
-          button.btn.btn-block.btn-outline-dark.login-button(type="submit") Regístrate
+  
+  div.d-flex.justify-content-center
+    h1.color-purple #{title}
+  
+  .container.py-5.h-100
+    .row.d-flex.justify-content-center.align-items-center.h-100
+      .col
+        .card.card-registration.my-4
+          .row.g-0
+          
+            .col-xl-12
+              .card-body.p-md-5.text-black
+                .row
+                  .col-md-6.mb-4
+                    .form-outline
+                      input#form3Example1m.form-control.form-control-lg(type='text')
+                      label.form-label(for='form3Example1m') Nombre
+                  .col-md-6.mb-4
+                    .form-outline
+                      input#form3Example1n.form-control.form-control-lg(type='text')
+                      label.form-label(for='form3Example1n') Apellido
+                .row
+                  .col-md-6.mb-4
+                    .form-outline
+                      input#form3Example1m1.form-control.form-control-lg(type='text')
+                      label.form-label(for='form3Example1m1') Telefono
+                  .col-md-6.mb-4
+                    .form-outline
+                      input#form3Example1n1.form-control.form-control-lg(type='text')
+                      label.form-label(for='form3Example1n1') Correo Electronico
+                .row
+                  .col-md-6.mb-4
+                    .form-outline
+                      input#form3Example1m1.form-control.form-control-lg(type='text')
+                      label.form-label(for='form3Example1m1') Contraseña
+                  .col-md-6.mb-4
+                    .form-outline
+                      input#form3Example1n1.form-control.form-control-lg(type='text')
+                      label.form-label(for='form3Example1n1') Confirmar contraseña
+                .form-outline.mb-4
+                  input#form3Example8.form-control.form-control-lg(type='text')
+                  label.form-label(for='form3Example8') Direccion
+        
+          
+                .d-flex.justify-content-end.pt-3
+                  
+                  a.lead.btn.btn-sm.bg-dark.text-white.px-lg-5.px-3(href='/login')  Registrarse

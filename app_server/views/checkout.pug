@@ -1,0 +1,108 @@
+extends layout
+
+block content
+  
+  div.d-flex.justify-content-center
+    h1.color-purple #{title}
+  
+  .container
+  
+  main
+    .py-2.text-center
+    .row.g-5
+      .col-md-5.col-lg-4.order-md-last
+        
+        ul.list-group.mb-3
+          li.list-group-item.d-flex.justify-content-between.lh-sm
+            div
+              h6.my-0 Producto 1
+              small.text-muted Descripción
+            span.text-muted $00
+         
+          
+          li.list-group-item.d-flex.justify-content-between
+            span Total (USD)
+            strong $00
+       
+      .col-md-7.col-lg-8
+        
+        form.needs-validation(novalidate='')
+          .row.g-3
+            .col-sm-6
+              label.form-label(for='firstName') Nombre
+              input#firstName.form-control(type='text' placeholder='' value='' required='')
+              .invalid-feedback
+                p #{mensaje}
+            .col-sm-6
+              label.form-label(for='lastName') Apellido
+              input#lastName.form-control(type='text' placeholder='' value='' required='')
+              .invalid-feedback
+                p #{mensaje}
+        
+            .col-12
+              label.form-label(for='email')
+                | Email 
+                span.text-muted (Opcional)
+              input#email.form-control(type='email' placeholder='nombre@example.com')
+              .invalid-feedback
+                p #{mensaje}
+            .col-12
+              label.form-label(for='address') Dirección
+              input#address.form-control(type='text' placeholder='Calle' required='')
+              .invalid-feedback
+                p #{mensaje}
+            
+            .col-md-5
+              label.form-label(for='country') Provincia
+              select#country.form-select(required='')
+                option(value='') Seleccione una opcion...
+                option ...
+              .invalid-feedback
+                p #{mensaje}
+            .col-md-4
+              label.form-label(for='state') Ciudad
+              select#state.form-select(required='')
+                option(value='') Seleccione una opcion...
+                option ...
+              .invalid-feedback
+                p #{mensaje}
+            .col-md-3
+              label.form-label(for='zip') Zip
+              input#zip.form-control(type='text' placeholder='' required='')
+              .invalid-feedback
+                p #{mensaje}
+          
+          
+          hr.my-4
+          h4.mb-3 Método de pago
+          .my-3
+            .form-check
+              input#credit.form-check-input(name='paymentMethod' type='radio' checked='' required='')
+              label.form-check-label(for='credit') Tarjeta de credito
+            
+          .row.gy-3
+            .col-md-6
+              label.form-label(for='cc-name') Nombre de la tarjeta
+              input#cc-name.form-control(type='text' placeholder='' required='')
+              
+              .invalid-feedback
+                p #{mensaje}
+            .col-md-6
+              label.form-label(for='cc-number') Numero de tarjeta
+              input#cc-number.form-control(type='text' placeholder='' required='')
+              .invalid-feedback
+                p #{mensaje}
+            .col-md-3
+              label.form-label(for='cc-expiration') Fecha de caducidad
+              input#cc-expiration.form-control(type='text' placeholder='' required='')
+              .invalid-feedback
+                p #{mensaje}
+            .col-md-3
+              label.form-label(for='cc-cvv') CVV
+              input#cc-cvv.form-control(type='text' placeholder='' required='')
+              .invalid-feedback
+                p #{mensaje}
+          hr.my-4
+          button.w-100.btn.bg-dark.text-white.btn-lg(type='submit') Comprar
+  
+    

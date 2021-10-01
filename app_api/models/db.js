@@ -1,6 +1,8 @@
 // Modelos
 
+require('./esquema_users');
 require('./esquema_sections');
+
 
 const mongoose = require('mongoose'); // Incorporar mongoose al proyecto
 

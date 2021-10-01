@@ -1,34 +1,60 @@
 const express = require('express');
 const router = express.Router();
 
-
+// Traigo los controladores
 const ctrlHome = require('../controllers/home');
 const ctrlProducts = require('../controllers/products');
-const ctrlShoppingCart = require('../controllers/shoppingCart');
 const ctrlAbout = require('../controllers/about');
-const ctrlCrud = require('../controllers/crud');
+
+const ctrlShoppingCart = require('../controllers/shoppingCart');
+const ctrlCheckout = require('../controllers/checkout');
+
 const ctrlLogin = require('../controllers/login');
 const ctrlSignin = require('../controllers/signin');
 
-const ctrlCreate = require('../controllers/crud_create.js');
-const ctrlRead = require('../controllers/crud_read.js');
-const ctrlUpdate = require('../controllers/crud_update.js');
-const ctrlDelete = require('../controllers/crud_delete.js');
+const ctrlManageSections = require('../controllers/back_office/manageSections')
+const ctrlCreateSection = require('../controllers/back_office/createSection')
+const ctrlEditSection = require('../controllers/back_office/editSection')
 
-// Pages
+const ctrlManageProducts = require('../controllers/back_office/manageProducts')
+const ctrlCreateProduct = require('../controllers/back_office/createProduct')
+const ctrlEditProduct = require('../controllers/back_office/editProduct')
+
+
+const ctrlCrud = require('../controllers/crud');
+const ctrlCreate = require('../controllers/crud_create.js');
+const ctrlUpdate = require('../controllers/crud_update.js');
+
+
+// Direccionammiento de rutas
+
+// Mostrar contenido
 router.get('/', ctrlHome.home);
 router.get('/products', ctrlProducts.products);
-router.get('/shoppingCart', ctrlShoppingCart.shoppingCart);
 router.get('/about', ctrlAbout.about);
-router.get('/crud', ctrlCrud.crud);
+
+// Carrito y finalizacion de compra del usuario
+router.get('/shoppingCart', ctrlShoppingCart.shoppingCart);
+router.get('/checkout', ctrlCheckout.checkout);
+
+// Creacion e inicio de sesion
 router.get('/login', ctrlLogin.login);
 router.get('/signin', ctrlSignin.signin);
 
+// Back Office
+router.get('/crud', ctrlCrud.crud);
 router.get('/crud/create', ctrlCreate.create);
-router.get('/crud/read', ctrlRead.read);
 router.get('/crud/update', ctrlUpdate.update);
-router.get('/crud/delete', ctrlDelete.deletes);
 
+// Back Office
+/*
+router.get('/manageSections', ctrlManageSections.manageSections);
+router.get('/manageSections/createSection', ctrlCreateSection.createSection);
+router.get('/manageSections/editSection', ctrlEditSection.editSection);
 
+router.get('/manageProducts', ctrlManageProducts.manageProducts);
+router.get('/manageProducts/createProduct', ctrlCreateProduct.createProduct);
+router.get('/manageProducts/editProduct', ctrlEditProduct.editProduct);
+*/
 
 module.exports = router;
