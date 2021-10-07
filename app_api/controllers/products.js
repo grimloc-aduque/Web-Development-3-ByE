@@ -1,18 +1,77 @@
 const mongoose = require('mongoose');
-const Section = mongoose.model('Section')
-const Product = mongoose.model('Product');
-
+const Sections = mongoose.model('Section')
 
 
 const productCreate = (req, res) => {
-    res
-        .status(200)
-        .json({"status": "Success Create"});
+    const sectionid = req.params.sectionid;
+
+    // Verifico que se ingresaron id's validos
+    if(!sectionid){
+        return res
+            .status(404)
+            .json({
+                "message": "Ingrese un sectionid valido"
+            })
+    }
+
+    // Busco la seccion
+    Sections
+        .findById(sectionid)
+        .exec((err, objetoSection) =>{
+            if(!objetoSection) {
+                return res
+                    .status(404)
+                    .jason({
+                        "message": "sectionid no existe"
+                    });
+            }
+            else if(err) {
+                return res
+                    .status(400)
+                    .jason(err);
+            }
+
+            // Creo el nuevo producto
+            const newProduct = new Product({
+                urlImagen: req.body.urlImagen,
+                nombre: req.body.nombre,
+                precio: req.body.precio,
+                stock: req.body.stock,
+                descripcion: req.body.descripcion
+            });
+
+            // Agrego el nuevo producto a la seccion
+            objetoSection.productos.push(newProduct)
+            objetoSection.save((err, section) => {
+                if(err) {
+                    return res
+                        .status(404)
+                        .json(err);
+                } 
+                else {
+                    return res
+                        .status(200)
+                        .json(newProduct);
+                }
+            });
+        })
 };
+
 
 const productList = (req, res) => {
     const sectionid = req.params.sectionid;
-    Section
+
+    // Verifico que se ingresaron id's validos
+    if(!sectionid){
+        return res
+            .status(404)
+            .json({
+                "message": "Ingrese un sectionid valido"
+            })
+    }
+
+    // Busco la seccion
+    Sections
         .findById(sectionid) 
         .exec((err, objetoSection) => {
             if(!objetoSection){ 
@@ -26,10 +85,12 @@ const productList = (req, res) => {
                     .status(404)
                     .json(err);    
             }
-            const products = objetoSection.products;
+
+            // Envio unicamente los productos
+            const productos = objetoSection.productos;
             res
                 .status(200)
-                .json(products);  
+                .json(productos);  
         });
 };
 
@@ -37,7 +98,25 @@ const productList = (req, res) => {
 const productRead = (req, res) => {
     const sectionid = req.params.sectionid;
     const productid = req.params.productid;
-    Section
+
+    // Verifico que se ingresaron id's validos
+    if(!sectionid){
+        return res
+            .status(404)
+            .json({
+                "message": "Ingrese un sectionid valido"
+            })
+    }
+    if(!productid){
+        return res
+        .status(404)
+        .json({
+            "message": "Ingrese un productid valido"
+        }) 
+    }
+    
+    // Busco la seccion
+    Sections
         .findById(sectionid) 
         .exec((err, objetoSection) => {
             if(!objetoSection){ 
@@ -51,7 +130,9 @@ const productRead = (req, res) => {
                     .status(404)
                     .json(err);    
             }
-            const product = objetoSection.products.id(productid);
+
+            // Busco el producto
+            const product = objetoSection.productos.id(productid);
             if(!product){
                 return res
                     .status(404)
@@ -65,17 +146,134 @@ const productRead = (req, res) => {
         });
 };
 
+
 const productUpdate = (req, res) => {
-    res
-        .status(200)
-        .json({"status": "Success Update"});
+    const sectionid = req.params.sectionid;
+    const productid = req.params.productid;
+
+    // Verifico que se ingresaron id's validos
+    if(!sectionid){
+        return res
+            .status(404)
+            .json({
+                "message": "Ingrese un sectionid valido"
+            })
+    }
+    if(!productid){
+        return res
+        .status(404)
+        .json({
+            "message": "Ingrese un productid valido"
+        }) 
+    }
+
+    // Busco la seccion
+    Sections
+        .findById(sectionid)
+        .exec((err, objetoSection) =>{
+            if(!objetoSection) {
+                return res
+                    .status(404)
+                    .jason({
+                        "message": "sectionid no existe"
+                    });
+            }
+            else if(err) {
+                return res
+                    .status(400)
+                    .jason(err);
+            }
+            
+            // Busco el producto
+            const product = objetoSection.productos.id(productid);
+            if(!product){
+                return res
+                    .status(404)
+                    .json({
+                        "Mensaje": "Producto no encontrado"
+                    });
+            }
+
+            // Actualizo el producto
+            product.image_url = req.body.image_url;
+            product.name = req.body.name;
+            product.price = req.body.price;
+            product.stock = req.body.stock;
+            product.description = req.body.description;
+
+            // Guardo la seccion
+            objetoSection.save((err) => {
+                if(err) {
+                    return res
+                        .status(404)
+                        .json(err);
+                } 
+                else {
+                    return res
+                        .status(200)
+                        .json(product);
+                }
+            });
+        })
 };
 
+
 const productDelete = (req, res) => {
-    res
-        .status(200)
-        .json({"status": "Success Delete"});
+    const sectionid = req.params.sectionid;
+    const productid = req.params.productid;
+
+    // Verifico que se ingresaron id's validos
+    if(!sectionid){
+        return res
+            .status(404)
+            .json({
+                "message": "Ingrese un sectionid valido"
+            })
+    }
+    if(!productid){
+        return res
+        .status(404)
+        .json({
+            "message": "Ingrese un productid valido"
+        }) 
+    }
+
+    // Busco la seccion
+    Sections
+        .findById(sectionid)
+        .exec((err, objetoSection) =>{
+            if(!objetoSection) {
+                return res
+                    .status(404)
+                    .jason({
+                        "message": "sectionid no existe"
+                    });
+            }
+            else if(err) {
+                return res
+                    .status(400)
+                    .jason(err);
+            }
+            
+            // Elimino el producto
+            objetoSection.productos.id(productid).remove();
+
+            // Guardo la seccion
+            objetoSection.save((err) => {
+                if(err) {
+                    return res
+                        .status(404)
+                        .json(err);
+                } 
+                else {
+                    return res
+                        .status(200)
+                        .json(null);
+                }
+            });
+        })
 };
+
 
 
 module.exports = {

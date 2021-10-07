@@ -4,6 +4,7 @@ const router = express.Router();
 const ctrlSections = require('../controllers/sections');
 const ctrlProducts = require('../controllers/products');
 const ctrlUsers =require('../controllers/users');
+const ctrlCarrito = require('../controllers/carrito');
 
 
 // Sections
@@ -42,6 +43,14 @@ router
     .get(ctrlUsers.userRead)
     .put(ctrlUsers.userUpdate)
     .delete(ctrlUsers.userDelete);
-    
+
+
+// Carrito
+router
+    .route('/users/:userid/shoppingCart')
+    .get(ctrlCarrito.carritoRead)
+    .put(ctrlCarrito.carritoAddProduct)
+    .delete(ctrlCarrito.carritoRemoveProduct); 
+
 
 module.exports = router;

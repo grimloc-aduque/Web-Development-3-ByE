@@ -1,0 +1,2 @@
+{"_id":{"$oid":"615721c63b5abcccf652a826"},"nombre":"Jorge","apellido":"Gutierrez","direccion":"Ecuador","telefono":983731258,"edad":22,"mail":"jorge@hotmail.com","contraseña":"12345","creado":{"$date":"2021-10-01T14:57:10.329Z"},"__v":0}
+{"_id":{"$oid":"615721c63b5abcccf652a827"},"nombre":"Alejandro","apellido":"Duque","direccion":"Ecuador","telefono":992659674,"edad":20,"mail":"aduquead13@outlook.com","contraseña":"12345","creado":{"$date":"2021-10-01T14:57:10.33Z"},"__v":0}
