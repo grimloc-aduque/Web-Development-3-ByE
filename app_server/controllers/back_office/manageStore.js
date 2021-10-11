@@ -8,22 +8,21 @@ if(process.env.NODE_ENV === 'production'){
     apiOptions.server = 'https://desarrollo-web-3-aduque.herokuapp.com';
 }
 
+/* GET crud page. */
+const renderManageStore = (req, res, responseBody) => {
+    res.render('back_office/manageStore', { 
+        secciones: responseBody
+    });
+}
 
-const createSection = (req, res) => {
-    res.render('back_office/createSection', {});
-};
 
-
-const doCreateSection = (req, res) => {
-    // console.log("doCreateSection");
-    const path = `/api/sections`;
+// Controlador para index
+const manageStore = (req, res) => {
+    const path = '/api/sections';
     const requestOptions = {
         url: `${apiOptions.server}${path}`,
-        method: 'Post',
-        json: {
-            titulo: req.body.titulo,
-            descripcion: req.body.descripcion
-        }
+        method: 'GET',
+        json: {}
     };
 
     request(
@@ -31,18 +30,17 @@ const doCreateSection = (req, res) => {
         (err, response, body) => { 
             if(err) {
                 console.log(err);
-            } else if(response.statusCode !== 201) {
+            } else if(response.statusCode === 200) {
+                renderManageStore(req, res, body);
+            } else {
                 console.log(response.statusCode);
-            } 
+            }
         }
     );
-
-    // Redirecciono de regreso
-    res.redirect('/manageStore');
 };
+
 
 
 module.exports = {
-    createSection,
-    doCreateSection
-};
+    manageStore
+}; 

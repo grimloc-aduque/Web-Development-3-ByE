@@ -3,48 +3,52 @@ extends layout
 block content
   
   div.d-flex.justify-content-center
-    h1.color-purple #{title}
+    h1.color-purple #{titulo}
     
+  //- Muestro los productos del carrito
   hr.featurette-divider
-  each product in products
+  each producto in productos
     .row.featurette.p-t-5
       .col-md-2.order-md-1.pb-2
-        img#image(src = product.image_url width='150' height='150' alt='' p-e-2).mx-auto.m-auto.d-block
+        img#image(src = producto.urlImagen width='150' height='150' alt='' p-e-2).mx-auto.m-auto.d-block
       .col-md-3.order-md-2.d-flex.align-items-center.py-1
-        h5.lead  #{product.name}
-          p.lead #{product.description}
+        h5.lead  #{producto.nombre}
+          p.lead #{producto.descripcion}
 
       .col-md-2.order-md-2.d-flex.justify-content-evenly.align-items-center.py-1
         select.form-control
-          option 1
-          option 2
+          - let num = 0
+          while num <= producto.stock
+            option(selected=(num === producto.cantidad)) #{num}
+            - num++
+          
 
       .col-md-3.order-md-2.d-flex.justify-content-right.align-items-center.py-1
-        b.lead  #{product.price}
+        b.lead  #{producto.precio}
 
       .col-md-2.order-md-2.d-flex.justify-content-right.align-items-center.py-1
          a.lead.button.btn.btn-sm.bg-danger.text-white(href='/products') Eliminar 
 
       
+
     hr.featurette-divider
   
         
-  
   .container.marketing.bg-light.rounded-bottom.py-4
     .row
     
       .col-lg-4.d-flex.justify-content-evenly.align-items-center.py-2
         p
-          a.lead.button.btn.btn-sm.bg-light.border.border-dark(href='/products') #{botonBack}
+          a.lead.button.btn.btn-sm.bg-light.border.border-dark(href='/products') Ver Productos
 
       .col-lg-4.d-flex.justify-content-evenly.align-items-center.pb-2
           
-        b.pl-md-4 #{textoTotal}
+        b.pl-md-4 Total: 
               span.pl-md-4 $#{total}
 
       .col-lg-4.d-flex.justify-content-evenly.align-items-center.py-2
         p
-          a.lead.btn.btn-sm.bg-dark.text-white.px-lg-5.px-3(href='/checkout') #{botonContinuar}
+          a.lead.btn.btn-sm.bg-dark.text-white.px-lg-5.px-3(href='/checkout') Continuar
   
 
   

@@ -1,26 +1,79 @@
-const editProduct = (req, res) => {
+const request = require('request');
+
+// Definir las URLs para los ambientes de desarrollo y produccion
+const apiOptions = {
+    server: 'http://localhost:3000'
+};
+if(process.env.NODE_ENV === 'production'){
+    apiOptions.server = 'https://desarrollo-web-3-aduque.herokuapp.com';
+}
+
+
+const renderEditProduct = (req, res, responseBody) => {
     res.render('back_office/editProduct', {
-        title: 'Editar producto',
-        nombre: 'Nombre del producto',
-        precio: 'Precio del producto',
-        descripcion: 'Descripcion del producto',
-        actualizar: 'Actualizar',
-        editar: 'Editar imagen',
-        imagen: 'https://scontent.fgye1-2.fna.fbcdn.net/v/t1.6435-9/165975326_398313164533193_6210974124130320567_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=8bfeb9&_nc_eui2=AeEjEvVwii-jXfaI2uL8ilRyiQdiuVgn6qmJB2K5WCfqqcQtbm_RfzxtAcYjIaDJ8_X7HTszQN0tr5jB3Bad4RIq&_nc_ohc=NaO8QazHzyQAX8Pnjvp&tn=4PsBsLEegfXeAHC_&_nc_ht=scontent.fgye1-2.fna&oh=3458b04dc811086007186f3854292292&oe=6165273D',
-        
-        'Categorias': [{
-            opcion: 'Seleccione una categoria'
-        },{
-            opcion: 'Peluches'
-        },{
-            opcion: 'Skincare'
-        },{
-            opcion: 'Golosinas'
-        }],
-    
+        producto: responseBody
     });
 };
 
+
+const editProduct = (req, res) => {
+    const sectionid = req.params.sectionid;
+    const productid = req.params.productid;
+    const path = `/api/sections/${sectionid}/products/${productid}`;
+    const requestOptions = {
+        url: `${apiOptions.server}${path}`,
+        method: 'GET',
+        json: {}
+    };
+
+    request(
+        requestOptions,
+        (err, response, body) => { 
+            if(err) {
+                console.log(err);
+            } else if(response.statusCode === 200) {
+                renderEditProduct(req, res, body);
+            } else {
+                console.log(response.statusCode);
+            }
+        }
+    );
+}
+
+
+const doEditProduct = (req, res) => {
+    const sectionid = req.params.sectionid;
+    const productid = req.params.productid;
+    const path = `/api/sections/${sectionid}/products/${productid}`;
+    const requestOptions = {
+        url: `${apiOptions.server}${path}`,
+        method: 'Put',
+        json: {
+            nombre: req.body.nombre,
+            precio: req.body.precio,
+            stock: req.body.stock,
+            descripcion: req.body.descripcion,
+            urlImagen: req.body.urlImagen,
+        }
+    };
+
+    request(
+        requestOptions,
+        (err, response, body) => { 
+            if(err) {
+                console.log(err);
+            } else if(response.statusCode !== 201) {
+                console.log(response.statusCode);
+            } 
+        }
+    );
+
+    // Redirecciono de regreso
+    res.redirect('/manageStore');
+}
+
+
 module.exports = {
-    editProduct
+    editProduct,
+    doEditProduct
 }; 

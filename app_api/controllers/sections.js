@@ -30,7 +30,7 @@ const sectionList = (req, res) => {
     Sections
         .find()
         .exec((err, objetoSection) => {
-            if(!objetoSection  || objetoSection.length == 0) { 
+            if(!objetoSection) { 
                 console.log(`No existen documentos en la coleccion ${collectionName}`);
                 return res
                     .status(404)

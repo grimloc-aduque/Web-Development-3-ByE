@@ -12,13 +12,15 @@ const ctrlCheckout = require('../controllers/checkout');
 const ctrlLogin = require('../controllers/login');
 const ctrlSignin = require('../controllers/signin');
 
-const ctrlManageSections = require('../controllers/back_office/manageSections')
+const ctrlManageStore = require('../controllers/back_office/manageStore')
+
 const ctrlCreateSection = require('../controllers/back_office/createSection')
 const ctrlEditSection = require('../controllers/back_office/editSection')
+const ctrlDeleteSection = require('../controllers/back_office/deleteSection')
 
-const ctrlManageProducts = require('../controllers/back_office/manageProducts')
 const ctrlCreateProduct = require('../controllers/back_office/createProduct')
 const ctrlEditProduct = require('../controllers/back_office/editProduct')
+const ctrlDeleteProduct = require('../controllers/back_office/deleteProduct')
 
 
 // Direccionammiento de rutas
@@ -36,15 +38,39 @@ router.get('/checkout', ctrlCheckout.checkout);
 router.get('/login', ctrlLogin.login);
 router.get('/signin', ctrlSignin.signin);
 
-// Back Office
 
-router.get('/manageSections', ctrlManageSections.manageSections);
-router.get('/manageSections/createSection', ctrlCreateSection.createSection);
-router.get('/manageSections/editSection', ctrlEditSection.editSection);
+// ---------- Back Office
+router.get('/manageStore', ctrlManageStore.manageStore);
 
-router.get('/manageProducts', ctrlManageProducts.manageProducts);
-router.get('/manageProducts/createProduct', ctrlCreateProduct.createProduct);
-router.get('/manageProducts/editProduct', ctrlEditProduct.editProduct);
+// Secciones
+router.get('/manageStore/createSection', ctrlCreateSection.createSection);
+
+router
+    .route('/manageStore/createSection')
+    .get(ctrlCreateSection.createSection)
+    .post(ctrlCreateSection.doCreateSection)
+
+router
+    .route('/manageStore/:sectionid/editSection')
+    .get(ctrlEditSection.editSection)
+    .post(ctrlEditSection.doEditSection)
+
+router.get('/manageStore/:sectionid/deleteSection', ctrlDeleteSection.deleteSection);
+
+
+// Productos
+router
+    .route('/manageStore/:sectionid/createProduct')
+    .get(ctrlCreateProduct.createProduct)
+    .post(ctrlCreateProduct.doCreateProduct);
+
+router
+    .route('/manageStore/:sectionid/:productid/editProduct')
+    .get(ctrlEditProduct.editProduct)
+    .post(ctrlEditProduct.doEditProduct)
+
+router.get('/manageStore/:sectionid/:productid/deleteProduct', ctrlDeleteProduct.deleteProduct);
+
 
 
 module.exports = router;

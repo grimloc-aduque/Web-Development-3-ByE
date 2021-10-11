@@ -3,7 +3,7 @@ extends ../layout
 block content
   
   div.d-flex.justify-content-center
-    h1.color-purple #{title}
+    h1.color-purple Editar productos
 
   
   .container.h-100
@@ -12,37 +12,41 @@ block content
           .card-body.p-md-5
             .row.justify-content-center
               .col-md-10.col-lg-6.col-xl-5.order-2.order-lg-1
-                form.mx-1.mx-md-4
+
+                //- Formulario de datos del producto
+                form.mx-1.mx-md-4(action="", method="post", role="form")
                   .d-flex.flex-row.align-items-center.mb-4
                     
                     .form-outline.flex-fill.mb-0
-                      input#form3Example1c.form-control(type='text')
-                      label.form-label(for='form3Example1c') #{nombre}
+                      input#form3Example1c.form-control(type='text', name='nombre', value=producto.nombre)
+                      label.form-label(for='form3Example1c') Nombre del producto
+                  .d-flex.flex-row.align-items-center.mb-4
+                    
+
+                    .form-outline.flex-fill.mb-0
+                      input#form3Example4c.form-control(type='text', name='precio', value=producto.precio)
+                      label.form-label(for='form3Example4c') Precio del producto
+                  .d-flex.flex-row.align-items-center.mb-4
+
+                    .form-outline.flex-fill.mb-0
+                      input#form3Example4c.form-control(type='number', min = 0, name='stock', value=producto.stock)
+                      label.form-label(for='form3Example4c') Unidades en stock
+                  .d-flex.flex-row.align-items-center.mb-4
+
+                    .form-outline.flex-fill.mb-0
+                      input#form3Example3c.form-control(type='text', name='descripcion', value = producto.descripcion)
+                      label.form-label(for='form3Example3c') Descripcion del producto
                   .d-flex.flex-row.align-items-center.mb-4
                     
                     .form-outline.flex-fill.mb-0
-                      input#form3Example3c.form-control(type='email')
-                      label.form-label(for='form3Example3c') #{descripcion}
+                      input#form3Example3c.form-control(type='text', name= 'urlImagen', value=producto.urlImagen)
+                      label.form-label(for='form3Example3c') Url con la foto del producto
                   .d-flex.flex-row.align-items-center.mb-4
                     
-                    .form-outline.flex-fill.mb-0
-                      input#form3Example4c.form-control(type='text')
-                      label.form-label(for='form3Example4c') #{precio}
-                  .d-flex.flex-row.align-items-center.mb-4
-                    
-                    .form-outline.flex-fill.mb-0
-                      select.form-control
-                        each categoria in Categorias
-                          option #{categoria.opcion}
-                      label.form-label(for='form3Example4cd') Categoria
-                        
-                      
-                      
-                  
                   .d-flex.justify-content-center.mx-4.mb-3.mb-lg-4
-                    a.lead.btn.btn-sm.bg-dark.text-white.px-lg-5.px-3(href='/manageProducts') #{actualizar}
+                    input.lead.btn.btn-sm.bg-dark.text-white.px-lg-5.px-3(type='submit', value='Actualizar')
+
+
               .col-md-10.col-lg-6.col-xl-7.d-flex.align-items-center.order-1.order-lg-2
                 .hovereffect
-                  img.w-100.img-responsive(src= imagen width='150')
-                  .overlay.d-flex.justify-content-center.align-items-center
-                    a.info.text-black(href='#') #{editar}
+                  img.w-100.img-responsive(src= producto.urlImagen width='50%')

@@ -32,13 +32,13 @@ const productCreate = (req, res) => {
             }
 
             // Creo el nuevo producto
-            const newProduct = new Product({
+            const newProduct = {
                 urlImagen: req.body.urlImagen,
                 nombre: req.body.nombre,
                 precio: req.body.precio,
                 stock: req.body.stock,
                 descripcion: req.body.descripcion
-            });
+            };
 
             // Agrego el nuevo producto a la seccion
             objetoSection.productos.push(newProduct)
@@ -195,11 +195,11 @@ const productUpdate = (req, res) => {
             }
 
             // Actualizo el producto
-            product.image_url = req.body.image_url;
-            product.name = req.body.name;
-            product.price = req.body.price;
+            product.urlImagen = req.body.urlImagen;
+            product.nombre = req.body.nombre;
+            product.precio = req.body.precio;
             product.stock = req.body.stock;
-            product.description = req.body.description;
+            product.descripcion = req.body.descripcion;
 
             // Guardo la seccion
             objetoSection.save((err) => {

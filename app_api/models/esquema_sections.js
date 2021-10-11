@@ -33,9 +33,26 @@ const product2 = {
     urlImagen: 'https://scontent.fuio1-2.fna.fbcdn.net/v/t1.6435-9/154376200_375494010148442_1328147626249077422_n.jpg?_nc_cat=101&ccb=1-5&_nc_sid=0debeb&_nc_eui2=AeERF5w1RTXQIPCxIfbdgTuiJgn4etPZWfUmCfh609lZ9Zn4w6B-7zXKJR9M-bALnMFoVTmFp8DCxfwDQp1OHWAK&_nc_ohc=P8Y5rjO9oiMAX8jGBxp&_nc_ht=scontent.fuio1-2.fna&oh=d13f587acb76108ba8d62f60b186b489&oe=616A0C03',
     nombre: 'Perrito Boink',
     precio: 19.99,
+    stock: 10,
     descripcion: 'Descripcion del producto 2'
 };
 
+const product3 = {
+    urlImagen: 'https://scontent.fuio1-2.fna.fbcdn.net/v/t1.6435-9/154544654_375532456811264_3400425789624409889_n.jpg?_nc_cat=106&ccb=1-5&_nc_sid=0debeb&_nc_eui2=AeEc5gQeCFLNPUzmKLWOb9dPWRINzuQCw9BZEg3O5ALD0PXGpI2EJ8K0W65tN_GmnisAxRsyO7wIG3nppiBMuRqi&_nc_ohc=vPgv06auudkAX_zmrVR&_nc_ht=scontent.fuio1-2.fna&oh=165349671a322a11bcd877090069b8a7&oe=6168FFBD',
+    nombre: 'Product 3',
+    precio: '8.99',
+    stock: 8,
+    descripcion: 'Descripcion del producto 3'
+}
+
+
+const product4 = {
+    urlImagen: 'https://scontent.fuio1-2.fna.fbcdn.net/v/t1.6435-9/154525027_375532473477929_2496558283294152106_n.png?_nc_cat=101&ccb=1-5&_nc_sid=0debeb&_nc_eui2=AeHXu8u9dISG6ZlDBvLhfrUZvItAQHpNvd68i0BAek293oMwbwlBpOOomnD1T6SAVelR4qXC5b0sKFJeqIdVv4Nl&_nc_ohc=IoDP3nEXsiIAX8Kn9fC&_nc_ht=scontent.fuio1-2.fna&oh=78981f8b85f037b6fa56538f8ca7d87b&oe=616A25A7',
+    nombre: 'Product 4',
+    precio: '11.99',
+    stock: 7,
+    descripcion: 'Descripcion del producto 4'
+}
 
 const Section = new mongoose.model('Section', sectionsSchema);
 
@@ -47,8 +64,9 @@ const section1 = new Section({
 });
 
 const section2 = new Section({
-    titulo: 'SkinCare',
-    descripcion: 'Los mejores productos para tu piel'
+    titulo: 'Golosinas',
+    descripcion: 'Chocolates, frutas y mucho mas',
+    productos: [product3, product4]
 })
 
 // section1.save();

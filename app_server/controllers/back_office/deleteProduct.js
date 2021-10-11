@@ -9,29 +9,25 @@ if(process.env.NODE_ENV === 'production'){
 }
 
 
-const createSection = (req, res) => {
-    res.render('back_office/createSection', {});
-};
-
-
-const doCreateSection = (req, res) => {
-    // console.log("doCreateSection");
-    const path = `/api/sections`;
+const deleteProduct = (req, res) => {
+    const sectionid = req.params.sectionid;
+    const productid = req.params.productid;
+    const path = `/api/sections/${sectionid}/products/${productid}`;
     const requestOptions = {
         url: `${apiOptions.server}${path}`,
-        method: 'Post',
+        method: 'Delete',
         json: {
-            titulo: req.body.titulo,
-            descripcion: req.body.descripcion
+            sectionid: sectionid,
+            productid: productid
         }
     };
-
+    
     request(
         requestOptions,
         (err, response, body) => { 
             if(err) {
                 console.log(err);
-            } else if(response.statusCode !== 201) {
+            } else if(response.statusCode !== 204) {
                 console.log(response.statusCode);
             } 
         }
@@ -41,8 +37,6 @@ const doCreateSection = (req, res) => {
     res.redirect('/manageStore');
 };
 
-
 module.exports = {
-    createSection,
-    doCreateSection
+    deleteProduct
 };

@@ -5,25 +5,25 @@ block content
 
 
   //- Products Sections
-  each section in sections
+  each seccion in secciones
     div.products-section
       div.d-flex.justify-content-center
-        h1.color-purple #{section.title}
+        h1.color-purple #{seccion.titulo}
       div.d-flex.justify-content-center
-        p.lead #{section.description}
+        p.lead #{seccion.descripcion}
 
       //- Products
       .row 
-        each product in section.products
+        each producto in seccion.productos
           .col-12.col-lg-4.products-product
             .row
               .d-flex.justify-content-center 
-                img.products-image(src = product.image_url)
+                img.products-image(src = producto.urlImagen)
             .row
               .d-flex.justify-content-center 
-                p.products-name-cost #{product.name} - #{product.price}
+                p.products-name-cost #{producto.nombre} - #{producto.precio}
               .d-flex.justify-content-center 
-                p.lead= product.description
+                p.lead= producto.descripcion
                 
             .d-flex.justify-content-around
               button.btn.btn-outline-dark.btn-sm(type='button') Agregar al carrito

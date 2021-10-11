@@ -28,6 +28,7 @@ const carritoRead = (req, res) => {
 
 const carritoAddProduct = (req, res) => {
     const userid = req.params.userid
+    
     // Verifico que se ingresaron id's validos
     if(!userid){
         return res
@@ -52,67 +53,40 @@ const carritoAddProduct = (req, res) => {
                     .status(404)
                     .json(err);
             }
-
-            const carrito = objetoUsuario.carrito;
+            
+            // Cargo los datos del body
             const sectionid = req.body.sectionid;
             const productid = req.body.productid;
             const cantidad = req.body.cantidad;
 
-            // Evaluo si debo agregar o actualizar el producto
-            // Busco la seccion
-            let sectionExist = false;
-            let sectionInd = 0;
-            carrito.secciones.every( sec => {
-                if(sec.sectionid === sectionid){
-                    sectionExist = true;
-                    return false;
-                }  
-                sectionInd += 1;
-                return true;
-            })
+            // Creo el nuevo producto
+            const newProduct = {
+                'sectionid': sectionid,
+                'productid': productid,
+                'cantidad': cantidad
+            }
 
-            // Si ya existe la seccion paso a buscar que exista el producto
-            let productExist = false;
-            let productInd = 0;
-            if(sectionExist){
-                const productos = carrito.secciones[sectionInd].productos;
-                productos.every( prod => {
-                    if(prod.productid === productid){
-                        productExist = true;
-                        return false;
-                    }
-                    productInd += 1;
-                    return true;
-                })
-
-                // Si existe el producto lo actualizo
-                if(productExist){
-                    const newProduct = {
-                        'productid': productid,
-                        'cantidad': cantidad
-                    }
-                    objetoUsuario.carrito.secciones[sectionInd]
-                        .productos[productInd] = newProduct;
-
-                }
-                // Si no existe el producto lo agrego
-                else {
-                    const newProduct = {'productid': productid}
-                    objetoUsuario.carrito.secciones[sectionInd]
-                        .productos.push(newProduct);
+             // Busco el producto y guardo su posicion
+            const carrito = objetoUsuario.carrito;
+            let pInd = -1;
+            for(let i = 0; i<carrito.length; i++){
+                p = carrito[i]
+                if(p.sectionid === sectionid && p.productid === productid){
+                    pInd = i;
+                    break;
                 }
             }
-            // Si no existe la seccion, creo la seccion y agrego el producto
+            // Si encuentro el producto, lo actualizo
+            if(pInd != -1){
+                objetoUsuario.carrito[pInd] = newProduct
+            }
+
+            // Si no encuentro el producto, lo agrego
             else{
-                const newProduct = {'productid': productid}
-                const newSection = {
-                    'sectionid': sectionid,
-                    'productos': [newProduct]
-                }
-                objetoUsuario.carrito.secciones.push(newSection);
+                objetoUsuario.carrito.push(newProduct);
             }
 
-
+            // Guardo los cambios
             objetoUsuario.save((err, usuario) => {
                 if(err) {
                     return res
@@ -122,7 +96,7 @@ const carritoAddProduct = (req, res) => {
                 else {
                     return res
                         .status(200)
-                        .json(objetoUsuario.carrito);
+                        .json(usuario.carrito);
                 }
             });
          });
@@ -132,7 +106,7 @@ const carritoAddProduct = (req, res) => {
 
 const carritoRemoveProduct = (req, res) => {
     const userid = req.params.userid
-
+    
     // Verifico que se ingresaron id's validos
     if(!userid){
         return res
@@ -141,7 +115,7 @@ const carritoRemoveProduct = (req, res) => {
                 "message": "Ingrese un sectionid valido"
             })
     }
-    
+
     // Busco el usuario
     User
         .findById(userid)
@@ -152,73 +126,49 @@ const carritoRemoveProduct = (req, res) => {
                     .json({
                         "Mensaje": "No se encontro el usuario"
                     });
-            } else if (err){
+            }else if (err){
                 return res
                     .status(404)
                     .json(err);
             }
-    
-            const carrito = objetoUsuario.carrito;
+            
+            // Cargo los datos del body
             const sectionid = req.body.sectionid;
             const productid = req.body.productid;
-    
-            // Busco la seccion
-            let sectionExist = false;
-            let sectionInd = 0;
-            carrito.secciones.every( sec => {
-                if(sec.sectionid === sectionid){
-                    sectionExist = true;
-                    return false;
-                }
-                sectionInd += 1;
-                return true;
-            })
-    
-            // Si ya existe la seccion paso a buscar que exista el producto
-            let productExist = false;
-            let productInd = 0;
-            if(sectionExist){
-                const productos = carrito.secciones[sectionInd].productos;
-                productos.every( prod => {
-                    if(prod.productid === productid){
-                        productExist = true;
-                        return false;
-                    }
-                    productInd += 1;
-                    return true;
-                })
-    
-                // Si existe el producto lo elimino
-                if(productExist){
-                    objetoUsuario.carrito.secciones[sectionInd]
-                        .productos.splice(productInd, 1)
-                    // Guardo los cambios
-                    objetoUsuario.save((err, usuario) => {
-                        if(err) {
-                            return res
-                                .status(404)
-                                .json(err);
-                        } 
-                        else {
-                            return res
-                                .status(200)
-                                .json(objetoUsuario.carrito);
-                        }
-                    });
-                }
 
-                // Si no existe el producto respondo un error
-                else {
-                    return res  
-                        .status(404)
-                        .json({"Mensaje": "No se encontro el producto"});
+            // Busco el producto y guardo su posicion
+            const carrito = objetoUsuario.carrito;
+            let pInd = -1;
+            for(let i = 0; i<carrito.length; i++){
+                p = carrito[i]
+                if(p.sectionid === sectionid && p.productid === productid){
+                    pInd = i;
+                    break;
                 }
             }
-            // Si no existe la seccion respondo un error
-            else{
+
+            // Si existe el producto lo elimino
+            if(pInd != -1){
+                objetoUsuario.carrito.splice(pInd, 1)
+                // Guardo los cambios
+                objetoUsuario.save((err, usuario) => {
+                    if(err) {
+                        return res
+                            .status(404)
+                            .json(err);
+                    } else {
+                        return res
+                            .status(200)
+                            .json(usuario.carrito);
+                    }
+                });
+            }
+
+            // Si no existe el producto respondo un error
+            else {
                 return res  
                     .status(404)
-                    .json({"Mensaje": "No se encontro la seccion"});
+                    .json({"Mensaje": "No se encontro el producto"});
             }
         });
 }

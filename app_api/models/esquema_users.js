@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');// incorporar mongoose al proyecto
-const ShoppingCart = require('./esquema_carrito')
 
 const usuariosSchema = new mongoose.Schema({
     nombre: {
@@ -38,10 +37,27 @@ const usuariosSchema = new mongoose.Schema({
         'default': Date.now
     },
     carrito: {
-        type: ShoppingCart.carritoSchema,
-        'default': {
-            secciones: [],
-        }
+        type: [{
+            sectionid: {
+                type: String,
+                required: true
+            },
+            productid: {
+                type: String,
+                required: true
+            },
+            cantidad: {
+                type: Number,
+                required: true,
+                default: 1,
+                min: 1
+            },
+            agregado: {
+                type: Date,
+                'default': Date.now()
+            } 
+        }],
+        'default': []
     }
 });
 
@@ -49,19 +65,25 @@ const usuariosSchema = new mongoose.Schema({
 // Inicializo algunas instancias en la DB
 
 // Creo un carrito
-const carrito1 = {
-    secciones: [{
-        sectionid: '615e33e5666f4395b8605f3b',
-        productos: [
-            {
-                productid: '615e33e5666f4395b8605f3c',
-                cantidad: 3,
-            },{
-                productid: '615e33e5666f4395b8605f3d',
-                cantidad: 1,
-            }]
-    }]
-}
+const carrito1 = [{
+    sectionid: '61634a215d686cb45515b38c',
+    productid: '61634a215d686cb45515b38d',
+    cantidad: 4
+},{
+    sectionid: '61634a215d686cb45515b38f',
+    productid: '61634a215d686cb45515b390',
+    cantidad: 2
+}];
+
+const carrito2 = [{
+    sectionid: '61634a215d686cb45515b38c',
+    productid: '61634a215d686cb45515b38e',
+    cantidad: 3
+},{
+    sectionid: '61634a215d686cb45515b38f',
+    productid: '61634a215d686cb45515b391',
+    cantidad: 5
+}];
 
 
 // Creo usuarios
@@ -73,7 +95,8 @@ const user1 = new Usuario ({
     telefono: 0983731258,
     edad: 22,
     mail: 'jorge@hotmail.com',
-    contraseña: '12345'
+    contraseña: '12345',
+    carrito: carrito1
 })
 
 const user2 = new Usuario ({
@@ -84,7 +107,7 @@ const user2 = new Usuario ({
     edad: 20,
     mail: 'aduquead13@outlook.com',
     contraseña: '12345',
-    carrito: carrito1
+    carrito: carrito2
 })
 
 

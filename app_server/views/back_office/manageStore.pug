@@ -1,0 +1,47 @@
+extends ../layout
+
+block content
+  div.d-flex.justify-content-center
+    h1.color-purple Gestionar tienda
+  br
+ 
+  //- Itero por todas las secciones
+  each seccion in secciones 
+    hr.featurette-divider.m-1
+    br
+    .row.featurette.p-t-3
+      .col-md-3.order-md-1.pb-2
+        h2 #{seccion.titulo}
+      .col-md-3.order-md-2.d-flex.align-items-center.py-1
+      .col-md-1.order-md-2.d-flex.justify-content-evenly.align-items-center.py-1
+
+      //- Botones para gestionar secciones
+      .col-md-5.order-md-2.d-flex.justify-content-evenly.align-items-center.py-1
+        - let linkSection = `/manageStore/${seccion._id}`;
+        a.lead.button.btn.btn-sm.bg-black.text-white.m-2(href=`${linkSection}/createProduct`) Agregar producto
+        a.lead.button.btn.btn-sm.bg-black.text-white.m-2(href=`${linkSection}/editSection`) Editar seccion 
+        a.lead.button.btn.btn-sm.bg-danger.text-white.m-2(href=`${linkSection}/deleteSection`) Eliminar seccion
+
+    //- Recorro cada producto de cada seccion 
+    each producto in seccion.productos
+      hr.featurette-divider.m-3
+      .row.featurette.p-t-3
+        .col-md-3.order-md-1.pb-2
+          img#image(src = producto.urlImagen width='40%'  alt='' p-e-2).mx-auto.m-auto.d-block
+        .col-md-3.order-md-2.d-flex.align-items-center.py-1
+          h5.lead  #{producto.nombre}
+            p.lead #{producto.descripcion}
+        .col-md-1.order-md-2.d-flex.justify-content-evenly.align-items-center.py-1
+        
+        //- Botones para gestionar productos dentro de cada seccion
+        .col-md-5.order-md-2.d-flex.justify-content-evenly.align-items-center.py-1
+          - let linkProduct = `${linkSection}/${producto._id}`;
+          a.lead.button.btn.btn-sm.bg-black.text-white(href=`${linkProduct}/editProduct`) Editar 
+          a.lead.button.btn.btn-sm.bg-danger.text-white(href=`${linkProduct}/deleteProduct`) Eliminar 
+
+    br
+    br
+    br
+
+  .d-flex.justify-content-center.mx-4.mb-3.mb-lg-4
+    a.lead.btn.btn-sm.bg-dark.text-white.px-lg-5.px-3.mt-4(href ='/manageStore/createSection') Agregar nueva seccion
