@@ -13,14 +13,8 @@ const ctrlLogin = require('../controllers/login');
 const ctrlSignin = require('../controllers/signin');
 
 const ctrlManageStore = require('../controllers/back_office/manageStore')
-
-const ctrlCreateSection = require('../controllers/back_office/createSection')
-const ctrlEditSection = require('../controllers/back_office/editSection')
-const ctrlDeleteSection = require('../controllers/back_office/deleteSection')
-
-const ctrlCreateProduct = require('../controllers/back_office/createProduct')
-const ctrlEditProduct = require('../controllers/back_office/editProduct')
-const ctrlDeleteProduct = require('../controllers/back_office/deleteProduct')
+const ctrlManageProducts = require('../controllers/back_office/manageProducts')
+const ctrlManageSections = require('../controllers/back_office/manageSections')
 
 
 // Direccionammiento de rutas
@@ -30,8 +24,14 @@ router.get('/', ctrlHome.home);
 router.get('/products', ctrlProducts.products);
 router.get('/about', ctrlAbout.about);
 
-// Carrito y finalizacion de compra del usuario
+// Carrito
 router.get('/shoppingCart', ctrlShoppingCart.shoppingCart);
+router.post('/shoppingCart/addProduct', ctrlShoppingCart.doAddProduct);
+router.post('/shoppingCart/removeProduct', ctrlShoppingCart.doRemoveProduct);
+router.post('/shoppingCart/editProduct', ctrlShoppingCart.doEditProduct);
+
+
+// Finalizacion de compra del usuario
 router.get('/checkout', ctrlCheckout.checkout);
 
 // Creacion e inicio de sesion
@@ -43,33 +43,33 @@ router.get('/signin', ctrlSignin.signin);
 router.get('/manageStore', ctrlManageStore.manageStore);
 
 // Secciones
-router.get('/manageStore/createSection', ctrlCreateSection.createSection);
-
 router
     .route('/manageStore/createSection')
-    .get(ctrlCreateSection.createSection)
-    .post(ctrlCreateSection.doCreateSection)
+    .get(ctrlManageSections.createSection)
+    .post(ctrlManageSections.doCreateSection);
 
 router
     .route('/manageStore/:sectionid/editSection')
-    .get(ctrlEditSection.editSection)
-    .post(ctrlEditSection.doEditSection)
+    .get(ctrlManageSections.editSection)
+    .post(ctrlManageSections.doEditSection);
 
-router.get('/manageStore/:sectionid/deleteSection', ctrlDeleteSection.deleteSection);
+router.get('/manageStore/:sectionid/deleteSection', 
+            ctrlManageSections.doDeleteSection);
 
 
 // Productos
 router
     .route('/manageStore/:sectionid/createProduct')
-    .get(ctrlCreateProduct.createProduct)
-    .post(ctrlCreateProduct.doCreateProduct);
+    .get(ctrlManageProducts.createProduct)
+    .post(ctrlManageProducts.doCreateProduct);
 
 router
     .route('/manageStore/:sectionid/:productid/editProduct')
-    .get(ctrlEditProduct.editProduct)
-    .post(ctrlEditProduct.doEditProduct)
+    .get(ctrlManageProducts.editProduct)
+    .post(ctrlManageProducts.doEditProduct);
 
-router.get('/manageStore/:sectionid/:productid/deleteProduct', ctrlDeleteProduct.deleteProduct);
+router.get('/manageStore/:sectionid/:productid/deleteProduct', 
+            ctrlManageProducts.doDeleteProduct);
 
 
 

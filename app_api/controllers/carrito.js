@@ -66,7 +66,7 @@ const carritoAddProduct = (req, res) => {
                 'cantidad': cantidad
             }
 
-             // Busco el producto y guardo su posicion
+             // Busco el producto en el carrito y guardo su posicion
             const carrito = objetoUsuario.carrito;
             let pInd = -1;
             for(let i = 0; i<carrito.length; i++){
@@ -95,7 +95,7 @@ const carritoAddProduct = (req, res) => {
                 } 
                 else {
                     return res
-                        .status(200)
+                        .status(201)
                         .json(usuario.carrito);
                 }
             });
@@ -158,7 +158,7 @@ const carritoRemoveProduct = (req, res) => {
                             .json(err);
                     } else {
                         return res
-                            .status(200)
+                            .status(204)
                             .json(usuario.carrito);
                     }
                 });

@@ -5,13 +5,16 @@
   --color-purple: #5e2939;
 }
 .color-skyblue{
-  color: #84e7e8;
+  color: var(--color-skyblue);
 }
 .color-cream{
-  color: #FFECDA;
+  color: var(--color-cream);
 }
 .color-purple{
-  color: #5e2939;
+  color: var(--color-purple);
+}
+.bg-purple{
+  background-color: var(--color-purple);
 }
 
 
@@ -84,7 +87,6 @@ div.content{
   width: 38vh;
   padding: 3vh;
 }
-
 .products-name-cost{
   color: var(--color-purple);
   font-weight: bold;

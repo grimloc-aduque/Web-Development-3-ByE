@@ -13,23 +13,32 @@ block content
         img#image(src = producto.urlImagen width='150' height='150' alt='' p-e-2).mx-auto.m-auto.d-block
       .col-md-3.order-md-2.d-flex.align-items-center.py-1
         h5.lead  #{producto.nombre}
-          p.lead #{producto.descripcion}
+          //- p.lead #{producto.descripcion}
 
       .col-md-2.order-md-2.d-flex.justify-content-evenly.align-items-center.py-1
-        select.form-control
-          - let num = 0
-          while num <= producto.stock
-            option(selected=(num === producto.cantidad)) #{num}
-            - num++
-          
-
-      .col-md-3.order-md-2.d-flex.justify-content-right.align-items-center.py-1
-        b.lead  #{producto.precio}
+        input.form-control(form=`editProduct${producto._id}`, type='number', min=1, max=producto.stock, value=producto.cantidad name='cantidad')
+        //- select.form-control(form="editProduct", name='cantidad')
+        //-   - let num = 0
+        //-   while num <= producto.stock
+        //-     option(selected=(num === producto.cantidad)) #{num}
+        //-     - num++
 
       .col-md-2.order-md-2.d-flex.justify-content-right.align-items-center.py-1
-         a.lead.button.btn.btn-sm.bg-danger.text-white(href='/products') Eliminar 
+        b.lead  #{producto.precio}
 
-      
+      .col-md-1.order-md-2.d-flex.justify-content-right.align-items-center.py-1
+        //- Boton eliminar hace POST a /shoppingCart/removeProduct
+        form.lead(id=`editProduct${producto._id}`, action="/shoppingCart/editProduct", method="post", role="form")
+          input(type='hidden', name='productid', value=producto._id)
+          input(type='hidden', name='sectionid', value=producto.sectionid)
+          input.lead.button.btn.btn-sm.bg-dark.text-white(type='submit', value='Actualizar') 
+
+      .col-md-1.order-md-2.d-flex.justify-content-right.align-items-center.py-1
+        //- Boton eliminar hace POST a /shoppingCart/removeProduct
+        form.lead(action="/shoppingCart/removeProduct", method="post", role="form")
+          input(type='hidden', name='productid', value=producto._id)
+          input(type='hidden', name='sectionid', value=producto.sectionid)
+          input.lead.button.btn.btn-sm.bg-purple.text-white(type='submit', value='Eliminar') 
 
     hr.featurette-divider
   

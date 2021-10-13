@@ -9,7 +9,9 @@ if(process.env.NODE_ENV === 'production'){
 }
 
 
-/* GET products page. */
+/* Show shopping cart */
+
+// Renderiza el carrito de compras
 const renderShoppingCart = (req, res, responseBody) => {
     res.render('shoppingCart', {
         titulo: 'Productos guardados en el carrito',
@@ -19,7 +21,8 @@ const renderShoppingCart = (req, res, responseBody) => {
 };
 
 
-// Controlador para index
+// GET - Llamada a API Read Shopping Cart
+// Luego llama a retrieveProducts para llenar la vista
 const shoppingCart = (req, res) => {
     // const userid = req.params.userid;
     const userid = '61634a5d7e30bbff4f797756'; 
@@ -29,14 +32,14 @@ const shoppingCart = (req, res) => {
         method: 'GET',
         json: {}
     };
-
+    //
     request(
         requestOptions,
         (err, response, body) => { 
             if(err) {
                 console.log(err);
             } else if(response.statusCode === 200) {
-                retrieveProducts(req, res, body);
+                readAllProducts(req, res, body);
             } else {
                 console.log(response.statusCode);
             }
@@ -45,11 +48,10 @@ const shoppingCart = (req, res) => {
 
 };
 
-const retrieveProducts = (req, res, shoppingCart) => {
-    // const userid = req.params.userid;
+// Llamada a API Read Product con cada producto del carrito
+const readAllProducts = (req, res, shoppingCart) => {
     let products = [];
     let total = 0;
-    // Busco la informacion de productos a traves del id
     for(let i=0; i<shoppingCart.length; i++){
         // prod contiene la informacion del producto en el carrito
         const prod = shoppingCart[i];
@@ -66,18 +68,14 @@ const retrieveProducts = (req, res, shoppingCart) => {
                 if(err) {
                     console.log(err);
                 } else if(response.statusCode === 200) {
-                    // Agrego la informacion del producto
+                    // Junto toda la informacion que necesito del producto
                     body.cantidad = prod.cantidad;
+                    body.sectionid = prod.sectionid;
                     products.push(body)
                     // Recalculo el total
                     total += body.precio * prod.cantidad;
-                } else {
-                    console.log(response.statusCode);
-                    // Si no encuentra el producto es que fue eliminado del stock
-                    // Procedo a eliminar el producto del carrito
-                    removeProduct(req, res, body);
                 }
-                // Renderizo la pagina al recibir el utlimo producto
+                // Renderizo shoppingCart al recibir el ultimo producto
                 if(i==shoppingCart.length - 1){
                     let responseBody = {
                         'total': total.toFixed(2),
@@ -85,35 +83,104 @@ const retrieveProducts = (req, res, shoppingCart) => {
                     };
                     renderShoppingCart(req, res, responseBody);
                 }
-                    
             }
         );
     }
-    return products;
 }
 
 
-const removeProduct = (req, res, prod) => {
+
+/* Add product */
+// POST - Llamada a API Shopping Cart Add Product
+const doAddProduct = (req, res) => {
     // const userid = req.params.userid;
     const userid = '61634a5d7e30bbff4f797756'; 
-    const path = `/api/users/${userid}/shoppingCart/${prod._id}`;
+    const path = `/api/users/${userid}/shoppingCart`;
     const requestOptions = {
         url: `${apiOptions.server}${path}`,
-        method: 'DELETE',
-        json: {} // Que va aqui?
+        method: 'Put',
+        json: req.body
     };
-    /*
+
     request(
         requestOptions,
         (err, response, body) => { 
-
+            if(response.statusCode === 201) {
+                res.redirect('/products');
+            }else{
+                res.render('error', {
+                    msg: 'No se pudo agregar el Producto al Carrito',
+                })
+            }
         }
-    );  
-    */  
+    );
+};
+
+/* Edit Product */
+// POST - Llamada a API Update Product
+const doEditProduct = (req, res) => {
+    // const userid = req.params.userid;
+    const userid = '61634a5d7e30bbff4f797756'; 
+    const path = `/api/users/${userid}/shoppingCart`;
+    console.log(req.body);
+    
+    const requestOptions = {
+        url: `${apiOptions.server}${path}`,
+        method: 'Put',
+        json: req.body
+    };
+
+    request(
+        requestOptions,
+        (err, response, body) => { 
+            if(err) {
+                console.log(err);
+            } else if(response.statusCode === 201) {
+                res.redirect('/shoppingCart');
+            } else {
+                res.render('error', {
+                    msg: 'No se pudo cambiar la cantidad del producto'
+                });
+            }
+        }
+    );
+}
+
+
+/* Remove Product */
+// POST - Llamada a API Shopping Cart Remove Product
+const doRemoveProduct = (req, res) => {
+    // const userid = req.params.userid;
+    const userid = '61634a5d7e30bbff4f797756';
+    const path = `/api/users/${userid}/shoppingCart`;
+
+    const requestOptions = {
+        url: `${apiOptions.server}${path}`,
+        method: 'Delete',
+        json: req.body
+    };
+    
+    request(
+        requestOptions,
+        (err, response, body) => { 
+            if(err) {
+                console.log(err);
+            } else if(response.statusCode === 204) {
+                res.redirect('/shoppingCart');
+            } else {
+                res.render('error', {
+                    msg: 'No se pudo eliminar el Producto del Carrito'
+                });
+            }
+        }
+    );
 }
 
 
 
 module.exports = {
-    shoppingCart
+    shoppingCart,
+    doAddProduct,
+    doEditProduct,
+    doRemoveProduct
 };  

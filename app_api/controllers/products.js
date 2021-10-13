@@ -50,7 +50,7 @@ const productCreate = (req, res) => {
                 } 
                 else {
                     return res
-                        .status(200)
+                        .status(201)
                         .json(newProduct);
                 }
             });
@@ -267,7 +267,7 @@ const productDelete = (req, res) => {
                 } 
                 else {
                     return res
-                        .status(200)
+                        .status(204)
                         .json(null);
                 }
             });

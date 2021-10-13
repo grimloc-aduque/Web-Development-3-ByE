@@ -13,14 +13,14 @@ block content
       .col-md-3.order-md-1.pb-2
         h2 #{seccion.titulo}
       .col-md-3.order-md-2.d-flex.align-items-center.py-1
-      .col-md-1.order-md-2.d-flex.justify-content-evenly.align-items-center.py-1
+      .col-md-2.order-md-2.d-flex.justify-content-evenly.align-items-center.py-1
 
       //- Botones para gestionar secciones
-      .col-md-5.order-md-2.d-flex.justify-content-evenly.align-items-center.py-1
+      .col-md-4.order-md-2.d-flex.justify-content-evenly.align-items-center.py-1
         - let linkSection = `/manageStore/${seccion._id}`;
         a.lead.button.btn.btn-sm.bg-black.text-white.m-2(href=`${linkSection}/createProduct`) Agregar producto
         a.lead.button.btn.btn-sm.bg-black.text-white.m-2(href=`${linkSection}/editSection`) Editar seccion 
-        a.lead.button.btn.btn-sm.bg-danger.text-white.m-2(href=`${linkSection}/deleteSection`) Eliminar seccion
+        a.lead.button.btn.btn-sm.bg-purple.text-white.m-2(href=`${linkSection}/deleteSection`) Eliminar seccion
 
     //- Recorro cada producto de cada seccion 
     each producto in seccion.productos
@@ -30,14 +30,14 @@ block content
           img#image(src = producto.urlImagen width='40%'  alt='' p-e-2).mx-auto.m-auto.d-block
         .col-md-3.order-md-2.d-flex.align-items-center.py-1
           h5.lead  #{producto.nombre}
-            p.lead #{producto.descripcion}
-        .col-md-1.order-md-2.d-flex.justify-content-evenly.align-items-center.py-1
+            p.lead Stock: #{producto.stock} - Precio: $#{producto.precio}
+        .col-md-2.order-md-2.d-flex.justify-content-evenly.align-items-center.py-1
         
         //- Botones para gestionar productos dentro de cada seccion
-        .col-md-5.order-md-2.d-flex.justify-content-evenly.align-items-center.py-1
+        .col-md-3.order-md-2.d-flex.justify-content-evenly.align-items-center.py-1
           - let linkProduct = `${linkSection}/${producto._id}`;
-          a.lead.button.btn.btn-sm.bg-black.text-white(href=`${linkProduct}/editProduct`) Editar 
-          a.lead.button.btn.btn-sm.bg-danger.text-white(href=`${linkProduct}/deleteProduct`) Eliminar 
+          a.lead.button.btn.btn-sm.bg-black.text-white(href=`${linkProduct}/editProduct`) Editar Producto
+          a.lead.button.btn.btn-sm.bg-purple.text-white(href=`${linkProduct}/deleteProduct`) Eliminar Producto
 
     br
     br

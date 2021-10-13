@@ -1,6 +1,13 @@
 extends layout
 
 block content
-  h1= message
-  h2= error.status
-  pre #{error.stack}
+  //- Pagina de error personalizada
+  if msg
+    h1.color-purple Algo salió mal 0_0
+    h2 #{msg}
+
+  //- Pagina de Error por default
+  else
+    h1= message
+    h2= error.status
+    pre #{error.stack}
