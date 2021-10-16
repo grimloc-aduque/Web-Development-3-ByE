@@ -1,12 +1,5 @@
-const request = require('request');
-
-// Definir las URLs para los ambientes de desarrollo y produccion
-const apiOptions = {
-    server: 'http://localhost:3000'
-};
-if(process.env.NODE_ENV === 'production'){
-    apiOptions.server = 'https://bye-bonitos-y-esponjositos.herokuapp.com';
-}
+const requestAPI = require('./requestAPI');
+const apiOptions = requestAPI.apiOptions;
 
 
 //muestra formulario
@@ -35,17 +28,10 @@ const doAddUsers = (req, res) => {
         json: postdata
     };
 
-    request(
-        requestOptions, 
-        (err, response, body) => { 
-             if (response.statusCode === 201 ) {
-                res.redirect('/')
-            } else {
-                res.render( 'error', {
-                    msg:'No se pudo crear el nuevo usuario'
-                });
-            }
-        });
+    requestAPI.standardRequest(res, requestOptions, 201,
+        () => res.redirect('/'),
+        'No se pudo crear el nuevo usuario'
+    );
 };
 
 

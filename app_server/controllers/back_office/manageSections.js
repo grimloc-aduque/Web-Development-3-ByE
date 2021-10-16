@@ -1,12 +1,5 @@
-const request = require('request');
-
-// Definir las URLs para los ambientes de desarrollo y produccion
-const apiOptions = {
-    server: 'http://localhost:3000'
-};
-if(process.env.NODE_ENV === 'production'){
-    apiOptions.server = 'https://bye-bonitos-y-esponjositos.herokuapp.com';
-}
+const requestAPI = require('../requestAPI');
+const apiOptions = requestAPI.apiOptions;
 
 
 /* Create Section */
@@ -25,17 +18,9 @@ const doCreateSection = (req, res) => {
         json: req.body
     };
 
-    request(
-        requestOptions,
-        (err, response, body) => { 
-            if(response.statusCode === 201) {
-                res.redirect('/manageStore');
-            }else{
-                res.render('error', {
-                    msg: 'No se pudo crear la Seccion',
-                })
-            }
-        }
+    requestAPI.standardRequest(res, requestOptions, 201,
+        () => res.redirect('/manageStore'),
+        'No se pudo crear la Seccion'
     );
 };
 
@@ -60,19 +45,9 @@ const editSection = (req, res) => {
         json: {}
     };
 
-    request(
-        requestOptions,
-        (err, response, body) => { 
-            if(err) {
-                console.log(err);
-            } else if(response.statusCode === 200) {
-                renderEditSection(req, res, body);
-            } else {
-                res.render('error', {
-                    msg: 'Existe un error en la coleccion de Secciones'
-                });
-            }
-        }
+    requestAPI.standardRequest(res, requestOptions, 200,
+        (body) => renderEditSection(req, res, body),
+        'Existe un error en la coleccion de Secciones'
     );
 };
 
@@ -87,19 +62,9 @@ const doEditSection = (req, res) => {
         json: req.body
     };
 
-    request(
-        requestOptions,
-        (err, response, body) => { 
-            if(err) {
-                console.log(err);
-            } else if(response.statusCode === 200) {
-                res.redirect('/manageStore');
-            } else {
-                res.render('error', {
-                    msg: 'No se pudo editar la seccion'
-                });
-            }
-        }
+    requestAPI.standardRequest(res, requestOptions, 200,
+        () => res.redirect('/manageStore'),
+        'No se pudo editar la seccion'
     );
 };
 
@@ -118,19 +83,9 @@ const doDeleteSection = (req, res) => {
         }
     };
 
-    request(
-        requestOptions,
-        (err, response, body) => { 
-            if(err) {
-                console.log(err);
-            } else if(response.statusCode === 204) {
-                res.redirect('/manageStore');
-            } else {
-                res.render('error', {
-                    msg: 'No se pudo eliminar la seccion'
-                });
-            }
-        }
+    requestAPI.standardRequest(res, requestOptions, 204,
+        () => res.redirect('/manageStore'),
+        'No se pudo eliminar la seccion'
     );
 };
 

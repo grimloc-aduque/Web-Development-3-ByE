@@ -1,12 +1,7 @@
 const request = require('request');
 
-// Definir las URLs para los ambientes de desarrollo y produccion
-const apiOptions = {
-    server: 'http://localhost:3000'
-};
-if(process.env.NODE_ENV === 'production'){
-    apiOptions.server = 'https://bye-bonitos-y-esponjositos.herokuapp.com';
-}
+const requestAPI = require('./requestAPI');
+const apiOptions = requestAPI.apiOptions;
 
 
 /* Show shopping cart */
@@ -32,20 +27,11 @@ const shoppingCart = (req, res) => {
         method: 'GET',
         json: {}
     };
-    //
-    request(
-        requestOptions,
-        (err, response, body) => { 
-            if(err) {
-                console.log(err);
-            } else if(response.statusCode === 200) {
-                readAllProducts(req, res, body);
-            } else {
-                console.log(response.statusCode);
-            }
-        }
+    
+    requestAPI.standardRequest(res, requestOptions, 200,
+        (body) => readAllProducts(req, res, body), 
+        'Existe un error en la coleccion de Usuarios'
     );
-
 };
 
 // Llamada a API Read Product con cada producto del carrito
@@ -61,6 +47,7 @@ const readAllProducts = (req, res, shoppingCart) => {
             method: 'GET',
             json: {}
         };
+
         request(
             requestOptions,
             (err, response, body) => { 
@@ -68,7 +55,7 @@ const readAllProducts = (req, res, shoppingCart) => {
                 if(err) {
                     console.log(err);
                 } else if(response.statusCode === 200) {
-                    // Junto toda la informacion que necesito del producto
+                    // Uno toda la informacion que necesito del producto
                     body.cantidad = prod.cantidad;
                     body.sectionid = prod.sectionid;
                     products.push(body)
@@ -102,19 +89,13 @@ const doAddProduct = (req, res) => {
         json: req.body
     };
 
-    request(
-        requestOptions,
-        (err, response, body) => { 
-            if(response.statusCode === 201) {
-                res.redirect('/products');
-            }else{
-                res.render('error', {
-                    msg: 'No se pudo agregar el Producto al Carrito',
-                })
-            }
-        }
+    requestAPI.standardRequest(res, requestOptions, 201,
+        () => res.redirect('/products'),
+        'No se pudo agregar el Producto al Carrito'
     );
 };
+
+
 
 /* Edit Product */
 // POST - Llamada a API Update Product
@@ -130,19 +111,9 @@ const doEditProduct = (req, res) => {
         json: req.body
     };
 
-    request(
-        requestOptions,
-        (err, response, body) => { 
-            if(err) {
-                console.log(err);
-            } else if(response.statusCode === 201) {
-                res.redirect('/shoppingCart');
-            } else {
-                res.render('error', {
-                    msg: 'No se pudo cambiar la cantidad del producto'
-                });
-            }
-        }
+    requestAPI.standardRequest(res, requestOptions, 201,
+        () => res.redirect('/shoppingCart'),
+        'No se pudo cambiar la cantidad del producto'
     );
 }
 
@@ -160,19 +131,9 @@ const doRemoveProduct = (req, res) => {
         json: req.body
     };
     
-    request(
-        requestOptions,
-        (err, response, body) => { 
-            if(err) {
-                console.log(err);
-            } else if(response.statusCode === 204) {
-                res.redirect('/shoppingCart');
-            } else {
-                res.render('error', {
-                    msg: 'No se pudo eliminar el Producto del Carrito'
-                });
-            }
-        }
+    requestAPI.standardRequest(res, requestOptions, 204,
+        () => res.redirect('/shoppingCart'),
+        'No se pudo eliminar el Producto del Carrito'
     );
 }
 

@@ -1,12 +1,5 @@
-const request = require('request');
-
-// Definir las URLs para los ambientes de desarrollo y produccion
-const apiOptions = {
-    server: 'http://localhost:3000'
-};
-if(process.env.NODE_ENV === 'production'){
-    apiOptions.server = 'https://bye-bonitos-y-esponjositos.herokuapp.com';
-}
+const requestAPI = require('./requestAPI');
+const apiOptions = requestAPI.apiOptions;
 
 
 /* GET products page. */
@@ -27,17 +20,9 @@ const products = (req, res) => {
         json: {}
     };
 
-    request(
-        requestOptions,
-        (err, response, body) => { 
-            if(err) {
-                console.log(err);
-            } else if(response.statusCode === 200) {
-                renderProducts(req, res, body);
-            } else {
-                console.log(response.statusCode);
-            }
-        }
+    requestAPI.standardRequest(res, requestOptions, 200,
+        (body) => renderProducts(req, res, body),
+        'Existe un error en la coleccion de Secciones'
     );
 };
 

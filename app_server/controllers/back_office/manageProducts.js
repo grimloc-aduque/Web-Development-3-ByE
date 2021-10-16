@@ -1,13 +1,5 @@
-const request = require('request');
-
-// Definir las URLs para los ambientes de desarrollo y produccion
-const apiOptions = {
-    server: 'http://localhost:3000'
-};
-if(process.env.NODE_ENV === 'production'){
-    apiOptions.server = 'https://bye-bonitos-y-esponjositos.herokuapp.com';
-}
-
+const requestAPI = require('../requestAPI');
+const apiOptions = requestAPI.apiOptions;
 
 
 /* Create Product */
@@ -27,17 +19,9 @@ const doCreateProduct = (req, res) => {
         json: req.body
     };
 
-    request(
-        requestOptions,
-        (err, response, body) => { 
-            if(response.statusCode === 201) {
-                res.redirect('/manageStore');
-            }else{
-                res.render('error', {
-                    msg: 'No se pudo crear el Producto',
-                })
-            }
-        }
+    requestAPI.standardRequest(res, requestOptions, 201, 
+        () => res.redirect('/manageStore'), 
+        'No se pudo crear el Producto'
     );
 };
 
@@ -63,21 +47,12 @@ const editProduct = (req, res) => {
         json: {}
     };
 
-    request(
-        requestOptions,
-        (err, response, body) => { 
-            if(err) {
-                console.log(err);
-            } else if(response.statusCode === 200) {
-                renderEditProduct(req, res, body);
-            } else {
-                res.render('error', {
-                    msg: 'Existe un error en la coleccion de Productos'
-                });
-            }
-        }
+    requestAPI.standardRequest(res, requestOptions, 200, 
+        (body) => renderEditProduct(req, res, body), 
+        'Existe un error en la coleccion de Productos'
     );
 }
+
 
 // POST - Llamada a API Update Product
 const doEditProduct = (req, res) => {
@@ -90,27 +65,15 @@ const doEditProduct = (req, res) => {
         json: req.body
     };
 
-    request(
-        requestOptions,
-        (err, response, body) => { 
-            if(err) {
-                console.log(err);
-            } else if(response.statusCode === 200) {
-                res.redirect('/manageStore');
-            } else {
-                res.render('error', {
-                    msg: 'No se pudo editar el producto'
-                });
-            }
-        }
+    requestAPI.standardRequest(res, requestOptions, 200, 
+        () => res.redirect('/manageStore'), 
+        'No se pudo editar el producto'
     );
 }
 
 
 
-/* Delete Product 
-    // Redirecciono de regreso
-    res.redirect('/manageStore');*/
+/* Delete Product */
 
 // POST - Llamada a API Delete Product
 const doDeleteProduct = (req, res) => {
@@ -126,19 +89,9 @@ const doDeleteProduct = (req, res) => {
         }
     };
     
-    request(
-        requestOptions,
-        (err, response, body) => { 
-            if(err) {
-                console.log(err);
-            } else if(response.statusCode === 204) {
-                res.redirect('/manageStore');
-            } else {
-                res.render('error', {
-                    msg: 'No se pudo eliminar el producto'
-                });
-            }
-        }
+    requestAPI.standardRequest(res, requestOptions, 204, 
+        () => res.redirect('/manageStore'), 
+        'No se pudo eliminar el producto'
     );
 };
 
