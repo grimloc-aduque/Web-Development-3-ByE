@@ -3,12 +3,12 @@ const about = (req, res) => {
     res.render('about', { 
         title: 'Sobre nosotros' ,
         description: 'Conoce mas sobre ByE',
-        about_img: 'https://scontent.fuio1-2.fna.fbcdn.net/v/t1.6435-9/120504052_2209107295900331_1553419044402864033_n.jpg?_nc_cat=101&ccb=1-5&_nc_sid=84a396&_nc_eui2=AeHuRHrMQqv5dO3wjGMNQlj6zk0o6oQbegbOTSjqhBt6BkdTGMgYZCEYX-qg7xyyaiiSA2nvbsSMwa2glUP4yP0z&_nc_ohc=Cj93wZ1HIBcAX_HAm64&_nc_ht=scontent.fuio1-2.fna&oh=395597a7b38141d1bea9638c2e889406&oe=616AD157',
+        about_img: 'https://scontent.fuio1-2.fna.fbcdn.net/v/t1.6435-9/120504052_2209107295900331_1553419044402864033_n.jpg?_nc_cat=101&ccb=1-5&_nc_sid=84a396&_nc_ohc=MRO1cyi_bZMAX98Hs7Q&_nc_ht=scontent.fuio1-2.fna&oh=fe694f2460911b45fadddfc3e950c69e&oe=61925E57',
         texto: 'ByE Bonitos y Esponjositos es una tienda online ecuatoriana, fundada por dos hermanas que disfrutan del arte, la comida y la salud. La tienda fue fundada en el año 2020 con el objetivo de aprovechar el conocimiento del tejido de estos peluches ',
        
         title2: 'Nuestros Productos',
         description2:'Conoce cuales son nuestros productos',
-        image_product: 'https://scontent.fgye1-2.fna.fbcdn.net/v/t1.6435-9/165975326_398313164533193_6210974124130320567_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=8bfeb9&_nc_eui2=AeEjEvVwii-jXfaI2uL8ilRyiQdiuVgn6qmJB2K5WCfqqcQtbm_RfzxtAcYjIaDJ8_X7HTszQN0tr5jB3Bad4RIq&_nc_ohc=NaO8QazHzyQAX8Pnjvp&tn=4PsBsLEegfXeAHC_&_nc_ht=scontent.fgye1-2.fna&oh=3458b04dc811086007186f3854292292&oe=6165273D',
+        image_product: 'https://scontent.fuio1-2.fna.fbcdn.net/v/t1.6435-9/145956349_355288232169020_8931413860964012625_n.png?_nc_cat=107&ccb=1-5&_nc_sid=730e14&_nc_ohc=7zMXqBP8TVwAX9hbfcp&_nc_ht=scontent.fuio1-2.fna&oh=aa19fe6345b8b2f81f92d3972717ef93&oe=6190A262',
         'productos' : [{
          nombre_producto: 'Peluches crochet personalizados, por stock o bajo pedido'
           },{
