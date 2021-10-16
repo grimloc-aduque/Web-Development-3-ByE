@@ -74,14 +74,14 @@ const readAllProducts = (req, res, shoppingCart) => {
                     products.push(body)
                     // Recalculo el total
                     total += body.precio * prod.cantidad;
-                }
-                // Renderizo shoppingCart al recibir el ultimo producto
-                if(i==shoppingCart.length - 1){
-                    let responseBody = {
-                        'total': total.toFixed(2),
-                        'products': products
-                    };
-                    renderShoppingCart(req, res, responseBody);
+                    // Renderizo shoppingCart al recibir el ultimo producto
+                    if(i==shoppingCart.length - 1){
+                        let responseBody = {
+                            'total': total.toFixed(2),
+                            'products': products
+                        };
+                        renderShoppingCart(req, res, responseBody);
+                    }
                 }
             }
         );
