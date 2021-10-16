@@ -2,15 +2,16 @@ const requestAPI = require('../requestAPI');
 const apiOptions = requestAPI.apiOptions;
 
 
-/* GET crud page. */
+// Renderiza manageStore
 const renderManageStore = (req, res, responseBody) => {
     res.render('back_office/manageStore', { 
         secciones: responseBody
     });
 }
 
+/* List All Sections */
 
-// Controlador para index
+// GET - Llamada a API Read All Sections para llenar la vista
 const manageStore = (req, res) => {
     const path = '/api/sections';
     const requestOptions = {

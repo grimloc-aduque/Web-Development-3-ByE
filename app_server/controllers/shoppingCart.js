@@ -78,6 +78,7 @@ const readAllProducts = (req, res, shoppingCart) => {
 
 
 /* Add product */
+
 // POST - Llamada a API Shopping Cart Add Product
 const doAddProduct = (req, res) => {
     // const userid = req.params.userid;
@@ -98,6 +99,7 @@ const doAddProduct = (req, res) => {
 
 
 /* Edit Product */
+
 // POST - Llamada a API Update Product
 const doEditProduct = (req, res) => {
     // const userid = req.params.userid;
@@ -119,6 +121,7 @@ const doEditProduct = (req, res) => {
 
 
 /* Remove Product */
+
 // POST - Llamada a API Shopping Cart Remove Product
 const doRemoveProduct = (req, res) => {
     // const userid = req.params.userid;

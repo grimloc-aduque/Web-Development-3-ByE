@@ -3,6 +3,8 @@ const apiOptions = requestAPI.apiOptions;
 
 
 /* GET products page. */
+
+// Renderiza products
 const renderProducts = (req, res, responseBody) => {
     res.render('products', { 
         titulo: 'Products',
@@ -11,7 +13,7 @@ const renderProducts = (req, res, responseBody) => {
 };
 
 
-// Controlador para index
+// GET - Llamada a API Read All Sections para llenar la vista
 const products = (req, res) => {
     const path = '/api/sections';
     const requestOptions = {
