@@ -4,47 +4,45 @@ block content
   
   div.d-flex.justify-content-center
     h1.color-purple #{title}
-  
-  .container.py-5.h-100
-    .row.d-flex.justify-content-center.align-items-center.h-100
-      .col
-        .card.card-registration.my-4
-          .row.g-0
-          
-            .col-xl-12
-              .card-body.p-md-5.text-black
-                .row
-                  .col-md-6.mb-4
-                    .form-outline
-                      input#form3Example1m.form-control.form-control-lg(type='text')
-                      label.form-label(for='form3Example1m') Nombre
-                  .col-md-6.mb-4
-                    .form-outline
-                      input#form3Example1n.form-control.form-control-lg(type='text')
-                      label.form-label(for='form3Example1n') Apellido
-                .row
-                  .col-md-6.mb-4
-                    .form-outline
-                      input#form3Example1m1.form-control.form-control-lg(type='text')
-                      label.form-label(for='form3Example1m1') Telefono
-                  .col-md-6.mb-4
-                    .form-outline
-                      input#form3Example1n1.form-control.form-control-lg(type='text')
-                      label.form-label(for='form3Example1n1') Correo Electronico
-                .row
-                  .col-md-6.mb-4
-                    .form-outline
-                      input#form3Example1m1.form-control.form-control-lg(type='text')
-                      label.form-label(for='form3Example1m1') Contraseña
-                  .col-md-6.mb-4
-                    .form-outline
-                      input#form3Example1n1.form-control.form-control-lg(type='text')
-                      label.form-label(for='form3Example1n1') Confirmar contraseña
-                .form-outline.mb-4
-                  input#form3Example8.form-control.form-control-lg(type='text')
-                  label.form-label(for='form3Example8') Direccion
+  br
+  .row
+    .col-12.col-lg-3
+    
+    .col-12.col-lg-6
+      form(id='createUser', action='' method= 'post' role= 'form')
         
-          
-                .d-flex.justify-content-end.pt-3
-                  
-                  a.lead.btn.btn-sm.bg-dark.text-white.px-lg-5.px-3(href='/login')  Registrarse
+        //- Name input
+        .form-outline.mb-4
+          input#registerName.form-control(type='text' name='nombre')
+          label.form-label(name='nombre') Nombre
+        //- Username input
+        .form-outline.mb-4
+          input#registerUsername.form-control(type='text' name='apellido')
+          label.form-label(for='apellido') Apellido
+        //- Email input
+        .form-outline.mb-4
+          input#registerEmail.form-control(type='email' name='mail')
+          label.form-label(for='mail') Email
+        //- Password input
+        .form-outline.mb-4
+          input#registerPassword.form-control(type='password' name='contraseña')
+          label.form-label(for='contraseña') Contraseña
+        //- Repeat Password input
+        .form-outline.mb-4
+          input#registerRepeatPassword.form-control(type='number', min=0, name='edad')
+          label.form-label(for='edad') Edad
+        .form-outline.mb-4
+          input#registerRepeatPassword.form-control(type='text' name='direccion')
+          label.form-label(for='direccion') Direccion
+        .form-outline.mb-4
+          input#registerRepeatPassword.form-control(type='text' name='telefono')
+          label.form-label(for='telefono') Telefono
+        
+        input.btn.bg-purple.text-white.btn-block.mb-3(form='createUser' type='submit', value='Registrarse')
+
+
+    .col-12.col-lg-3
+
+  
+
+  p #{mensaje}        

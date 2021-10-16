@@ -2,157 +2,178 @@ const mongoose = require('mongoose');
 const Users = mongoose.model('User');
 
 
-//controladores 
-
-const userCreate = (req, res) =>{
-    Users.create(
-        {
-            nombre: req.body.nombre,
-            apellido: req.body.apellido,
-            direccion: req.body.direccion,
-            telefono: req.body.telefono,
-            edad: req.body.edad,
-            mail: req.body.mail,
-            contraseña: req.body.contraseña,
-        }, 
-        (err, objetoUser) => {
-            if(err){
-                return res
-                    .status(400)
-                    .json(err);
-            } 
-            else{
-                return res
-                    .status(201)
-                    .json(objetoUser)
-            }
-        }
-    );
-};
-
-
-const userList = (req, res) =>{
-    Users
-    .find()
-    .exec((err, objetoUsuario) => {
-        if(!objetoUsuario || objetoUsuario.length ===0){
-            return res  
-                .status(404)
-                .json({
-                    "Mensaje": "No se encontro resultados"
-                });
-        }else if (err){
+// Controladores
+// Crear Usuarios
+const userCreate = (req, res) => {
+    Users.create({
+        nombre: req.body.nombre,
+        apellido: req.body.apellido,
+        direccion: req.body.direccion,
+        telefono: req.body.telefono,
+        edad: req.body.edad,
+        mail: req.body.mail,
+        contraseña: req.body.contraseña
+    }, (err, objetoUsuario) => {
+        if (err) {
             return res
-                .status(404)
-                .json(err);
+                .status(400)
+                .json(err)
+        } else {
+            return res
+                .status(201)
+                .json(objetoUsuario);
         }
-       res  
-       .status(200)
-       .json(objetoUsuario);
     });
 };
 
-
-const userRead = (req, res) =>{
-    const id = req.params.userid
+// Listar todos los documentos de la coleccion
+const userList = (req, res) => {
     Users
-         .findById(id)
-         .exec((err, objetoUsuario) => {
-            if(!objetoUsuario){
-                console.log(`Usuario con user id : ${id} no encontrado`)
-                return res  
+        .find() // obtener todos los documentos de la coleccion
+        //.select('nombre apellido')
+        .exec((err, objetoUsuario) => {
+            if (!objetoUsuario || objetoUsuario.length == 0) { // find no encontro el documentos en la coleccion
+                console.log(`No existen documentos en la coleccion ${users}`);
+                return res // respondo el mensaje en formato JSON y status HTTP 404
                     .status(404)
                     .json({
-                        "Mensaje": "No se encontro el usuario"
+                        "Mensaje": "Usuarios no encontrados"
                     });
-            }else if (err){
-                return res
+            } else if (err) { // find encontro un error
+                console.log(`Se encontro un error en la coleccion ${users}`);
+                return res // respondo el error en formato JSON y status HTTP 404
                     .status(404)
                     .json(err);
             }
-            res  
+            res // respondo los documentos encontrados en formato JSON y status HTTP 200
                 .status(200)
                 .json(objetoUsuario);
-         });
+        });
 };
 
-
-const userUpdate = (req, res) =>{
-    const id = req.params.userid
-    if(!id){
-        return res
-            .status(404)
-            .json({
-                "message": "Ingrese un userid valido"
-            })
-    }
+// Búsqueda por nombre/apellido
+const userFindName = (req, res) => {
+    const buscar = new RegExp(req.params.name);
+    console.log(`Buscar usuario con nombre: ${buscar}`);
     Users
-        .findById(id)
-        .exec((err, objetoUser) =>{
-            if(!objetoUser) {
-                return res
+        .find({
+            'nombre': buscar // String a buscar
+        }) // obtener todos los documentos de la coleccion que cumplen con el criterio de busqueda
+        .exec((err, objetoUsuario) => {
+            if (!objetoUsuario || objetoUsuario.length == 0) { // find no encontro el documentos en la coleccion
+                console.log(`No existen documentos con nombre ${buscar}`);
+                return res // respondo el mensaje en formato JSON y status HTTP 404
                     .status(404)
-                    .jason({
-                        "message": "userid no existe"
+                    .json({
+                        "Mensaje": "Usuario no encontrado"
                     });
+            } else if (err) { // find encontro un error
+                console.log(`Se encontro un error en la coleccion ${users} con nombre: ${buscar}`);
+                return res // respondo el error en formato JSON y status HTTP 404
+                    .status(404)
+                    .json(err);
             }
-            else if(err) {
-                return res
-                    .status(400)
-                    .jason(err);
-            }
-            objetoUser.nombre = req.body.nombre;
-            objetoUser.apellido = req.body.apellido;
-            objetoUser.direccion = req.body.direccion;
-            objetoUser.telefono = req.body.telefono;
-            objetoUser.edad = req.body.edad;
-            objetoUser.mail = req.body.mail;
-            objetoUser.contraseña = req.body.contraseña;
-
-            objetoUser.save((err, section) => {
-                if(err) {
-                    return res
-                        .status(404)
-                        .json(err);
-                } 
-                else {
-                    return res
-                        .status(200)
-                        .json(section);
-                }
-            });
+            console.log(`Se encontró el documento con nombre ${req.params.name}`);
+            res // respondo los documentos encontrados en formato JSON y status HTTP 200
+                .status(200)
+                .json(objetoUsuario);
         });
 };
 
 
-const userDelete = (req, res) =>{
-    const id = req.params.userid
-    if(id) {
-        Users
-            .findByIdAndDelete(id)
-            .exec((err, objetoUser) => {
-                if(err){
-                    return res
-                        .status(404)
-                        .json(err);
-                } 
-                return res
-                    .status(204)
-                    .json(null);
-            });
-    } 
-    else {
+// Buscar un usuario con userid
+const userRead = (req, res) => {
+    Users
+        .findById(req.params.userid) // obtener el userid de los parámetros de la URL
+        .exec((err, objetoUsuario) => {
+            if (!objetoUsuario) { // findById no encontro el documento
+                console.log(`Usuario con userid: ${req.params.userid} no encontrado`);
+                return res // respondo el mensaje en formato JSON y status HTTP 404
+                    .status(404)
+                    .json({
+                        "Mensaje": "Usuario no encontrado"
+                    });
+            } else if (err) { // findById encontro un error
+                return res // respondo el error en formato JSON y status HTTP 404
+                    .status(404)
+                    .json(err);
+            }
+            res // respondo el documento encontrado en formato JSON y status HTTP 200
+                .status(200)
+                .json(objetoUsuario);
+        });
+};
+
+// Actualizar un documento
+const userUpdate = (req, res) => {
+    if (!req.params.userid) {
         return res
             .status(404)
-            .json({"Mensaje": "User no encontrado"});
+            .json({
+                "message": "Ingrese un userid válido"
+            });
+    }
+    Users
+        .findById(req.params.userid)
+        .exec((err, objetoUsuario) => {
+            if (!objetoUsuario) {
+                return res
+                    .status(404)
+                    .json({
+                        "message": "userid no existe"
+                    })
+            } else if (err) {
+                return res
+                    .status(400)
+                    .json(err);
+            }
+            objetoUsuario.nombre = req.body.nombre;
+            objetoUsuario.apellido = req.body.apellido;
+            objetoUsuario.direccion = req.body.direccion;
+            objetoUsuario.telefono = req.body.telefono;
+            objetoUsuario.edad = req.body.edad;
+            objetoUsuario.contraseña = req.body.contraseña;
+            objetoUsuario.save((err, users) => {
+                if (err) {
+                    res
+                        .status(404)
+                        .json(err);
+                } else {
+                    res
+                        .status(200)
+                        .json(users);
+                }
+            })
+        })
+};
+
+// Eliminar Usuario
+const userDelete = (req, res) => {
+    if (req.params.userid) {
+        Users
+            .findByIdAndDelete(req.params.userid)
+            .exec((err, objetoUsuario) => {
+                if (err) {
+                    return res
+                        .status(404)
+                        .json(err)
+                }
+                res
+                    .status(204)
+                    .json(null)
+            });
+    } else {
+        res
+            .status(404)
+            .json({ "Mensaje": "Usuario no encontrado" });
     }
 };
 
-
-module.exports= {
+module.exports = {
     userCreate,
     userList,
+    userFindName,
     userRead,
     userUpdate,
     userDelete
-}; 
+};

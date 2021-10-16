@@ -17,7 +17,11 @@ const ctrlManageProducts = require('../controllers/back_office/manageProducts')
 const ctrlManageSections = require('../controllers/back_office/manageSections')
 
 
+
+
 // Direccionammiento de rutas
+
+
 
 // Mostrar contenido
 router.get('/', ctrlHome.home);
@@ -36,7 +40,12 @@ router.get('/checkout', ctrlCheckout.checkout);
 
 // Creacion e inicio de sesion
 router.get('/login', ctrlLogin.login);
-router.get('/signin', ctrlSignin.signin);
+
+router
+    .route('/signin')
+    .get( ctrlSignin.addUsers)
+    .post( ctrlSignin.doAddUsers);
+
 
 
 // ---------- Back Office

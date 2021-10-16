@@ -44,7 +44,9 @@ router
     .put(ctrlUsers.userUpdate)
     .delete(ctrlUsers.userDelete);
 
-
+router
+    .route('/search/:name')
+    .get(ctrlUsers.userFindName);
 // Carrito
 router
     .route('/users/:userid/shoppingCart')
