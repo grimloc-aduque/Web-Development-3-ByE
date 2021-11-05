@@ -13,29 +13,29 @@ block content
         
         //- Name input
         .form-outline.mb-4
-          input#registerName.form-control(type='text' name='nombre')
+          input#registerName.form-control(type='text' name='nombre', required)
           label.form-label(name='nombre') Nombre
         //- Username input
         .form-outline.mb-4
-          input#registerUsername.form-control(type='text' name='apellido')
+          input#registerUsername.form-control(type='text' name='apellido', required)
           label.form-label(for='apellido') Apellido
         //- Email input
         .form-outline.mb-4
-          input#registerEmail.form-control(type='email' name='mail')
+          input#registerEmail.form-control(type='email' name='mail', required)
           label.form-label(for='mail') Email
         //- Password input
         .form-outline.mb-4
-          input#registerPassword.form-control(type='password' name='contraseña')
+          input#registerPassword.form-control(type='password' name='contraseña', required)
           label.form-label(for='contraseña') Contraseña
         //- Repeat Password input
         .form-outline.mb-4
-          input#registerRepeatPassword.form-control(type='number', min=0, name='edad')
+          input#registerRepeatPassword.form-control(type='number', min=0, name='edad', required)
           label.form-label(for='edad') Edad
         .form-outline.mb-4
-          input#registerRepeatPassword.form-control(type='text' name='direccion')
+          input#registerRepeatPassword.form-control(type='text' name='direccion', required)
           label.form-label(for='direccion') Direccion
         .form-outline.mb-4
-          input#registerRepeatPassword.form-control(type='text' name='telefono')
+          input#registerRepeatPassword.form-control(type='text' name='telefono', required)
           label.form-label(for='telefono') Telefono
         
         input.btn.bg-purple.text-white.btn-block.mb-3(form='createUser' type='submit', value='Registrarse')

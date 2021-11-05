@@ -1,18 +1,19 @@
 const requestAPI = require('./requestAPI');
 const apiOptions = requestAPI.apiOptions;
-
+const axios = require("axios").default;
 
 //muestra formulario
-const addUsers = (req, res) => {
+const addUser = (req, res) => {
     res.render('signin', {
         title: 'Crear una cuenta'
     });
 };
 
+
 //llama a la rest api 
-const doAddUsers = (req, res) => {
-    const path = '/api/users/';
-    const postdata = {
+const doAddUser = (req, res) => {
+    axios
+    .post(`${apiOptions.server}/api/users`, {
         nombre: req.body.nombre,
         apellido: req.body.apellido,
         direccion: req.body.direccion,
@@ -20,22 +21,19 @@ const doAddUsers = (req, res) => {
         telefono: req.body.telefono,
         edad: req.body.edad,
         contraseña: req.body.contraseña,
-
-    };
-    const requestOptions = {
-        url: `${apiOptions.server}${path}`,
-        method: 'Post',
-        json: postdata
-    };
-
-    requestAPI.standardRequest(res, requestOptions, 201,
-        () => res.redirect('/'),
-        'No se pudo crear el nuevo usuario'
-    );
+    })
+    .then(function (response) {
+      console.log("Creado");
+      res.redirect(`/login`);
+    })
+    .catch(function (error) {
+      console.log(error.response);
+    });
 };
 
 
+
 module.exports = {
-    addUsers,
-    doAddUsers
+    addUser,
+    doAddUser
 }; 

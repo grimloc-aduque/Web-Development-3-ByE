@@ -39,12 +39,15 @@ router.post('/shoppingCart/editProduct', ctrlShoppingCart.doEditProduct);
 router.get('/checkout', ctrlCheckout.checkout);
 
 // Creacion e inicio de sesion
-router.get('/login', ctrlLogin.login);
-
+router
+    .route('/login')
+    .get( ctrlLogin.login)
+    .post( ctrlLogin.doLogin);
+    
 router
     .route('/signin')
-    .get( ctrlSignin.addUsers)
-    .post( ctrlSignin.doAddUsers);
+    .get( ctrlSignin.addUser)
+    .post( ctrlSignin.doAddUser);
 
 
 

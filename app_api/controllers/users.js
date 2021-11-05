@@ -4,6 +4,7 @@ const Users = mongoose.model('User');
 
 // Controladores
 // Crear Usuarios
+
 const userCreate = (req, res) => {
     Users.create({
         nombre: req.body.nombre,
@@ -51,16 +52,16 @@ const userList = (req, res) => {
         });
 };
 
-// Búsqueda por nombre/apellido
-const userFindName = (req, res) => {
-    const buscar = new RegExp(req.params.name);
-    console.log(`Buscar usuario con nombre: ${buscar}`);
+// Búsqueda por mail
+const userFindMail= (req, res) => {
+    const buscar = new RegExp(req.params.mail);
+    console.log(`Buscar usuario con mail: ${buscar}`);
     Users
         .find({
-            'nombre': buscar // String a buscar
-        }) // obtener todos los documentos de la coleccion que cumplen con el criterio de busqueda
+            'mail': buscar 
+        }) 
         .exec((err, objetoUsuario) => {
-            if (!objetoUsuario || objetoUsuario.length == 0) { // find no encontro el documentos en la coleccion
+            if (!objetoUsuario || objetoUsuario.length == 0) { 
                 console.log(`No existen documentos con nombre ${buscar}`);
                 return res // respondo el mensaje en formato JSON y status HTTP 404
                     .status(404)
@@ -172,7 +173,7 @@ const userDelete = (req, res) => {
 module.exports = {
     userCreate,
     userList,
-    userFindName,
+    userFindMail,
     userRead,
     userUpdate,
     userDelete

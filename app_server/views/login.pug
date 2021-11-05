@@ -8,14 +8,14 @@ block content
       h1.color-purple #{title}
 
     div.d-flex.justify-content-center
-      form
+      form( action='' method= 'POST' role= 'form')
         //- Fields
         div.form-group
           label.login-formItem Correo Electronico
-          input.form-control.login-formItem(type="email" placeholder="example@domain.com", require, size=36)
+          input.form-control.login-formItem(type="mail" name='mail' placeholder="example@domain.com", required, size=36)
         div.form-group
           label.login-formItem Contraseña
-          input.form-control.login-formItem(type="password", require)
+          input.form-control.login-formItem(type="password" name='constraseña', required)
 
         //- Buttons
         div.form-group.d-flex.flex-column
@@ -24,3 +24,4 @@ block content
             span.login-formItem O
           a.btn.btn-block.btn-outline-dark.login-button(href="/signin") Regístrate
           
+      p #{mensaje}

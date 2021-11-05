@@ -16,11 +16,10 @@ const manageStore = (req, res) => {
     const path = '/api/sections';
     const requestOptions = {
         url: `${apiOptions.server}${path}`,
-        method: 'GET',
-        json: {}
+        method: 'GET'
     };
 
-    requestAPI.standardRequest(res, requestOptions, 200, 
+    requestAPI.standardAxios(res, requestOptions, 200, 
         (body) => renderManageStore(req, res, body),
         'Existe un error en la coleccion de Secciones'
     );

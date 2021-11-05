@@ -15,10 +15,10 @@ const doCreateSection = (req, res) => {
     const requestOptions = {
         url: `${apiOptions.server}${path}`,
         method: 'Post',
-        json: req.body
+        data: req.body
     };
 
-    requestAPI.standardRequest(res, requestOptions, 201,
+    requestAPI.standardAxios(res, requestOptions, 201,
         () => res.redirect('/manageStore'),
         'No se pudo crear la Seccion'
     );
@@ -41,11 +41,10 @@ const editSection = (req, res) => {
     const path = `/api/sections/${sectionid}`;
     const requestOptions = {
         url: `${apiOptions.server}${path}`,
-        method: 'GET',
-        json: {}
+        method: 'GET'
     };
 
-    requestAPI.standardRequest(res, requestOptions, 200,
+    requestAPI.standardAxios(res, requestOptions, 200,
         (body) => renderEditSection(req, res, body),
         'Existe un error en la coleccion de Secciones'
     );
@@ -59,10 +58,10 @@ const doEditSection = (req, res) => {
     const requestOptions = {
         url: `${apiOptions.server}${path}`,
         method: 'Put',
-        json: req.body
+        data: req.body
     };
 
-    requestAPI.standardRequest(res, requestOptions, 200,
+    requestAPI.standardAxios(res, requestOptions, 200,
         () => res.redirect('/manageStore'),
         'No se pudo editar la seccion'
     );
@@ -78,12 +77,12 @@ const doDeleteSection = (req, res) => {
     const requestOptions = {
         url: `${apiOptions.server}${path}`,
         method: 'Delete',
-        json: {
+        data: {
             sectionid: sectionid
         }
     };
 
-    requestAPI.standardRequest(res, requestOptions, 204,
+    requestAPI.standardAxios(res, requestOptions, 204,
         () => res.redirect('/manageStore'),
         'No se pudo eliminar la seccion'
     );

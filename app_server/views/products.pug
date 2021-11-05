@@ -9,7 +9,7 @@ block content
     if(index!=0)
       hr
       br
-    div.products-section
+    div
       div.d-flex.justify-content-center
         h1.color-purple #{seccion.titulo}
       div.d-flex.justify-content-center
@@ -21,11 +21,11 @@ block content
           each producto in seccion.productos
             .col-12.col-lg-4.products-product
               .p-4.border.bg-cream
-                .text-center(style="height: 400px")
+                .text-center(style="height: 27vw")
                   .dflex.flex-column 
                     img.card-img-top.products-image(src = producto.urlImagen)
                     .card-body
-                      h5.products-name-cost #{producto.nombre} - #{producto.precio}
+                      h5.products-name-cost #{producto.nombre} - $#{producto.precio}
                       p #{producto.descripcion}
 
                 .d-flex.justify-content-around
@@ -37,6 +37,3 @@ block content
               br
           
                 
-        
-
-        

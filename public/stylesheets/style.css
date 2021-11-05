@@ -78,14 +78,15 @@ div.content{
 
 /* Products */
 .products-section{
-  padding-bottom: 8vmax;
+  padding-bottom: 4vw;
 }
 .products-product{
-  padding: 20px;
+  padding: 2.5vw;
 }
 .products-image{
-  width: 38vh;
-  padding: 3vh;
+  width: 18vw;
+  height: 18vw;
+  padding: 1vw;
 }
 .products-name-cost{
   color: var(--color-purple);

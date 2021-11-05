@@ -8,10 +8,10 @@ block content
   
     .form-outline.mb-4
       label.form-label(for='form4Example1') Nombre de la seccion
-      input#form4Example1.form-control(type='text', name='titulo', value=seccion.titulo)
+      input#form4Example1.form-control(type='text', name='titulo', value=seccion.titulo, required)
       
     .form-outline.mb-4
       label.form-label(for='form4Example2') Descripcion de la seccion
-      input#form4Example2.form-control(type='text', name='descripcion', value=seccion.descripcion)
+      input#form4Example2.form-control(type='text', name='descripcion', value=seccion.descripcion, required)
   
     input.lead.btn.btn-sm.bg-dark.text-white.px-lg-5.px-3.mt-4(type='submit' value='Editar')

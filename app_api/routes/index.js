@@ -46,7 +46,7 @@ router
 
 router
     .route('/search/:name')
-    .get(ctrlUsers.userFindName);
+    .get(ctrlUsers.userFindMail);
 // Carrito
 router
     .route('/users/:userid/shoppingCart')

@@ -1,5 +1,4 @@
-const request = require('request');
-
+const axios = require('axios');
 const requestAPI = require('./requestAPI');
 const apiOptions = requestAPI.apiOptions;
 
@@ -24,11 +23,10 @@ const shoppingCart = (req, res) => {
     const path = `/api/users/${userid}/shoppingCart`;
     const requestOptions = {
         url: `${apiOptions.server}${path}`,
-        method: 'GET',
-        json: {}
+        method: 'GET'
     };
     
-    requestAPI.standardRequest(res, requestOptions, 200,
+    requestAPI.standardAxios(res, requestOptions, 200,
         (body) => readAllProducts(req, res, body), 
         'Existe un error en la coleccion de Usuarios'
     );
@@ -47,34 +45,29 @@ const readAllProducts = (req, res, shoppingCart) => {
             method: 'GET',
             json: {}
         };
-
-        request(
-            requestOptions,
-            (err, response, body) => { 
-                // body contiene la informacion del documento del producto
-                if(err) {
-                    console.log(err);
-                } else if(response.statusCode === 200) {
-                    // Uno toda la informacion que necesito del producto
-                    body.cantidad = prod.cantidad;
-                    body.sectionid = prod.sectionid;
-                    products.push(body)
-                    // Recalculo el total
-                    total += body.precio * prod.cantidad;
-                }
-                // Renderizo shoppingCart al recibir el ultimo producto
-                if(i==shoppingCart.length - 1){
-                    let responseBody = {
-                        'total': total.toFixed(2),
-                        'products': products
-                    };
-                    renderShoppingCart(req, res, responseBody);
-                }
-            }
-        );
+        axios(requestOptions)
+            .then( response => {
+                // Uno toda la informacion que necesito del producto
+                response.data.cantidad = prod.cantidad;
+                response.data.sectionid = prod.sectionid;
+                products.push(response.data)
+                // Recalculo el total
+                total += response.data.precio * prod.cantidad;
+            })
+            .catch(error => {
+                console.log(error.status);
+            })
     }
+    // Espero a recibir el ultimo producto
+    setTimeout(()=>{
+        // Renderizo shoppingCart al recibir el ultimo producto
+        let responseBody = {
+            'total': total.toFixed(2),
+            'products': products
+        };
+        renderShoppingCart(req, res, responseBody);
+    },350);
 }
-
 
 
 /* Add product */
@@ -86,11 +79,11 @@ const doAddProduct = (req, res) => {
     const path = `/api/users/${userid}/shoppingCart`;
     const requestOptions = {
         url: `${apiOptions.server}${path}`,
-        method: 'Put',
-        json: req.body
+        method: 'PUT',
+        data: req.body
     };
 
-    requestAPI.standardRequest(res, requestOptions, 201,
+    requestAPI.standardAxios(res, requestOptions, 201,
         () => res.redirect('/products'),
         'No se pudo agregar el Producto al Carrito'
     );
@@ -110,10 +103,10 @@ const doEditProduct = (req, res) => {
     const requestOptions = {
         url: `${apiOptions.server}${path}`,
         method: 'Put',
-        json: req.body
+        data: req.body
     };
 
-    requestAPI.standardRequest(res, requestOptions, 201,
+    requestAPI.standardAxios(res, requestOptions, 201,
         () => res.redirect('/shoppingCart'),
         'No se pudo cambiar la cantidad del producto'
     );
@@ -131,10 +124,10 @@ const doRemoveProduct = (req, res) => {
     const requestOptions = {
         url: `${apiOptions.server}${path}`,
         method: 'Delete',
-        json: req.body
+        data: req.body
     };
     
-    requestAPI.standardRequest(res, requestOptions, 204,
+    requestAPI.standardAxios(res, requestOptions, 204,
         () => res.redirect('/shoppingCart'),
         'No se pudo eliminar el Producto del Carrito'
     );

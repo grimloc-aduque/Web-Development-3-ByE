@@ -8,23 +8,23 @@ block content
   
     .form-outline.mb-4
       label.form-label(for='form4Example1') Nombre del producto
-      input#form4Example1.form-control(type='text', name='nombre')
+      input#form4Example1.form-control(type='text', name='nombre', required)
       
     .form-outline.mb-4
       label.form-label(for='form4Example2') Precio del producto
-      input#form4Example2.form-control(type='text', name='precio')
+      input#form4Example2.form-control(type='text', name='precio', required)
       
     .form-outline.mb-4
       label.form-label(for='form4Example3') Cantidad de unidades en stock
-      input#form4Example1.form-control(type='number', min=0, name='stock')
+      input#form4Example1.form-control(type='number', min=0, name='stock', required)
   
     .form-outline.mb-4
       label.form-label(for='form4Example3') Descripcion del producto
-      textarea#form4Example3.form-control(rows='4', name='descripcion')
+      textarea#form4Example3.form-control(rows='4', name='descripcion', required)
 
     .form-outline.mb-4
       label.form-label(for='form4Example3') Url con la foto del producto 
-      input#form4Example1.form-control(type='text', name='urlImagen')
+      input#form4Example1.form-control(type='text', name='urlImagen', required)
     
     //- .form-outline.mb-4 
     //-   label.form-label(for='formFile') #{subir_archivo}
