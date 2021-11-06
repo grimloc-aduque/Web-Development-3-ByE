@@ -23,11 +23,11 @@ const doAddUser = (req, res) => {
         contraseña: req.body.contraseña,
     })
     .then(function (response) {
-      console.log("Creado");
-      res.redirect(`/login`);
+    //   console.log("Creado");
+        res.redirect(`/login`);
     })
     .catch(function (error) {
-      console.log(error.response);
+        console.log(error.response);
     });
 };
 

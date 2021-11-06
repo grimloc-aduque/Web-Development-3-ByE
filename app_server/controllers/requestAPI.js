@@ -49,7 +49,7 @@ const standardAxios = (res, requestOptions, succesCode, onSuccess, onFailMsg) =>
             }
         })
         .catch( error => {
-            console.log(error.status)
+            console.log(error.response.status)
             if(onFailMsg){
                 res.render('error', {
                     msg: onFailMsg

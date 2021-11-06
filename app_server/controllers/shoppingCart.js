@@ -55,7 +55,7 @@ const readAllProducts = (req, res, shoppingCart) => {
                 total += response.data.precio * prod.cantidad;
             })
             .catch(error => {
-                console.log(error.status);
+                console.log(error.response.status);
             })
     }
     // Espero a recibir el ultimo producto
@@ -98,7 +98,6 @@ const doEditProduct = (req, res) => {
     // const userid = req.params.userid;
     const userid = '61634a5d7e30bbff4f797756'; 
     const path = `/api/users/${userid}/shoppingCart`;
-    console.log(req.body);
     
     const requestOptions = {
         url: `${apiOptions.server}${path}`,
