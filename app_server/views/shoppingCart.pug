@@ -24,10 +24,10 @@ block content
         //-     - num++
 
       .col-md-2.order-md-2.d-flex.justify-content-right.align-items-center.py-1
-        b.lead  #{producto.precio}
+        b.lead  $#{producto.precio.toFixed(2)}
 
       .col-md-1.order-md-2.d-flex.justify-content-right.align-items-center.py-1
-        //- Boton eliminar hace POST a /shoppingCart/removeProduct
+        //- Boton actualizar hace POST a /shoppingCart/addProduct
         form.lead(id=`editProduct${producto._id}`, action="/shoppingCart/editProduct", method="post", role="form")
           input(type='hidden', name='productid', value=producto._id)
           input(type='hidden', name='sectionid', value=producto.sectionid)
@@ -57,7 +57,10 @@ block content
 
       .col-lg-4.d-flex.justify-content-evenly.align-items-center.py-2
         p
-          a.lead.btn.btn-sm.bg-dark.text-white.px-lg-5.px-3(href='/checkout') Continuar
+        form(action='/checkout' method= 'POST' role= 'form')
+          input(type='hidden', name='productos', value=productos)
+          input(type='hidden', name='total', value=total)
+          button.lead.btn.btn-sm.bg-dark.text-white.px-lg-5.px-3(href='/checkout') Continuar
   
 
   

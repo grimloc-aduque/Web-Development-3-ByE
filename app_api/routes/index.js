@@ -5,6 +5,7 @@ const ctrlSections = require('../controllers/sections');
 const ctrlProducts = require('../controllers/products');
 const ctrlUsers =require('../controllers/users');
 const ctrlCarrito = require('../controllers/carrito');
+const ctrlOrders = require('../controllers/orders');
 
 
 // Sections
@@ -47,6 +48,8 @@ router
 router
     .route('/search/:name')
     .get(ctrlUsers.userFindMail);
+
+    
 // Carrito
 router
     .route('/users/:userid/shoppingCart')
@@ -55,7 +58,17 @@ router
     .delete(ctrlCarrito.carritoRemoveProduct); 
 
 
-// Facturacion / Historial de Compras
+// Facturacion / Orders
+router
+    .route('/orders')
+    .get(ctrlOrders.orderList)
+    .post(ctrlOrders.orderCreate);
+
+router
+    .route('/orders/:orderid')
+    .get(ctrlOrders.orderRead)
+    .put(ctrlOrders.orderUpdate);
+
 
 
 module.exports = router;

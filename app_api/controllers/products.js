@@ -195,11 +195,17 @@ const productUpdate = (req, res) => {
             }
 
             // Actualizo el producto
-            product.urlImagen = req.body.urlImagen;
-            product.nombre = req.body.nombre;
-            product.precio = req.body.precio;
-            product.stock = req.body.stock;
-            product.descripcion = req.body.descripcion;
+            if(req.body.restock){
+                product.stock = product.stock - req.body.cantidad;
+            }
+            else{
+                product.urlImagen = req.body.urlImagen;
+                product.nombre = req.body.nombre;
+                product.precio = req.body.precio;
+                product.stock = req.body.stock;
+                product.descripcion = req.body.descripcion;
+            }
+
 
             // Guardo la seccion
             objetoSection.save((err) => {

@@ -15,7 +15,7 @@ const ctrlSignin = require('../controllers/signin');
 const ctrlManageStore = require('../controllers/back_office/manageStore')
 const ctrlManageProducts = require('../controllers/back_office/manageProducts')
 const ctrlManageSections = require('../controllers/back_office/manageSections')
-
+const ctrlOrders = require('../controllers/back_office/orders')
 
 
 
@@ -36,7 +36,9 @@ router.post('/shoppingCart/editProduct', ctrlShoppingCart.doEditProduct);
 
 
 // Finalizacion de compra del usuario
-router.get('/checkout', ctrlCheckout.checkout);
+router.post('/checkout', ctrlCheckout.checkout);
+router.post('/finishPurchase', ctrlCheckout.doCheckout)
+
 
 // Creacion e inicio de sesion
 router
@@ -84,5 +86,14 @@ router.get('/manageStore/:sectionid/:productid/deleteProduct',
             ctrlManageProducts.doDeleteProduct);
 
 
+// Pedidos
+router
+    .route('/manageStore/orders')
+    .get(ctrlOrders.orders)
+    .post(ctrlOrders.filterOrders);
+
+router
+    .route('/manageStore/orders/updateStatus')
+    .post(ctrlOrders.updateStatus)
 
 module.exports = router;

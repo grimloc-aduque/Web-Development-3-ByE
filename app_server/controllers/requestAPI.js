@@ -34,7 +34,7 @@ const standardRequest = (res, requestOptions, succesCode, onSuccess, onFailMsg) 
 // Dependiendo del succesCode ejecuta onSuccess o muestra una pantalla de error
 // Puede recibir un onFailMsg para mostrar dentro de la pantalla de error.
 const standardAxios = (res, requestOptions, succesCode, onSuccess, onFailMsg) => {
-    succesCodes = {'post': 200, 'get':200, 'put':201, 'delete':204};
+    const succesCodes = {'post': 201, 'get':200, 'put':200, 'delete':204};
     axios(requestOptions)
         .then( response => {
             // Verifica que el statusCode de la respuesta sea el correcto
@@ -49,7 +49,7 @@ const standardAxios = (res, requestOptions, succesCode, onSuccess, onFailMsg) =>
             }
         })
         .catch( error => {
-            console.log(error.response.status)
+            // console.log(error)
             if(onFailMsg){
                 res.render('error', {
                     msg: onFailMsg

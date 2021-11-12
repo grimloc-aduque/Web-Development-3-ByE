@@ -138,5 +138,5 @@ module.exports = {
     shoppingCart,
     doAddProduct,
     doEditProduct,
-    doRemoveProduct
+    doRemoveProduct,
 };  

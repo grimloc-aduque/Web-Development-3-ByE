@@ -30,7 +30,7 @@ block content
           img#image(src = producto.urlImagen width='40%'  alt='' p-e-2).mx-auto.m-auto.d-block
         .col-md-3.order-md-2.d-flex.align-items-center.py-1
           h5.lead  #{producto.nombre}
-            p.lead Stock: #{producto.stock} - Precio: $#{producto.precio}
+            p.lead Stock: #{producto.stock} - Precio: $#{producto.precio.toFixed(2)}
         .col-md-2.order-md-2.d-flex.justify-content-evenly.align-items-center.py-1
         
         //- Botones para gestionar productos dentro de cada seccion
@@ -45,3 +45,5 @@ block content
 
   .d-flex.justify-content-center.mx-4.mb-3.mb-lg-4
     a.lead.btn.btn-sm.bg-dark.text-white.px-lg-5.px-3.mt-4(href ='/manageStore/createSection') Agregar nueva seccion
+    a.px-lg-5.px-3.mt-4(href ='')
+    a.lead.btn.btn-sm.bg-dark.text-white.px-lg-5.px-3.mt-4(href ='/manageStore/orders') Ver pedidos

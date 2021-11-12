@@ -33,7 +33,10 @@ block content
                   form.lead(action="/shoppingCart/addProduct", method="post", role="form")
                     input(type='hidden', name='productid', value=producto._id)
                     input(type='hidden', name='sectionid', value=seccion._id)
-                    input.btn.btn-outline-dark.btn-sm(type='submit', value='Agregar al carrito') 
+                    if producto.stock != 0
+                      input.btn.btn-outline-dark.btn-sm(type='submit', value='Agregar al carrito') 
+                    else
+                      input.btn.btn-outline-dark.btn-sm(type='submit', value='Fuera de Stock' disabled) 
               br
           
                 

@@ -128,12 +128,17 @@ const userUpdate = (req, res) => {
                     .status(400)
                     .json(err);
             }
-            objetoUsuario.nombre = req.body.nombre;
-            objetoUsuario.apellido = req.body.apellido;
-            objetoUsuario.direccion = req.body.direccion;
-            objetoUsuario.telefono = req.body.telefono;
-            objetoUsuario.edad = req.body.edad;
-            objetoUsuario.contraseña = req.body.contraseña;
+            console.log(req.body)
+            if(req.body.carrito)
+                objetoUsuario.carrito = req.body.carrito;
+            else{
+                objetoUsuario.nombre = req.body.nombre;
+                objetoUsuario.apellido = req.body.apellido;
+                objetoUsuario.direccion = req.body.direccion;
+                objetoUsuario.telefono = req.body.telefono;
+                objetoUsuario.edad = req.body.edad;
+                objetoUsuario.contraseña = req.body.contraseña;
+            }
             objetoUsuario.save((err, users) => {
                 if (err) {
                     res
