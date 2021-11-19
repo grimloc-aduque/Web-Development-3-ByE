@@ -24,15 +24,6 @@ html
             a.nav-item.nav-link(href='/about') Sobre nosotros
             a.nav-item.nav-link(href='/shoppingCart') Mi Carrito
             a.nav-item.nav-link(href='/manageStore') Gestionar Tienda
-            
-            - /*
-            div.dropdown.show
-              a.btn.dropdown-toggle.nav-item.nav-link(role='button', data-toggle="dropdown" aria-haspopup="true") Gestionar Tienda
-              div.dropdown-menu
-                a.dropdow-item(href='/manageStore') Stock
-                a.dropdow-item(href='/manageStore') Pedidos
-            - */
-
             a.nav-item.nav-link(href='/login') Iniciar Sesión
             
 
@@ -41,13 +32,15 @@ html
     div.container
       div.content
         block content
-
+      
       hr.footer
       footer 
         div.row
           div.col-12
             small.lead &copy; ByE - Karol Torres 2020 - 
             i.fas.fa-cat
+            
+  block scripts
 
 
 

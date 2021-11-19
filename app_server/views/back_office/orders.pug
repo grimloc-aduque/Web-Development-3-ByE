@@ -1,82 +1,9 @@
 extends ../layout
 
 block content
-  div.d-flex.justify-content-center
-      h1.color-purple #{title}
+  app-order-list
 
-  .col-md-4
-    form( action='' method= 'POST' role= 'form')
-      .d-flex.justify-content-around.align-items-center
-        h3 Filtrar por status:  
-        select.btn.btn-block.btn-outline-dark.login-button(name='status')
-          option(value='Todos', selected= true) -- Todos --
-          option(value='Por Enviar', selected=status=='Por Enviar') Por Enviar
-          option(value='Enviado', selected=status=='Enviado') Enviado
-          option(value='Recibido', selected=status=='Recibido') Recibido
-        button.btn.btn-block.btn-outline-dark.login-button(type="submit") Filtrar
-  br
-
-  each order in orders
-    hr
-    .table-responsive
-      table.table.table-sm
-        thead
-          h4.color-purple  
-            | Número de pedido: 
-            span.text-dark #{order._id} 
-          h5.color-purple 
-            | Status: 
-            span.text-dark #{order.status} 
-          h5.color-purple 
-            | Fecha: 
-            - let fecha = new Date(order.fecha);
-            - let dia = fecha.getUTCDate();
-            - let mes = fecha.getUTCMonth() + 1;
-            - let año = fecha.getUTCFullYear();
-            - fecha = dia + "/" + mes + "/" + año;
-            span.text-dark #{fecha}
-          tr
-            th.color-purple.fs-4(scope='col') Nombre
-            th.color-purple.fs-4(scope='col') Teléfono
-            th.color-purple.fs-4(scope='col') Email
-            th.color-purple.fs-4(scope='col') Dirección
-            
-            
-      
-        tbody
-          tr
-            td.fs-5.nombre= order.fullname
-            td.fs-5.telefono= order.telefono
-            td.fs-5.mail= order.email
-            td.fs-5.direccion= order.direccion.calle_principal+' & '+order.direccion.calle_secundaria+' N# '+order.direccion.numero_casa+'. '+order.direccion.ciudad+'. Ref: '+order.direccion.referencia
-            
-    .row
-      .col-md-4
-        table.table.table-sm
-          thead
-            tr
-              th.color-purple.fs-4(scope='col') Producto
-              th.color-purple.fs-4(scope='col') Cantidad 
-            
-          tbody
-            each producto in order.productos 
-              tr
-                td.fs-5.nombreProducto= producto.nombre
-                td.fs-5.cantidadProducto= producto.cantidad
-
-      .col-md-4
-        h4 Actualizar Status:
-        .d-flex.justify-content-left
-          form( action='/manageStore/orders/updateStatus' method= 'POST' role= 'form')
-            input(type='hidden', name='orderid', value=order._id)
-            input(type='hidden', name='status', value='Enviado')
-            button.btn.btn-block.btn-outline-dark.login-button(type="submit") Enviado
-
-          form( action='/manageStore/orders/updateStatus' method= 'POST' role= 'form')
-            input(type='hidden', name='orderid', value=order._id)
-            input(type='hidden', name='status', value='Recibido')
-            button.btn.btn-block.btn-outline-dark.login-button(type="submit") Recibido
-
-    hr.featurette-divider.m-3
-    br
-    br
+block scripts
+  script(src = '/build/runtime.aa4d84d1c2416edc.js')
+  script(src = '/build/polyfills.69a5d15c7d611990.js')
+  script(src = '/build/main.6ac4c8fc51a948ca.js')

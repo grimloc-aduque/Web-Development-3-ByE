@@ -1,0 +1,102 @@
+<div class="d-flex justify-content-center">
+    <h1 class="color-purple">Pedidos</h1>
+</div>
+
+<!-- Form para filtrar -->
+<div class="col-md-4">
+    <form action="" method="POST" role="form">
+        <div class="d-flex justify-content-around align-items-center">
+            <h3>Filtrar por status:  </h3>
+            <select class="btn btn-block btn-outline-dark login-button" name="status">
+                <option value="Todos" selected="">-- Todos --</option>
+                <option value="Por Enviar">Por Enviar</option>
+                <option value="Enviado">Enviado</option>
+                <option value="Recibido">Recibido</option>
+            </select>
+            <button class="btn btn-block btn-outline-dark login-button" type="submit">Filtrar</button>
+        </div>
+    </form>
+</div>
+<br>
+<hr>
+
+<!-- Informacion del pedido -->
+<div class = "pedido" *ngFor="let order of orders">
+    <h4 class="color-purple"> 
+        Número de pedido: <span class="text-dark"> {{order._id}} </span>
+    </h4>
+    <h5 class="color-purple"> 
+        Status: <span class="text-dark"> {{order.status}} </span>
+    </h5>
+    <h5 class="color-purple"> 
+        Fecha: <span class="text-dark"> {{order.fecha | fecha}} </span>
+    </h5>
+    <!-- Tabla de datos del comprador -->
+    <div class="table-responsive">
+        <table class="table table-sm">
+            <thead>
+                <tr>
+                    <th class="color-purple fs-4" scope="col">Nombre</th>
+                    <th class="color-purple fs-4" scope="col">Teléfono</th>
+                    <th class="color-purple fs-4" scope="col">Email</th>
+                    <th class="color-purple fs-4" scope="col">Dirección</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="fs-5 nombre"> {{order.fullname}} </td>
+                    <td class="fs-5 telefono"> {{order.telefono}} </td>
+                    <td class="fs-5 mail"> {{order.email}} </td>
+                    <td class="fs-5 direccion"> {{order.direccion | direccion}} </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <!-- Tabla de productos del pedido -->
+    <div class="row">
+        
+        <div class="col-md-4">
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th class="color-purple fs-4" scope="col">Producto</th>
+                        <th class="color-purple fs-4" scope="col">Cantidad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let producto of order.productos">
+                        <td class="fs-5 nombreProducto"> {{producto.nombre}} </td>
+                        <td class="fs-5 cantidadProducto"> {{producto.cantidad}} </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    
+        <!-- Actualizacion de status -->
+        <div class="col-md-4">
+            <h4>Actualizar Status:</h4>
+            <div class="d-flex justify-content-left">
+                <form action="/manageStore/orders/updateStatus" method="POST">
+                    <input type="hidden" name="orderid" value="618e79fe49c0c938e2d35411">
+                    <input type="hidden" name="status" value="Enviado">
+                    <button class="btn btn-block btn-outline-dark login-button" type="submit">
+                        Enviado
+                    </button>
+                </form>
+                <form action="/manageStore/orders/updateStatus" method="POST">
+                    <input type="hidden" name="orderid" value="618e79fe49c0c938e2d35411">
+                    <input type="hidden" name="status" value="Recibido">
+                    <button class="btn btn-block btn-outline-dark login-button" type="submit">
+                        Recibido
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <hr class="featurette-divider m-3">
+    <br><br>
+</div>
+
+
+
