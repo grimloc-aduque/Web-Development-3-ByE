@@ -109,10 +109,16 @@ div.content{
   margin-top:0.3vw;
 }
 
-button.login-button, a.login-button{
+button.login-button, a.login-button, a.btn-purple, input.btn-purple{
   background: var(--color-purple);
   color: white;
 }
+
+a.btn-purple:hover, input.btn-purple:hover{
+  background-color: black;
+  color: white;
+}
+
 
 form{
   padding: 0.2vmax;

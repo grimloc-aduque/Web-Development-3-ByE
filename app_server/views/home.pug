@@ -1,15 +1,40 @@
 extends layout
 
 block content
-  .container-fluid
-    .row
-      .col-12.col-md-6
-        h4 #{pageHeader.welcome}
-        .d-flex.justify-content-center
-          h1#main-title.color-purple #{pageHeader.title}
-        .d-flex.justify-content-end
-          h5 #{pageHeader.strapline}
-      .col-12.col-md-6
-        .d-flex.justify-content-center
-          img#main-image(src = '/images/petalos.png')
+  h1.d-flex.justify-content-center.color-purple #{title}
+  br
+  main
+    #myCarousel.carousel.slide(data-bs-ride='carousel')
+      .carousel-indicators
+        button.active(type='button' data-bs-target='#myCarousel' data-bs-slide-to='0' aria-current='true' aria-label='Slide 1')
+        button(type='button' data-bs-target='#myCarousel' data-bs-slide-to='1' aria-label='Slide 2')
+        button(type='button' data-bs-target='#myCarousel' data-bs-slide-to='2' aria-label='Slide 3')
+      .carousel-inner
+        .carousel-item.active
+          img.d-block.m-auto(width='100%' height='500' src = '/images/carrusel1.png')
 
+        .carousel-item
+          img.d-block.m-auto(width='100%' height='500' src = '/images/carrusel2.png')
+         
+        .carousel-item
+          img.d-block.m-auto(width='100%' height='500' src = '/images/carrusel3.png')
+          
+               
+      button.carousel-control-prev(type='button' data-bs-target='#myCarousel' data-bs-slide='prev')
+        span.carousel-control-prev-icon(aria-hidden='true')
+        span.visually-hidden Previous
+      button.carousel-control-next(type='button' data-bs-target='#myCarousel' data-bs-slide='next')
+        span.carousel-control-next-icon(aria-hidden='true')
+        span.visually-hidden Next
+  
+    hr.featurette-divider
+    .row
+      each seccion in categorias
+        .col-lg-4.p-4
+          img.d-block.m-auto(width='150' height='150' src = seccion.imagen)
+          h2.d-flex.justify-content-center #{seccion.nombre}
+          p.lead.d-flex.justify-content-center #{seccion.descrpcion}
+          a.d-flex.justify-content-center.btn.btn-purple(href= "/products") Ver Productos
+      
+   
+      

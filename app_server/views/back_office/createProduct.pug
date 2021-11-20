@@ -4,31 +4,33 @@ block content
   
   div.d-flex.justify-content-center
     h1.color-purple Agrega un producto a la seccion
+  br
   form.lead(action="", method="post", role="form")
-  
-    .form-outline.mb-4
-      label.form-label(for='form4Example1') Nombre del producto
-      input#form4Example1.form-control(type='text', name='nombre', required)
-      
-    .form-outline.mb-4
-      label.form-label(for='form4Example2') Precio del producto
-      input#form4Example2.form-control(type='text', name='precio', required)
-      
-    .form-outline.mb-4
-      label.form-label(for='form4Example3') Cantidad de unidades en stock
-      input#form4Example1.form-control(type='number', min=0, name='stock', required)
-  
-    .form-outline.mb-4
-      label.form-label(for='form4Example3') Descripcion del producto
-      textarea#form4Example3.form-control(rows='4', name='descripcion', required)
+    .row
+      .col-lg-1
+      .col-lg-10
+        .row.g-3
+          .col-sm-7 
+            label.form-label(for='form4Example1') Nombre del producto
+            input#form4Example1.form-control(type='text', name='nombre', required)
+          .col-sm
+            label.form-label(for='form4Example2') Precio del producto
+            input#form4Example2.form-control(type='text', name='precio', required)
+          .col-sm
+            label.form-label(for='form4Example3')  Unidades en stock
+            input#form4Example1.form-control(type='number', min=0, name='stock', required)
 
-    .form-outline.mb-4
-      label.form-label(for='form4Example3') Url con la foto del producto 
-      input#form4Example1.form-control(type='text', name='urlImagen', required)
+        .form-outline.mb-4
+          label.form-label(for='form4Example3') Descripcion del producto
+          textarea#form4Example3.form-control(rows='4', name='descripcion', required)
+
+        .form-outline.mb-4
+          label.form-label(for='form4Example3') Url con la foto del producto 
+          input#form4Example1.form-control(type='text', name='urlImagen', required)
+
+        input.btn.btn-dark.btn-block.mb-4(type='submit', value='Crear')
+      .col-lg-1
     
-    //- .form-outline.mb-4 
-    //-   label.form-label(for='formFile') #{subir_archivo}
-    //-   input#formFile.form-control(type='file')
-    
+
   
-    input.btn.btn-dark.btn-block.mb-4(type='submit', value='Crear')
+    

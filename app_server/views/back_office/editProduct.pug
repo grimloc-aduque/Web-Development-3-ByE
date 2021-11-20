@@ -11,30 +11,33 @@ block content
       .col-lg-12.col-xl-11
           .card-body.p-md-5
             .row.justify-content-center
+              
               .col-md-10.col-lg-6.col-xl-5.order-2.order-lg-1
 
                 //- Formulario de datos del producto
                 form.mx-1.mx-md-4(action="", method="post", role="form")
+                  
                   .d-flex.flex-row.align-items-center.mb-4
                     
                     .form-outline.flex-fill.mb-0
                       input#form3Example1c.form-control(type='text', name='nombre', value=producto.nombre, required)
                       label.form-label(for='form3Example1c') Nombre del producto
-                  .d-flex.flex-row.align-items-center.mb-4
-                    
 
-                    .form-outline.flex-fill.mb-0
-                      input#form3Example4c.form-control(type='text', name='precio', value=producto.precio, required)
-                      label.form-label(for='form3Example4c') Precio del producto
-                  .d-flex.flex-row.align-items-center.mb-4
-
-                    .form-outline.flex-fill.mb-0
+                  .row.g-3.mb-4
+                    .col-sm
+                      
                       input#form3Example4c.form-control(type='number', min = 0, name='stock', value=producto.stock, required)
                       label.form-label(for='form3Example4c') Unidades en stock
+                    .col-sm
+                      
+                      input#form3Example4c.form-control(type='text', name='precio', value=producto.precio, required)
+                      label.form-label(for='form3Example4c') Precio del producto
+
                   .d-flex.flex-row.align-items-center.mb-4
 
                     .form-outline.flex-fill.mb-0
-                      input#form3Example3c.form-control(type='text', name='descripcion', value = producto.descripcion, required)
+                      textarea#form4Example3.form-control(rows='2', name='descripcion', required)
+                        | #{producto.descripcion}
                       label.form-label(for='form3Example3c') Descripcion del producto
                   .d-flex.flex-row.align-items-center.mb-4
                     
@@ -47,6 +50,6 @@ block content
                     input.lead.btn.btn-sm.bg-dark.text-white.px-lg-5.px-3(type='submit', value='Actualizar')
 
 
-              .col-md-10.col-lg-6.col-xl-7.d-flex.align-items-center.order-1.order-lg-2
-                .hovereffect
-                  img.w-100.img-responsive(src= producto.urlImagen width='50%')
+              .col-md-10.col-lg-6.col-xl-7.d-flex.align-items-center.order-1.order-lg-2.justify-content-center
+                  .hovereffect
+                    img.img-responsive.d-block.m-auto.pb-3(src= producto.urlImagen width='70%')
