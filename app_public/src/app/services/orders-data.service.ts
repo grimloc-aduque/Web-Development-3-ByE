@@ -14,7 +14,7 @@ export class OrdersDataService {
   constructor(private http: HttpClient) { }
   
   // private url:string = 'http://localhost:3000/api/orders';
-  private url = 'https://bye-bonitos-y-esponjositos.herokuapp.com/api';
+  private url = 'https://bye-bonitos-y-esponjositos.herokuapp.com/api/orders';
 
   public getOrders(): Observable<Order[]>{
     return this.http.get<Order[]>(this.url);
