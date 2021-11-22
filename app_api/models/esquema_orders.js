@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');// incorporar mongoose al proyecto
 
 const ordersSchema = new mongoose.Schema({
+    userid: {
+        type: String,
+        required: true
+    },
     fullname: {
         type: String, 
         required: true,
@@ -52,10 +56,20 @@ const ordersSchema = new mongoose.Schema({
                     required: true,
                     default: 1,
                     min: 1
+                },
+                precio: {
+                    type: Number,
+                    required: true,
+                    min: 0
                 }
             }
         ],
         required: true
+    },
+    total:{
+        type: Number,
+        required: true,
+        min: 0
     },
     status: {
         type: String,

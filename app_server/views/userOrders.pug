@@ -1,0 +1,31 @@
+extends layout
+
+block content
+  h1.d-flex.justify-content-center.color-purple #{title}
+  br
+  //- H2.mb-4 Hola, Nombre de usuario 
+  table.table
+    thead
+      tr
+        th.color-purple(scope='col') OrderID
+        th.color-purple(scope='col') Productos
+        th.color-purple(scope='col') Cantidad
+        th.color-purple(scope='col') Total 
+        th.color-purple(.color-purplescope='col') Status
+        
+
+    tbody
+      each order in orders
+        tr
+          th(scope='row') #{order._id}
+          td.list-group.list-group-flush
+            each producto in order.productos          
+                li.list-group-item #{producto.nombre}
+
+          td.list-group-flush
+            each producto in order.productos    
+              li.list-group-item #{producto.cantidad}
+
+          td $#{order.total}
+          td #{order.status}
+

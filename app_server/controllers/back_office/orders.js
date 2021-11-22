@@ -10,12 +10,11 @@ if (process.env.NODE_ENV === 'production') {
     apiOptions.server = 'https://bye-bonitos-y-esponjositos.herokuapp.com' // servidor remoto - producción
 }
 
-/* renderizar home page. */
+/* renderizar los pedidos del backoffice */
 const renderOrders= (req, res, responseBody) => {
     res.render('back_office/orders', {
         title: 'Pedidos',
         orders: responseBody,
-        status: req.body.status
     });
 };
 

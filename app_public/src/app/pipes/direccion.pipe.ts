@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Direccion } from '../pages/order-list/order-list.component';
+import { Direccion } from '../interfaces/interfaces';
 
 @Pipe({
   name: 'direccion'

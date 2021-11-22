@@ -7,6 +7,7 @@ const orderCreate = (req, res) => {
     console.log(req.body)
     Orders.create(
         {
+            userid: req.body.userid,
             fullname: req.body.fullname,
             email: req.body.email,
             telefono: req.body.telefono,
@@ -17,7 +18,8 @@ const orderCreate = (req, res) => {
                 numero_casa: req.body.numero_casa,
                 referencia: req.body.referencia
             },
-            productos: req.body.productos
+            productos: req.body.productos,
+            total: req.body.total
         }, 
         (err, objetoOrder) => {
             if(err){
@@ -60,17 +62,20 @@ const orderList = (req, res) => {
 };
 
 
-const orderRead = (req, res) => {
-    const id = req.params.orderid;
+const orderListByUserid = (req, res) => {
+    const userid = req.params.userid;
+    const busqueda = new RegExp(userid);
     Orders
-        .findById(id) 
+        .find({
+            'userid': busqueda
+        }) 
         .exec((err, objetoOrder) => {
             if(!objetoOrder){ 
-                console.log(`Pedido con orderid: ${id} no encontrado`);
+                console.log(`No se hallaron pedidos del userid: ${userid}`);
                 return res 
                     .status(404)
                     .json({
-                        "Mensaje": "Pedido no encontrado"
+                        "Mensaje": "Pedidos no encontrados"
                     });
             }else if(err){
                 return res
@@ -130,6 +135,6 @@ const orderUpdate = (req, res) => {
 module.exports = {
     orderList,
     orderCreate,
-    orderRead,
+    orderListByUserid,
     orderUpdate
 }; 

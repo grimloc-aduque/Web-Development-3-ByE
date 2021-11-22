@@ -8,6 +8,7 @@ const ctrlAbout = require('../controllers/about');
 
 const ctrlShoppingCart = require('../controllers/shoppingCart');
 const ctrlCheckout = require('../controllers/checkout');
+const ctrlUserOrders = require('../controllers/userOrders');
 
 const ctrlLogin = require('../controllers/login');
 const ctrlSignin = require('../controllers/signin');
@@ -37,7 +38,10 @@ router.post('/shoppingCart/editProduct', ctrlShoppingCart.doEditProduct);
 
 // Finalizacion de compra del usuario
 router.post('/checkout', ctrlCheckout.checkout);
-router.post('/finishPurchase', ctrlCheckout.doCheckout)
+router.post('/finishPurchase', ctrlCheckout.doCheckout);
+
+// Visualizacion de pedidos del usuario
+router.get('/userOrders', ctrlUserOrders.userOrders);
 
 
 // Creacion e inicio de sesion

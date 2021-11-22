@@ -1,32 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Order } from 'src/app/interfaces/interfaces';
 import { OrdersDataService } from 'src/app/services/orders-data.service';
 
-export interface Order{
-  _id: string;
-  fullname: string;
-  email: string;
-  telefono: number;
-  direccion: Direccion;
-  productos: Producto[];
-  status: string;
-  fecha: string;
-  __v: number;
-}
-
-interface Producto {
-  nombre: string;
-  cantidad: number;
-  _id: string;
-}
-
-export interface Direccion {
-  ciudad: string;
-  calle_principal: string;
-  calle_secundaria: string;
-  numero_casa: string;
-  referencia: string;
-  _id: string;
-}
 
 
 
@@ -39,18 +14,20 @@ export interface Direccion {
 
 
 export class OrderListComponent implements OnInit {
-  orders: Order[] = [];
+  orders: Order [] = [];
   
   constructor(private ordersDataService: OrdersDataService) { }
 
-  private getOrders(): void{
-    this.ordersDataService
-      .getOrders()
-        .then(foundOrders => this.orders = foundOrders);
-  }
 
   ngOnInit(): void {
-    this.getOrders();
+    this.ordersDataService.getOrders().subscribe( respuesta => {
+      this.orders = respuesta.sort((a,b) => {
+        let aDate = new Date(a.fecha);
+        let bDate = new Date(b.fecha)
+        return bDate.getDate() - aDate.getDate()
+    });
+      console.log('Orders: ', this.orders);
+    });
   }
 
 }

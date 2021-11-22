@@ -64,10 +64,9 @@ router
     .get(ctrlOrders.orderList)
     .post(ctrlOrders.orderCreate);
 
-router
-    .route('/orders/:orderid')
-    .get(ctrlOrders.orderRead)
-    .put(ctrlOrders.orderUpdate);
+router.put('/orders/:orderid', ctrlOrders.orderUpdate);
+router.get('/orders/:userid', ctrlOrders.orderListByUserid);
+
 
 
 

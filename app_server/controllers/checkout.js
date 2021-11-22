@@ -37,6 +37,9 @@ const checkout = (req, res) => {
 // POST - Llama a API Create Order
 const doCheckout = (req, res) => {
     // Transformo de texto a objeto json
+    const userid = '61634a5d7e30bbff4f797756';
+    req.body.userid = userid;
+
     req.body.carrito = JSON.parse(req.body.productos);
     const carrito = req.body.carrito;
     req.body.productos = [];
@@ -45,7 +48,8 @@ const doCheckout = (req, res) => {
     for(let i=0; i<carrito.length; i++){
         req.body.productos[i] = {
             'nombre': carrito[i].nombre,
-            'cantidad': carrito[i].cantidad
+            'cantidad': carrito[i].cantidad,
+            'precio': carrito[i].precio
         }
     }
 
@@ -100,7 +104,7 @@ const actualizarStock = (req, res) => {
     
         axios(requestOptions);
     }
-    res.redirect('/');
+    res.redirect('/userOrders');
 };
 
 
