@@ -9,10 +9,9 @@ const userCreate = (req, res) => {
     Users.create({
         nombre: req.body.nombre,
         apellido: req.body.apellido,
-        direccion: req.body.direccion,
         telefono: req.body.telefono,
         edad: req.body.edad,
-        mail: req.body.mail,
+        email: req.body.email,
         contraseña: req.body.contraseña
     }, (err, objetoUsuario) => {
         if (err) {
@@ -53,12 +52,12 @@ const userList = (req, res) => {
 };
 
 // Búsqueda por mail
-const userFindMail= (req, res) => {
-    const buscar = new RegExp(req.params.mail);
+const userFindEmail= (req, res) => {
+    const buscar = new RegExp(req.params.email);
     console.log(`Buscar usuario con mail: ${buscar}`);
     Users
         .find({
-            'mail': buscar 
+            'email': buscar 
         }) 
         .exec((err, objetoUsuario) => {
             if (!objetoUsuario || objetoUsuario.length == 0) { 
@@ -134,8 +133,8 @@ const userUpdate = (req, res) => {
             else{
                 objetoUsuario.nombre = req.body.nombre;
                 objetoUsuario.apellido = req.body.apellido;
-                objetoUsuario.direccion = req.body.direccion;
                 objetoUsuario.telefono = req.body.telefono;
+                objetoUsuario.email = req.body.email;
                 objetoUsuario.edad = req.body.edad;
                 objetoUsuario.contraseña = req.body.contraseña;
             }
@@ -178,7 +177,7 @@ const userDelete = (req, res) => {
 module.exports = {
     userCreate,
     userList,
-    userFindMail,
+    userFindEmail,
     userRead,
     userUpdate,
     userDelete

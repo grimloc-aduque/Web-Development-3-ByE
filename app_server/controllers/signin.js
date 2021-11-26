@@ -12,23 +12,17 @@ const addUser = (req, res) => {
 
 //llama a la rest api 
 const doAddUser = (req, res) => {
-    axios
-    .post(`${apiOptions.server}/api/users`, {
-        nombre: req.body.nombre,
-        apellido: req.body.apellido,
-        direccion: req.body.direccion,
-        mail: req.body.mail,
-        telefono: req.body.telefono,
-        edad: req.body.edad,
-        contraseña: req.body.contraseña,
-    })
-    .then(function (response) {
-    //   console.log("Creado");
-        res.redirect(`/login`);
-    })
-    .catch(function (error) {
-        console.log(error.response);
-    });
+    const path = '/api/register';
+    const requestOptions = {
+        url: `${apiOptions.server}${path}`,
+        method: 'POST',
+        data: req.body
+    };
+
+    requestAPI.standardAxios(res, requestOptions, 200,
+        (body) => res.redirect('/login'),
+        'Existe un error en la coleccion de Usuarios'
+    );
 };
 
 

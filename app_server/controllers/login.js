@@ -3,7 +3,6 @@ const apiOptions = requestAPI.apiOptions;
 const axios = require("axios");
 
 
-/* renderizar home page. */
 const login = (req, res, ) => {
     res.render('login', {
         title: 'Iniciar Sesion',
@@ -12,25 +11,19 @@ const login = (req, res, ) => {
 };
 
 
-// controlador para index
 const doLogin = (req, res) => {
-  // Temporal hasta llegar a autenticacion de usuarios
-    res.redirect('/')
-    /*
-    axios
-      .post(`${apiOptions.server}/api/login`, {
-        mail: req.body.mail,
-        contraseña: req.body.contraseña,
-      })
-      .then(function (response) {
-        console.log("Inicio sesion");
-      })
-      .catch(function (error) {
-        console.log(error.response);
-        res.redirect(`/login`);
-      });
-    */
-  };
+    const path = '/api/login';
+    const requestOptions = {
+        url: `${apiOptions.server}${path}`,
+        method: 'POST',
+        data: req.body
+    };
+
+    requestAPI.standardAxios(res, requestOptions, 200,
+        (body) => res.redirect('/'),
+        'Usuario o contraseña incorrecta'
+    );
+};
 
 module.exports = {
     login,

@@ -21,17 +21,18 @@ block content
             label.form-label(for='apellido') Apellido
         //- Email input
         .form-outline.mb-4
-          input#registerEmail.form-control(type='email' name='mail', required)
-          label.form-label(for='mail') Email
+          input#registerEmail.form-control(type='email' name='email', required)
+          label.form-label(for='email') Email
         //- Password input
         .form-outline.mb-4
           input#registerPassword.form-control(type='password' name='contraseña', required)
           label.form-label(for='contraseña') Contraseña
-     
+        -/*
         .form-outline.mb-4
           input#registerRepeatPassword.form-control(type='text' name='direccion', required)
           label.form-label(for='direccion') Direccion
-       
+        -*/
+
         .row.g-3.mb-4
           .col-sm
             input#registerRepeatPassword.form-control(type='number', min=0, name='edad', required)

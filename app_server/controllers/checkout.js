@@ -9,7 +9,7 @@ const renderCheckout = (req, res, objetoBody) => {
         title: 'Checkout',
         mensaje:'Ingrese un dato valido en el campo',
         fullname: objetoBody.nombre + " " + objetoBody.apellido,
-        email: objetoBody.mail,
+        email: objetoBody.email,
         telefono: objetoBody.telefono,
         productos: JSON.parse(req.body.productos),
         total: req.body.total

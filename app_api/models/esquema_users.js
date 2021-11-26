@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');// incorporar mongoose al proyecto
+const crypto = require('crypto');
+const jwt = require('jsonwebtoken'); 
 
 const usuariosSchema = new mongoose.Schema({
     nombre: {
@@ -6,10 +8,6 @@ const usuariosSchema = new mongoose.Schema({
         required: true,
     },
     apellido: {
-        type: String,
-        required: true,
-    },
-    direccion: {
         type: String,
         required: true,
     },
@@ -23,14 +21,10 @@ const usuariosSchema = new mongoose.Schema({
         'default': 18,
         required: true,
     },
-    mail: {
+    email: {
         type: String,
         required: true,
-    
-    },
-    contraseña:{
-        type: String,
-        required: true,
+        unique: true
     },
     creado:{
         type: Date, 
@@ -58,8 +52,37 @@ const usuariosSchema = new mongoose.Schema({
             } 
         }],
         'default': []
-    }
+    },
+    hash: String,
+    salt: String
 });
+
+
+usuariosSchema.methods.setPassword = function(password){
+    this.salt = crypto.randomBytes(16).toString('hex'); // Crea un string aleatorio
+    this.hash = crypto
+                    .pbkdf2Sync(password, this.salt, 1000, 64, 'sha512')
+                    .toString('hex');
+                // Genera el hash con el password y el salt
+};
+
+usuariosSchema.methods.validPassword = function(password){
+    const hash = crypto
+                    .pbkdf2Sync(password, this.salt, 1000, 64, 'sha512')
+                    .toString('hex');
+    return this.hash === hash;
+};
+
+usuariosSchema.methods.generateJwt = function(){
+    const expiry = new Date();
+    expiry.setDate(expiry.getDate() + 7);
+    return jwt.sign({
+        _id : this._id,
+        email: this.email,
+        nombre: this.nombre,
+        exp: parseInt(expiry.getTime / 1000, 10)
+    }, process.env.JWT_SECRET);
+}
 
 
 // Inicializo algunas instancias en la DB

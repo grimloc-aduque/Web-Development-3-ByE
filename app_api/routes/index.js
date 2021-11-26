@@ -1,18 +1,28 @@
 const express = require('express');
 const router = express.Router();
+const jwt = require('express-jwt');
+const auth = jwt({
+    secret: process.env.JWT_SECRET,
+    userProperty: 'payload',
+    algorithms: ['RS256']
+});
 
 const ctrlSections = require('../controllers/sections');
 const ctrlProducts = require('../controllers/products');
-const ctrlUsers =require('../controllers/users');
+const ctrlUsers = require('../controllers/users');
+const ctrlAuth = require('../controllers/authentication');
 const ctrlCarrito = require('../controllers/carrito');
 const ctrlOrders = require('../controllers/orders');
 
 
 // Sections
+// Agregar auth para restringir api endpoints
+
 router
     .route('/sections')
     .get(ctrlSections.sectionList)
     .post(ctrlSections.sectionCreate);
+
 
 router
     .route('/sections/:sectionid')
@@ -47,7 +57,12 @@ router
 
 router
     .route('/search/:name')
-    .get(ctrlUsers.userFindMail);
+    .get(ctrlUsers.userFindEmail);
+
+
+// Autenticacion
+router.post('/register', ctrlAuth.register);
+router.post('/login', ctrlAuth.login);
 
     
 // Carrito
