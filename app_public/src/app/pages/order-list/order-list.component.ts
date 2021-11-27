@@ -25,8 +25,7 @@ export class OrderListComponent implements OnInit {
         let aDate = new Date(a.fecha);
         let bDate = new Date(b.fecha)
         return bDate.getDate() - aDate.getDate()
-    });
-      console.log('Orders: ', this.orders);
+      });
     });
   }
 
