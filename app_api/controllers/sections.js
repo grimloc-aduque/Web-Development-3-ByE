@@ -90,14 +90,14 @@ const sectionUpdate = (req, res) => {
             if(!objetoSection) {
                 return res
                     .status(404)
-                    .jason({
+                    .json({
                         "message": "sectionid no existe"
                     });
             }
             else if(err) {
                 return res
                     .status(400)
-                    .jason(err);
+                    .json(err);
             }
             objetoSection.titulo = req.body.titulo;
             objetoSection.descripcion = req.body.descripcion;

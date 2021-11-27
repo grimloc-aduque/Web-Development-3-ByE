@@ -98,20 +98,21 @@ const orderUpdate = (req, res) => {
                 "message": "Ingrese un orderid valido"
             })
     }
+    console.log(id)
     Orders
         .findById(id)
         .exec((err, objetoOrder) =>{
             if(!objetoOrder) {
                 return res
                     .status(404)
-                    .jason({
+                    .json({
                         "message": "orderid no existe"
                     });
             }
             else if(err) {
                 return res
                     .status(400)
-                    .jason(err);
+                    .json(err);
             }
 
             objetoOrder.status = req.body.status;
