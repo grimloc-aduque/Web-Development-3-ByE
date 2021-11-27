@@ -20,7 +20,7 @@ const renderCheckout = (req, res, objetoBody) => {
 // POST - Llama a API Read User
 const checkout = (req, res) => {
     // const userid = req.params.userid;
-    const userid = '61634a5d7e30bbff4f797756'; 
+    const userid = '61a185b3f5798e30ee016d79'; 
     const path = `/api/users/${userid}`;
     const requestOptions = {
         url: `${apiOptions.server}${path}`,
@@ -37,7 +37,7 @@ const checkout = (req, res) => {
 // POST - Llama a API Create Order
 const doCheckout = (req, res) => {
     // Transformo de texto a objeto json
-    const userid = '61634a5d7e30bbff4f797756';
+    const userid = '61a185b3f5798e30ee016d79';
     req.body.userid = userid;
 
     req.body.carrito = JSON.parse(req.body.productos);
@@ -70,7 +70,7 @@ const doCheckout = (req, res) => {
 
 
 const vaciarCarrito = (req, res) => {
-    const userid = '61634a5d7e30bbff4f797756'; 
+    const userid = '61a185b3f5798e30ee016d79'; 
     const path = `/api/users/${userid}`;
     const requestOptions = {
         url: `${apiOptions.server}${path}`,

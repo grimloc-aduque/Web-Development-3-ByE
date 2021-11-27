@@ -114,10 +114,9 @@ const Usuario = new mongoose.model('User', usuariosSchema);
 const user1 = new Usuario ({
     nombre: 'Jorge',
     apellido: 'Gutierrez',
-    direccion: 'Ecuador',
     telefono: 0983731258,
     edad: 22,
-    mail: 'jorge@hotmail.com',
+    email: 'jorge@hotmail.com',
     contraseña: '12345',
     carrito: carrito1
 })

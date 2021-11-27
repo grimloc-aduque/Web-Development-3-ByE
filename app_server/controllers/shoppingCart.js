@@ -19,7 +19,7 @@ const renderShoppingCart = (req, res, responseBody) => {
 // Luego llama a retrieveProducts para llenar la vista
 const shoppingCart = (req, res) => {
     // const userid = req.params.userid;
-    const userid = '61634a5d7e30bbff4f797756'; 
+    const userid = '61a185b3f5798e30ee016d79'; 
     const path = `/api/users/${userid}/shoppingCart`;
     const requestOptions = {
         url: `${apiOptions.server}${path}`,
@@ -75,7 +75,7 @@ const readAllProducts = (req, res, shoppingCart) => {
 // POST - Llamada a API Shopping Cart Add Product
 const doAddProduct = (req, res) => {
     // const userid = req.params.userid;
-    const userid = '61634a5d7e30bbff4f797756'; 
+    const userid = '61a185b3f5798e30ee016d79'; 
     const path = `/api/users/${userid}/shoppingCart`;
     const requestOptions = {
         url: `${apiOptions.server}${path}`,
@@ -84,8 +84,7 @@ const doAddProduct = (req, res) => {
     };
 
     requestAPI.standardAxios(res, requestOptions, 201,
-        () => res.redirect('/products'),
-        'No se pudo agregar el Producto al Carrito'
+        () => res.redirect('/products')
     );
 };
 
@@ -96,7 +95,8 @@ const doAddProduct = (req, res) => {
 // POST - Llamada a API Update Product
 const doEditProduct = (req, res) => {
     // const userid = req.params.userid;
-    const userid = '61634a5d7e30bbff4f797756'; 
+    
+    const userid = '61a185b3f5798e30ee016d79'; 
     const path = `/api/users/${userid}/shoppingCart`;
     
     const requestOptions = {
@@ -117,7 +117,7 @@ const doEditProduct = (req, res) => {
 // POST - Llamada a API Shopping Cart Remove Product
 const doRemoveProduct = (req, res) => {
     // const userid = req.params.userid;
-    const userid = '61634a5d7e30bbff4f797756';
+    const userid = '61a185b3f5798e30ee016d79';
     const path = `/api/users/${userid}/shoppingCart`;
 
     const requestOptions = {
