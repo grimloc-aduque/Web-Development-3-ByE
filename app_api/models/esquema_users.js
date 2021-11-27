@@ -87,51 +87,17 @@ usuariosSchema.methods.generateJwt = function(){
 
 // Inicializo algunas instancias en la DB
 
-// Creo un carrito
-const carrito1 = [{
-    sectionid: '61634a215d686cb45515b38c',
-    productid: '61634a215d686cb45515b38d',
-    cantidad: 4
-},{
-    sectionid: '61634a215d686cb45515b38f',
-    productid: '61634a215d686cb45515b390',
-    cantidad: 2
-}];
-
-const carrito2 = [{
-    sectionid: '61634a215d686cb45515b38c',
-    productid: '61634a215d686cb45515b38e',
-    cantidad: 3
-},{
-    sectionid: '61634a215d686cb45515b38f',
-    productid: '61634a215d686cb45515b391',
-    cantidad: 5
-}];
-
 
 // Creo usuarios
 const Usuario = new mongoose.model('User', usuariosSchema);
-const user1 = new Usuario ({
+const user = new Usuario ({
     nombre: 'Jorge',
     apellido: 'Gutierrez',
     telefono: 0983731258,
     edad: 22,
     email: 'jorge@hotmail.com',
-    contraseña: '12345',
-    carrito: carrito1
+    carrito: []
 })
+user.setPassword('12345')
 
-const user2 = new Usuario ({
-    nombre: 'Alejandro',
-    apellido: 'Duque',
-    direccion: 'Ecuador',
-    telefono: 0992659674,
-    edad: 20,
-    mail: 'aduquead13@outlook.com',
-    contraseña: '12345',
-    carrito: carrito2
-})
-
-
-//user1.save();
-// user2.save();
+// user.save();
