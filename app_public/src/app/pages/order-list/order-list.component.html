@@ -4,7 +4,7 @@
 
 <!-- Form para filtrar -->
 <div class="col-md-4">
-    <form action="" method="POST" role="form">
+    <form action="https://bye-bonitos-y-esponjositos.herokuapp.com/manageStore/orders" method="POST" role="form">
         <div class="d-flex justify-content-around align-items-center">
             <h3>Filtrar por status:  </h3>
             <select class="btn btn-block btn-outline-dark login-button" name="status">
@@ -77,14 +77,14 @@
         <div class="col-md-4">
             <h4>Actualizar Status:</h4>
             <div class="d-flex justify-content-left">
-                <form action="/manageStore/orders/updateStatus" method="POST">
+                <form action="https://bye-bonitos-y-esponjositos.herokuapp.com/manageStore/orders/updateStatus" method="POST">
                     <input type="hidden" name="orderid" value="618e79fe49c0c938e2d35411">
                     <input type="hidden" name="status" value="Enviado">
                     <button class="btn btn-block btn-outline-dark login-button" type="submit">
                         Enviado
                     </button>
                 </form>
-                <form action="/manageStore/orders/updateStatus" method="POST">
+                <form action="https://bye-bonitos-y-esponjositos.herokuapp.com/manageStore/orders/updateStatus" method="POST">
                     <input type="hidden" name="orderid" value="618e79fe49c0c938e2d35411">
                     <input type="hidden" name="status" value="Recibido">
                     <button class="btn btn-block btn-outline-dark login-button" type="submit">
