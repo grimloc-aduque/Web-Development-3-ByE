@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { OrderListComponent } from './pages/order-list/order-list.component';
 import { DireccionPipe } from './pipes/direccion.pipe';
 import { FechaPipe } from './pipes/fecha.pipe';
+import { HomeComponent } from './pages/home/home.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { FechaPipe } from './pipes/fecha.pipe';
     AppComponent,
     OrderListComponent,
     DireccionPipe,
-    FechaPipe
+    FechaPipe,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -25,6 +27,6 @@ import { FechaPipe } from './pipes/fecha.pipe';
     HttpClientModule
   ],
   providers: [{provide: APP_BASE_HREF, useValue : '/' }],
-  bootstrap: [OrderListComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

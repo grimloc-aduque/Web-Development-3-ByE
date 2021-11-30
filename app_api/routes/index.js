@@ -64,7 +64,6 @@ router
 router.post('/register', ctrlAuth.register);
 router.post('/login', ctrlAuth.login);
 
-    
 // Carrito
 router
     .route('/users/:userid/shoppingCart')

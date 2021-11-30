@@ -1,6 +1,8 @@
 extends layout
 
 block content
+  app-root
+  -/*
   h1.d-flex.justify-content-center.color-purple #{title}
   br
   main
@@ -35,6 +37,9 @@ block content
           h2.d-flex.justify-content-center #{seccion.nombre}
           p.lead.d-flex.justify-content-center #{seccion.descrpcion}
           a.d-flex.justify-content-center.btn.btn-purple(href= "/products") Ver Productos
-      
-   
-      
+  
+  - */
+block scripts
+  script(src = '/build/runtime.aa4d84d1c2416edc.js')
+  script(src = '/build/polyfills.69a5d15c7d611990.js')
+  script(src = '/build/main.c8d7a825edb72dec.js')

@@ -16,7 +16,8 @@ const ctrlSignin = require('../controllers/signin');
 const ctrlManageStore = require('../controllers/back_office/manageStore')
 const ctrlManageProducts = require('../controllers/back_office/manageProducts')
 const ctrlManageSections = require('../controllers/back_office/manageSections')
-const ctrlOrders = require('../controllers/back_office/orders')
+const ctrlOrders = require('../controllers/back_office/orders');
+const passport = require('passport');
 
 
 
@@ -54,7 +55,6 @@ router
     .route('/signin')
     .get( ctrlSignin.addUser)
     .post( ctrlSignin.doAddUser);
-
 
 
 // ---------- Back Office
