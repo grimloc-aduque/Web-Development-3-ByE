@@ -1,6 +1,5 @@
 const requestAPI = require('./requestAPI');
 const apiOptions = requestAPI.apiOptions;
-const axios = require("axios");
 
 
 const login = (req, res, ) => {
@@ -18,9 +17,13 @@ const doLogin = (req, res) => {
         method: 'POST',
         data: req.body
     };
-
+    
     requestAPI.standardAxios(res, requestOptions, 200,
-        (body) => res.redirect('/'),
+        (token) => {
+            console.log(token);
+            res.cookie('payload', token)
+            res.redirect('/')
+        },
         'Usuario o contraseña incorrecta'
     );
 };

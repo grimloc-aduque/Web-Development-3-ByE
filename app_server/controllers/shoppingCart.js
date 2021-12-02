@@ -19,7 +19,7 @@ const renderShoppingCart = (req, res, responseBody) => {
 // Luego llama a retrieveProducts para llenar la vista
 const shoppingCart = (req, res) => {
     // const userid = req.params.userid;
-    const userid = '61a18a4019130b5d28829907'; 
+    const userid = req.body.userid; 
     const path = `/api/users/${userid}/shoppingCart`;
     const requestOptions = {
         url: `${apiOptions.server}${path}`,
@@ -75,7 +75,7 @@ const readAllProducts = (req, res, shoppingCart) => {
 // POST - Llamada a API Shopping Cart Add Product
 const doAddProduct = (req, res) => {
     // const userid = req.params.userid;
-    const userid = '61a18a4019130b5d28829907'; 
+    const userid = req.body.userid;
     const path = `/api/users/${userid}/shoppingCart`;
     const requestOptions = {
         url: `${apiOptions.server}${path}`,
@@ -97,7 +97,7 @@ const doAddProduct = (req, res) => {
 const doEditProduct = (req, res) => {
     // const userid = req.params.userid;
     
-    const userid = '61a18a4019130b5d28829907'; 
+    const userid = req.body.userid;
     const path = `/api/users/${userid}/shoppingCart`;
     
     const requestOptions = {
@@ -118,7 +118,7 @@ const doEditProduct = (req, res) => {
 // POST - Llamada a API Shopping Cart Remove Product
 const doRemoveProduct = (req, res) => {
     // const userid = req.params.userid;
-    const userid = '61a18a4019130b5d28829907';
+    const userid = req.body.userid;
     const path = `/api/users/${userid}/shoppingCart`;
 
     const requestOptions = {

@@ -53,6 +53,11 @@ const usuariosSchema = new mongoose.Schema({
         }],
         'default': []
     },
+    admin: {
+        type: Boolean,
+        required: true,
+        'default': false
+    },
     hash: String,
     salt: String
 });
@@ -80,7 +85,8 @@ usuariosSchema.methods.generateJwt = function(){
         _id : this._id,
         email: this.email,
         nombre: this.nombre,
-        exp: parseInt(expiry.getTime / 1000, 10)
+        admin: this.admin,
+        exp: parseInt(expiry.getTime() / 1000, 10)
     }, process.env.JWT_SECRET);
 }
 

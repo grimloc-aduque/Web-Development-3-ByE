@@ -65,26 +65,32 @@ const carritoAddProduct = (req, res) => {
                 'productid': productid,
                 'cantidad': cantidad
             }
-
-             // Busco el producto en el carrito y guardo su posicion
             const carrito = objetoUsuario.carrito;
-            let pInd = -1;
-            for(let i = 0; i<carrito.length; i++){
-                p = carrito[i]
-                if(p.sectionid === sectionid && p.productid === productid){
-                    pInd = i;
-                    break;
-                }
-            }
-            // Si encuentro el producto, lo actualizo
-            if(pInd != -1){
-                objetoUsuario.carrito[pInd] = newProduct
-            }
-
-            // Si no encuentro el producto, lo agrego
-            else{
+            // Si el carrito esta vacío, solo agrego el producto al carrito
+            if(objetoUsuario.carrito.length === 0){
                 objetoUsuario.carrito.push(newProduct);
             }
+            else{
+                // Busco el producto en el carrito y guardo su posicion
+                let pInd = -1;
+                for(let i = 0; i<carrito.length; i++){
+                    p = carrito[i]
+                    if(p.sectionid === sectionid && p.productid === productid){
+                        pInd = i;
+                        break;
+                    }
+                }
+                // Si encuentro el producto, lo actualizo
+                if(pInd != -1){
+                    objetoUsuario.carrito[pInd] = newProduct
+                }
+    
+                // Si no encuentro el producto, lo agrego
+                else{
+                    objetoUsuario.carrito.push(newProduct);
+                }
+            }
+
 
             // Guardo los cambios
             objetoUsuario.save((err, usuario) => {

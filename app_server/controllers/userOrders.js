@@ -14,7 +14,7 @@ const renderOrders= (req, res, responseBody) => {
 
 // controlador para index
 const userOrders = (req, res) => {
-    const userid = '61a18a4019130b5d28829907';
+    const userid = req.body.userid;
     const path = `/api/orders/${userid}`;
     const requestOptions = {
         url: `${apiOptions.server}${path}`,

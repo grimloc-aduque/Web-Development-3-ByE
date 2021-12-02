@@ -32,19 +32,19 @@ const register = (req, res) => {
 };
 
 const login = (req, res) => {
-    console.log(req.body)
+    // console.log(req.body)
     if(!req.body.email || !req.body.contraseña){
         return res
                 .status(400)
                 .json({message: 'Se requieren todos los campos'})
     }
     passport.authenticate('local', (err, user, info) => {
-        let token;
         if(err){
             return res
                     .status(400)
                     .json(err);
         }
+        let token;
         if(user){
             token = user.generateJwt();
             res

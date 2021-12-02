@@ -23,7 +23,7 @@
 
 /* Navbar */
 #navbar-image{
-  width: 3vmax;
+  width: 3vw;
 }
 
 .navbar-cream{
@@ -33,13 +33,13 @@
 a.nav-item.nav-link{
   color: black !important;
   margin-right: 2vmax;
-  font-weight: normal;
-  font-size: larger;
+  font-weight: bold;
+  font-size: large;
 }
 
 a.nav-item.nav-link:hover{
   color: var(--color-purple);
-  font-weight: bold;
+  font-weight: normal;
 }
 
 /* Body */

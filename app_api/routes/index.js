@@ -56,7 +56,7 @@ router
     .delete(ctrlUsers.userDelete);
 
 router
-    .route('/search/:name')
+    .route('/users/findEmail/:email')
     .get(ctrlUsers.userFindEmail);
 
 

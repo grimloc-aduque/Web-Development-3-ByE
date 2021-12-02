@@ -4,24 +4,29 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const app = express();
 
-const passport = require('passport') // Autenticación
+// Permitir requests desde otros puertos
+const cors = require('cors');
+app.use(cors())
+
+
+// Autenticación
+const passport = require('passport') 
 require('./app_api/models/db')
 require('./app_api/config/passport')  // Estrategia de autenticación
 
 
-const app = express();
-
-
 
 // Permitir Requests desde aplicacion Angular Local
+/*
 app.use('/api', (req,res,next) => {
   // res.header('Access-Control-Allow-Origin', 'https://bye-bonitos-y-esponjositos.herokuapp.com');
   res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
 });
-
+*/
 
 
 
