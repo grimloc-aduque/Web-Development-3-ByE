@@ -22,11 +22,17 @@ html
             a.nav-item.nav-link(href='/') Inicio
             a.nav-item.nav-link(href='/products') Productos
             a.nav-item.nav-link(href='/about') Sobre nosotros
-            a.nav-item.nav-link(href='/shoppingCart') Mi Carrito
-            a.nav-item.nav-link(href='/userOrders') Mis Pedidos
-            a.nav-item.nav-link(href='/manageStore') Gestionar Tienda
-            a.nav-item.nav-link(href='/login') Iniciar Sesión
-            a.nav-item.nav-link(href='/logout') Cerrar Sesión
+            if admin
+              a.nav-item.nav-link(href='/manageStore') Gestionar Tienda
+            if auth
+              a.nav-item.nav-link(href='/shoppingCart') Mi Carrito
+              a.nav-item.nav-link(href='/userOrders') Mis Pedidos
+              a.nav-item.nav-link(href='/logout') Cerrar Sesión
+            else 
+              a.nav-item.nav-link(href='/login') Iniciar Sesión
+
+            
+            
 
 
 

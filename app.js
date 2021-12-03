@@ -5,16 +5,20 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const app = express();
+const mw = require('./middleware')
 
 // Permitir requests desde otros puertos
 const cors = require('cors');
 app.use(cors())
 
-
 // Autenticación
-const passport = require('passport') 
+const passport = require('passport')
+
+// Modelos
 require('./app_api/models/db')
-require('./app_api/config/passport')  // Estrategia de autenticación
+
+// Estrategia de autenticación
+require('./app_api/config/passport')  
 
 
 
@@ -50,6 +54,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '/public')));
 // Incluye Angular app
 app.use(express.static(path.join(__dirname, 'app_public')));
+
 
 app.use(passport.initialize());
 
