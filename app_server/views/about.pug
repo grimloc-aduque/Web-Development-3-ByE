@@ -6,27 +6,29 @@ block content
 
   hr.featurette-divider
   .row.featurette
-      .col-md-7.order-md-2
+      .col-md-1
+      .col-md-4.dflex.align-items-center
+        img.bd-placeholder-img.bd-placeholder-img-lg.featurette-image.img-fluid.mx-auto.m-auto.d-block(width='65%' height='65%' src = about_img)
+      .col-md-6.dflex.align-self-center
         h2.color-purple.featurette-heading  #{description}
         p.lead #{texto}
-      .col-md-5.order-md-1
-          img.bd-placeholder-img.bd-placeholder-img-lg.featurette-image.img-fluid.mx-auto.m-auto.d-block(width='50%' height='50%' src = about_img)
+      .col-md-1
   
   hr.featurette-divider
-  div.d-flex.justify-content-center.featurette
-    h1.color-purple #{title2}
-  div.d-flex.justify-content-center
-    p.lead  #{description2}
-  
-  
+  br
   .row.d-flex.justify-content-evenly
-    .col-md-7 
+    .col-md-1
+    .col-md-5.align-self-center
+      h1.color-purple #{title2}
+      p.lead  #{description2}
       each product in productos
         li.lead  #{product.nombre_producto} 
-    .col-md-5
-      img.bd-placeholder-img.bd-placeholder-img-lg.featurette-image.img-fluid.mx-auto.m-auto.d-block(width='40%' height='40%' src = image_product)
+    .col-md-5.d-flex.align-items-center
+        img.bd-placeholder-img.bd-placeholder-img-lg.featurette-image.img-fluid.mx-auto.m-auto.d-block(width='60%' height='60%' src = image_product)
+    .col-md-1
+    
       
-            
+  br         
   hr.featurette-divider
   div.d-flex.justify-content-center
     h1.color-purple.p-b-5 #{title3} 
@@ -39,7 +41,7 @@ block content
           h2.lead.d-flex.justify-content-center #{red.nombre}
           a.d-flex.justify-content-center.btn.btn-purple(href= red.link) Ver &raquo;
   
-      
+  br
   
 
   

@@ -5,6 +5,8 @@ block content
   if msg
     h1.color-purple Algo salió mal 0_0
     h2 #{msg}
+  if askLogin 
+    a.link-purple(href="/login") Iniciar sesión
 
   //- Pagina de Error por default
   else

@@ -17,6 +17,16 @@
   background-color: var(--color-purple);
 }
 
+/* Links */
+.link-purple{
+  font-size: large;
+  font-weight: bold;
+  color: var(--color-purple);
+}
+.link-purple:hover{
+  font-weight: normal;
+  color: var(--color-purple);
+}
 
 /* Layout */
 

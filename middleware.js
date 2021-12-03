@@ -29,7 +29,8 @@ const auth = (req, res, next) => {
         next();
     }else{
         res.render('error', {
-            msg: 'Inicie sesión para ver esta página'
+            msg: 'Inicie sesión para ver esta página',
+            askLogin: true
         })
     }
 }
