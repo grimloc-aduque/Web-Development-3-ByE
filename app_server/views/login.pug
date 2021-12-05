@@ -2,7 +2,7 @@ extends layout
 
 block content
   
-  div.fondo-logo
+  div.container
     //- Titulo
     div.d-flex.justify-content-center
       h1.color-purple #{title}
@@ -18,10 +18,11 @@ block content
           input.form-control.login-formItem(type="password" name='contraseña', required)
 
         //- Buttons
-        div.form-group.d-flex.flex-column
+        div.form-group.d-flex.flex-column.mt-4
           button.btn.btn-block.btn-outline-dark.login-button(type="submit") Iniciar Sesión
           div.d-flex.justify-content-center
             span.login-formItem O
           a.btn.btn-block.btn-outline-dark.login-button(href="/signin") Regístrate
           
       p #{mensaje}
+  img.mt-4.opacity-50(src='./images/bye_text.png' width='300')
