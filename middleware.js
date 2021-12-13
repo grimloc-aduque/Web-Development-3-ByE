@@ -40,7 +40,8 @@ const admin = (req, res, next) => {
         next();
     }else{
         res.render('error', {
-            msg: 'No es administrador de la página'
+            msg: 'No es administrador de la página',
+            askLogin: false
         });
     }
 }

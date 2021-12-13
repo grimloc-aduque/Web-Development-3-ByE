@@ -24,11 +24,10 @@ const ctrlOrders = require('../controllers/back_office/orders');
 
 
 
-
+router.use(mw.jwtCookie)
 // Direccionammiento de rutas
 
 // Mostrar contenido
-router.use(mw.jwtCookie)
 router.get('/', ctrlHome.home);
 router.get('/products', ctrlProducts.products);
 router.get('/about', ctrlAbout.about);
