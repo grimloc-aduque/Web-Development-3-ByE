@@ -17,7 +17,7 @@ Cloud
 
 
 ## ByE E-Commerce
-E-commerce platform developed for the ByE (Bonitos y Esponjositos) entrepreneurship
+E-commerce platform developed for the ByE (Bonitos y Esponjositos) entrepreneurship.
 
 ## Development
 
