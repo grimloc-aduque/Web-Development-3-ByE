@@ -27,4 +27,4 @@ E-commerce platform developed for the ByE (Bonitos y Esponjositos) entrepreneurs
 
 <img src="https://github.com/grimloc-aduque/Web-Development-3-ByE/blob/main/git_images/inicio_logo.png" style="width:600px;"/>
 
-<img src="https://github.com/grimloc-aduque/Web-Development-3-ByE/blob/main/git_images/login.png" style="width:600px;"/>
+<img src="https://github.com/grimloc-aduque/Web-Development-3-ByE/blob/main/git_images/login.png" style="width:600px;"/> 
